@@ -1,0 +1,38 @@
+<nav class="navbar bg-body-tertiary sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"
+      style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#0A57A2">FORMULA CLEAN</a>
+    <ul class="nav hstack gap-4">
+      <li class="nav-item">
+        <a href="orcamento.html" class="text"><i class="bi bi-cart h4 border-black"></i></a>
+      </li>
+      <li class="nav-item">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </li>
+    </ul>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="offcanvasNavbarLabel"> João</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="lista-pedidos.html">Meus Pedidos</a>
+            <a class="nav-link" href="consulta-pedidos.html">Consultar Pedido</a>
+            <a class="nav-link active" aria-current="page" href="pedido.html">Novo Pedido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Sair</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>  

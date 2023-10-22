@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row-cols-12 hstack gap-2">
+      <div class="col-4 text-center">
+        <img src="../../../assets/logoTransparente.png" alt="Logo" class="img-fluid w-60">
+      </div>
+      <div *ngIf="message" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{message}}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="close"
+          (click)="$event.preventDefault()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="col-md-5 col-sm-2 mt-4">
+          <h4 class="text-primary text-center mt-4 mb-2">Sistema de Lavanderia On-Line</h4>
+          <div class="card mb-2 mt-4">
+              <div class="card-header">
+                  <h4 class="text-center">Login</h4>
+              </div>
+              <div class="card-body">
+                  <form #formLogin="ngForm" (keyup.enter)="logar()">
+                      <div class="mb-3 form-group">
+                          <label for="username" class="form-label">Usuário: </label>
+                          <input type="text" class="form-control" id="usuario" name="usuario"
+                                 [(ngModel)]="login.login" #usuario="ngModel" required>
+                          <div *ngIf="usuario.errors && (usuario.dirty || usuario.touched)" class="alert alert-danger">
+                            <div [hidden]="!usuario.errors['required']">Digite o usuário</div>
+                          </div>
+                      </div>
+                      <div class="mb-3 form-group">
+                          <label for="password" class="form-label">Senha: </label>
+                          <input type="password" class="form-control" id="senha" name="senha" 
+                                 [(ngModel)]="login.senha" #senha="ngModel" required>
+                          <div class="input-group-append">
+                              <span class="container" id="mostrarSenhaBtn">
+                                  <i id="olho" class="bi bi-eye-slash toggle-icon"></i>
+                              </span>
+                          </div>
+                          <div *ngIf="senha.errors && (senha.dirty || senha.touched)" class="alert alert-danger">
+                            <div [hidden]="!senha.errors['required']"></div>
+                          </div>
+                      </div>
+                      <button id="entrarBtn" type="button" class="btn btn-primary w-100"
+                              (click)="logar()"  [disabled]="!formLogin.form.valid">
+                              Entrar
+                      </button>
+                      <p id="mensagemErro" class="text-danger"></p>
+                  </form>
+                  <div class="row mt-3">
+                      <div class="col d-flex justify-content-between">
+                          <a [routerLink]="['/recuperasenha']">Esqueceu a senha?</a>
+                          <a [routerLink]="['/autocadastro']">Cadastrar-se</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row justify-content-center text-center mt-1">
+              <p class="text-secondary" style="font-size: 14px;">Formula Clean &copy; 2023</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<!-- <script>
+  document.getElementById("entrarBtn").addEventListener("click", function () {
+      var usuario = document.getElementById("username").value.toLowerCase();
+      var mensagemErro = document.getElementById("mensagemErro");
+
+      if (usuario === "joao") {
+          window.location.href = "index.html";
+      } else if (usuario === "juliana") {
+          window.location.href = "funcionario.html";
+      } else {
+          mensagemErro.textContent = "Usuário e/ou senha inválidos!";
+      }
+  });
+
+  const senhaInput = document.getElementById('password');
+  const mostrarSenhaBtn = document.getElementById('mostrarSenhaBtn');
+  const olhoBtn = document.getElementById('olho');
+  mostrarSenhaBtn.addEventListener('click', () => {
+      if (senhaInput.type === 'password') {
+          senhaInput.type = 'text';
+          olhoBtn.classList.remove("bi-eye-slash");
+          olhoBtn.classList.add("bi-eye");
+      } else {
+          senhaInput.type = 'password';
+          olhoBtn.classList.remove("bi-eye");
+          olhoBtn.classList.add("bi-eye-slash");
+      }
+  });
+</script> -->

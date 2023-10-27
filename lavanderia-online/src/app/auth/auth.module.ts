@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
-import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.component';
+import { RecuperarSenhaComponent } from './recuperar-senha/recuperar-senha.component';
 
 
 
@@ -12,7 +12,7 @@ import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.componen
   declarations: [
     LoginComponent,
     CadastroComponent,
-    RecuperaSenhaComponent
+    RecuperarSenhaComponent
   ],
   imports: [
     CommonModule,

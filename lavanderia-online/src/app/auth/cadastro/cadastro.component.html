@@ -46,7 +46,7 @@
               
               <div class="col-lg-2 form-floating mb-3">
                 <input #cep type="text" class="form-control" name="cep" placeholder="CEP"
-                       (blur)="buscaEndereco(cep.value)" required>
+                       (change)="buscaEndereco(cep.value)" required>
                 <label for="cep">CEP</label>
               </div>
 

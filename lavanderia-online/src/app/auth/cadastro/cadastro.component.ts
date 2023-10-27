@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente, Endereco, Usuario } from 'src/app/shared';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CadastroService } from '../services';
 @Component({
   selector: 'app-cadastro',
@@ -9,21 +9,22 @@ import { CadastroService } from '../services';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
-  constructor(cadastroService: CadastroService) {
-  }
-
-  ngOnInit(): void {
-    // this.route.queryParams.subscribe(param => this.message = param["error"])
-  }
-
   @ViewChild('cadastroForm') cadastroForm!: NgForm;
   public cliente!: Cliente;
   public endereco!: Endereco;
   public usuario!: Usuario;
+  public message!: string;
+  constructor(private cadastroService: CadastroService,
+              private route: ActivatedRoute
+              ) {
+  }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(param => this.message = param["error"])
+  }
   
   public buscaEndereco(cep: string): Endereco {
-    CadastroService.buscaCepViaWS(cep);
-    const endereco = new Endereco(cep);
-    return  endereco;
+    this.endereco = CadastroService.buscaCepViaWS(cep);
+    return  this.endereco;
   }
 }

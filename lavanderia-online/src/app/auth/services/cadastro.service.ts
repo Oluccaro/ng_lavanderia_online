@@ -10,8 +10,12 @@ export class CadastroService {
 
   private static viaCepUrl : string = "https://viacep.com.br/ws/";
 
-  public static async buscaCepViaWS(cep: string) : Promise<Endereco | undefined> {
-    let url = `${this.viaCepUrl}${cep}/json`;
+  public static buscaCepViaWS(cep: string) : Endereco {
+    
+    let regexCep = new RegExp(/^\d{5}\-?\d{3}$/, 'i');
+    if(!cep.match(regexCep)) return new Endereco();
+    let cepClean: string = cep.match(/^\d{8}$/)![0];
+    let url = `${this.viaCepUrl}${cepClean}/json`;
     try{
       fetch(url, 
             {
@@ -20,19 +24,18 @@ export class CadastroService {
             })
       .then((res) => res.json())
       .then((obj)=>{
-        if(obj.erro) return undefined;
-        let endereco : Endereco = new Endereco(obj.cep, 
-                                               obj.logradouro, 
-                                               obj.bairro,
-                                               obj.cidade,
-                                               obj.estado);
-        return endereco;
+        if(obj.erro) return new Endereco();
+        return new Endereco(obj.cep, 
+                            obj.logradouro, 
+                            obj.bairro,
+                            obj.cidade,
+                            obj.estado);
       });
-    } catch (e){
-      //console.log(e);
-      
+    } 
+    catch (e){
+
     }
                 // .then((res)=>console.log(res.json()));
-    return
+    return new Endereco();
   }
 }

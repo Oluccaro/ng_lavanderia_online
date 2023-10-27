@@ -1,5 +1,5 @@
 export class Endereco {
-  private static viaCepUrl : string = "https://viacep.com.br/ws/";
+  cep?: string;
   constructor(
     cep?: string,
     lograd?: string,

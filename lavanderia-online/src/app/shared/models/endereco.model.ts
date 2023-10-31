@@ -1,12 +1,25 @@
 export class Endereco {
-  cep?: string;
+  public cep?: string ;
+  public logradouro?: string;
+  public complemento?: string;
+  public bairro?: string;
+  public localidade?: string;
+  public uf?: string;
+  public numero?: string;
+
   constructor(
     cep?: string,
-    lograd?: string,
+    logradouro?: string,
+    complemento?: string,
     bairro?: string,
-    cidade?: string,
-    estado?: string,
+    localidade?: string,
+    uf?: string,
+    ibge?: number,
+    gia?: number,
+    ddd?: number, 
+    siaf?: number,
     numero?: string
-    ) {     
+    ) {    
+      this.uf = uf?.toUpperCase(); 
   }
 }

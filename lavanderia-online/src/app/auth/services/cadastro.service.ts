@@ -1,41 +1,36 @@
 import { Injectable } from '@angular/core';
+import { Observable, of} from 'rxjs';
 import { Endereco } from 'src/app/shared';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CadastroService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  private static viaCepUrl : string = "https://viacep.com.br/ws/";
-
-  public static buscaCepViaWS(cep: string) : Endereco {
-    
+  private BASE_URL : string = "https://viacep.com.br/ws/";
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+  public buscaViaCep(cep: string): Observable<Endereco> {
     let regexCep = new RegExp(/^\d{5}\-?\d{3}$/, 'i');
-    if(!cep.match(regexCep)) return new Endereco();
-    let cepClean: string = cep.match(/^\d{8}$/)![0];
-    let url = `${this.viaCepUrl}${cepClean}/json`;
-    try{
-      fetch(url, 
-            {
-              method: 'GET',
-              headers: {'Content-Type': 'application/json; charset=UTF-8'}
-            })
-      .then((res) => res.json())
-      .then((obj)=>{
-        if(obj.erro) return new Endereco();
-        return new Endereco(obj.cep, 
-                            obj.logradouro, 
-                            obj.bairro,
-                            obj.cidade,
-                            obj.estado);
-      });
-    } 
-    catch (e){
-
+    if (!cep.match(regexCep)){
+      return of(new Endereco);
     }
-                // .then((res)=>console.log(res.json()));
-    return new Endereco();
+    else {
+      let cepClean: string = cep.match(/^\d{8}$/)![0];
+      return this.httpClient.get<Endereco>(this.BASE_URL + cepClean + '/json',
+                                           this.httpOptions);
+    }
+  }
+
+  public validaSenha(senha: string, confirmaSenha: string): boolean{
+    if (senha === confirmaSenha) return true;
+    return false;
   }
 }

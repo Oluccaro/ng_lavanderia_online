@@ -45,24 +45,28 @@
             <div class="row g-3">
               
               <div class="col-lg-2 form-floating mb-3">
-                <input #cep type="text" class="form-control" name="cep" placeholder="CEP"
+                <input #cep="ngModel" [(ngModel)]="endereco.cep" type="text"
+                       name="cep" class="form-control" placeholder="CEP"
                        (change)="buscaEndereco(cep.value)" required>
                 <label for="cep">CEP</label>
               </div>
 
               <div class="col-lg-6 form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Logradouro" required>
-                <label for="floatingInputGrid">Logradouro</label>
+                <input #logradouro="ngModel" [(ngModel)]="endereco.logradouro" 
+                       name="logradouro" type="text" class="form-control" placeholder="Logradouro" required>
+                <label for="logradouro">Logradouro</label>
               </div>
 
               <div class="col-lg-2 form-floating mb-3">
-                <input type="number" class="form-control" placeholder="Número" required>
-                <label for="floatingInputGrid">Número</label>
+                <input #numero="ngModel" [(ngModel)]="endereco.numero" 
+                       name="numero" type="text" class="form-control" placeholder="Número" required>
+                <label for="numero">Número</label>
               </div>
 
               <div class="col-lg-2 form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Complemento" required>
-                <label for="floatingInputGrid">Complemento</label>
+                <input #complemento="ngModel" [(ngModel)]="endereco.complemento" 
+                       name="complemento" type="text" class="form-control" placeholder="Complemento" required>
+                <label for="complemento">Complemento</label>
               </div>
 
             </div>
@@ -70,48 +74,29 @@
             <div class="row g-3">
 
               <div class="col-lg-6 form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Bairro" required>
-                <label for="floatingInputGrid">Bairro</label>
+                <input #bairro="ngModel" [(ngModel)]="endereco.bairro" 
+                       name="bairro" type="text" class="form-control" placeholder="Bairro" required>
+                <label for="bairro">Bairro</label>
               </div>
 
               <div class="col-lg-4 form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Cidade" required>
-                <label for="floatingInputGrid">Cidade</label>
+                <input #localidade="ngModel" [(ngModel)]="endereco.localidade" 
+                       name="localidade" type="text" class="form-control" placeholder="Cidade" required>
+                <label for="localidade">Cidade</label>
               </div>
 
               <div class="col-lg-2 form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Estad" required>
-                <label for="floatingInputGrid">Estado</label>
+                <input #uf="ngModel" [(ngModel)]="endereco.uf" 
+                       name="uf" type="text" class="form-control" placeholder="UF" required>
+                <label for="uf">Estado</label>
               </div>
 
             </div>
-
-            <h6 class="card-text align-content-center">
-              Cadastre uma senha:</h6>
-
-            <div class="row g-3">
-
-              <div class="col-lg-3 form-floating mb-3">
-                <input type="password" class="form-control" placeholder="Senha" required>
-                <label for="floatingInputGrid">Senha (4
-                  números)</label>
-              </div>
-
-              <div class="col-lg-3 form-floating mb-3">
-                <input type="password" class="form-control" placeholder="Confirme a senha"
-                  required>
-                <label for="floatingInputGrid">Confirme
-                  a senha</label>
-              </div>
-
-            </div>
-
-            <div class="d-grid gap-3 d-md-block">
-
-              <button type="submit" class="btn btn-primary mx-auto" formaction="index.html">Cadastrar</button>
+            <div class="w-auto mb-3 text-center ">
+              <button type="submit" class="btn btn-primary mx-2" formaction="index.html">Cadastrar</button>
+              <a [routerLink]="['/login']" class="btn btn-secondary mx-2">Voltar</a>
             </div>
           </form>
-          <a [routerLink]="['/login']" class="btn btn-secondary mx-auto">Voltar</a>
         </div>
       </div>
     </div>

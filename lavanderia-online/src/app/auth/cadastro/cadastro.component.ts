@@ -11,8 +11,9 @@ import { CadastroService } from '../services';
 export class CadastroComponent implements OnInit {
   @ViewChild('cadastroForm') cadastroForm!: NgForm;
   public cliente!: Cliente;
-  public endereco!: Endereco;
-  public usuario!: Usuario;
+  public endereco: Endereco = new Endereco();
+  public usuario: Usuario = new Usuario();
+  public senhaValida!: boolean;
   public message!: string;
   constructor(private cadastroService: CadastroService,
               private route: ActivatedRoute
@@ -24,7 +25,23 @@ export class CadastroComponent implements OnInit {
   }
   
   public buscaEndereco(cep: string): Endereco {
-    this.endereco = CadastroService.buscaCepViaWS(cep);
+    this.cadastroService.buscaViaCep(cep).subscribe({
+      next: (data: Endereco) =>{
+        if (data == null){
+          this.endereco = new Endereco();
+        }
+        else {
+          console.log(data);
+          
+          this.endereco = data;
+        }
+      }
+    });
+
     return  this.endereco;
+  }
+
+  public validaSenha(senha: string, confirmaSenha: string): void{
+    this.senhaValida = this.cadastroService.validaSenha(senha, confirmaSenha);
   }
 }

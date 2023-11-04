@@ -1,0 +1,18 @@
+{
+  "usuarios":[
+    {
+     "id": 1,
+     "nome": "João Clienteson",
+     "login": "joão-client",
+     "senha": "admin",
+     "perfil": "CLIENT"
+    },
+    {
+     "id": 2,
+     "nome": "Maria Funcionaria",
+     "login": "maria-funcionaria",
+     "senha": "admin",
+     "perfil": "FUNC"
+    }
+  ]
+}

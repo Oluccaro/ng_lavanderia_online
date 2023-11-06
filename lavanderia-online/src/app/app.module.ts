@@ -6,7 +6,7 @@ import { ClienteModule } from './cliente';
 import { AuthModule } from './auth';
 import { NavBarModule } from './nav-bar';
 import { FuncionarioModule } from './funcionario';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [

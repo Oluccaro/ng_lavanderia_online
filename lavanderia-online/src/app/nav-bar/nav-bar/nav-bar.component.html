@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#"
       style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#0A57A2">FORMULA CLEAN</a>
-    <ul *ngIf="usuario" class="nav hstack gap-4">
+    <ul *ngIf="usuario?.perfil?.includes('CLIENTE') " class="nav hstack gap-4">
       <li class="nav-item">
         <a href="orcamento.html" class="text"><i class="bi bi-cart h4 border-black"></i></a>
       </li>

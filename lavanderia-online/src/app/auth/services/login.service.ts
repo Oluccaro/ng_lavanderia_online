@@ -1,6 +1,7 @@
 import { Injectable} from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, filter, map, of } from 'rxjs';
 import { Usuario, Login } from 'src/app/shared';
+import { UsuarioService } from './usuario.service';
 
 const LS_CHAVE: string = "usuarioLogado";
 
@@ -8,7 +9,10 @@ const LS_CHAVE: string = "usuarioLogado";
   providedIn: 'root'
 })
 export class LoginService {
-  
+  private usuario?: Usuario;
+  constructor(private usuarioService: UsuarioService) {
+  }
+
   public get usuarioLogado() : Usuario {
     let usuario = localStorage[LS_CHAVE];
     return (usuario ? JSON.parse(usuario) : null);
@@ -22,20 +26,10 @@ export class LoginService {
     delete localStorage[LS_CHAVE];
   }
   
-  public login(login: Login): Observable<Usuario | null>{
-    let usuarioCliente = new Usuario(1, "João Clienteson", "joao-cliente", "admin", "CLIENTE");
-    let usuarioFuncionario = new Usuario(2, "Maria Funcionaria", "maria-funcionaria", "admin", "FUNC");
+  public login(login: Login): Observable<Usuario[] | undefined>{
+    let observableUsuario = this.usuarioService.login(login);
     
-    if(login.login == usuarioCliente.login && login.senha == usuarioCliente.senha){
-      return of(usuarioCliente);
-    }
-    else if (login.login == usuarioFuncionario.login && login.senha == usuarioFuncionario.senha){
-      return of(usuarioFuncionario);
-    }
-    else {
-      return of(null);
-    }
-
+    return observableUsuario;
   }
   
 }

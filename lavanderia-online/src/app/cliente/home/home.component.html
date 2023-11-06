@@ -22,52 +22,18 @@
         </div>
       </div>
     </section>
-    <!-- <script>
-        const Joao = {
-      "nome": "João",
-      "pedidos": [
-        { "item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14") },
-        { "item": "Camiseta Preta", "status": "A", "id": 126, "data": new Date("2023/08/14") },
-        { "item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10") },
-        { "item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10") }
-      ],
-      "statusInfo":
-      {
-        "A": ["text-info", "Aberto"],
-        "C": ["text-success", "Concluído"],
-        "X": ["text-danger", "Cancelado"],
-        "T": ["text-warning", "Em entrega"]
-      }
-    }
-    localStorage.setItem("user", JSON.stringify(Joao));
-    function startPageExample() {
-      const user = JSON.parse(localStorage.getItem("user"));
-      $("#nome-cliente").html(${user.nome}!);
-      for (const item of user.pedidos) {
-        let listGroup = $("#lista-pedido");
-        let dataPedido = new Date(item.data);
-        let entrega = new Date();
-        entrega.setDate(entrega.getDate() + 10);
-        listGroup.append(
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Pedido #${item.id}</h5>
-              <small>Realizado ${dataPedido.toLocaleDateString()}</small>
-            </div>
-            <div class="d-flex w-100 justify-content-between">
-              <div>
-                <p class="mb-1">Item: ${item.item}</p>
-                <p class="mb-1 ${user.statusInfo[item.status][0]}"> Status: ${user.statusInfo[item.status][1]}</p>
-              </div>
-              <form>
-                <button class="btn btn-danger" formaction="cancela.html">Cancelar Pedido</button>
-              </form>
-            </div>
-              <small>Entrega prevista: ${entrega.toLocaleDateString()}</small>            
-          </a>
-        );
-      };
-      startPageExample();
-    </script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
+
+    <h1>Pedidos Abertos</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+        <tr *ngFor="let pedido of pedidos">
+          <td> {{pedido.id}} </td>
+          <td> {{pedido.item}} </td>
+          <td> {{pedido.status}} </td>
+          <td> {{pedido.data}} </td>
+        </tr>
+      </tbody>
+    </table>
+  <p *ngIf="pedidos.length==0"> Sem pedidos abertos</p>
+</body>

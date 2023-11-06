@@ -7,6 +7,7 @@ import { AuthModule } from './auth';
 import { NavBarModule } from './nav-bar';
 import { FuncionarioModule } from './funcionario';
 import { HttpClientModule } from "@angular/common/http";
+import { PedidoModule } from './pedido/pedido.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from "@angular/common/http";
     AuthModule,
     NavBarModule,
     FuncionarioModule,
-    HttpClientModule
+    HttpClientModule,
+    PedidoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Login } from 'src/app/shared';
+import { Login, Usuario } from 'src/app/shared';
 import { LoginService } from '../services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -20,28 +20,26 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    let usuarioLogado = this.loginService.usuarioLogado;
-    if(usuarioLogado){
-      if(usuarioLogado.perfil == 'CLIENTE'){
-        this.router.navigate(["/cliente"]);
-      }
-      else if(usuarioLogado.perfil == 'FUNC'){
-        this.router.navigate(['/funcionario']);
-      }
-    }  
+  ) {  
+    this.verificaLogin();
   } 
 
   ngOnInit(): void {
+    this.verificaLogin();
     this.route.queryParams.subscribe(param => this.message = param["error"])
   }
 
   logar(): void{
     this.loading = true;
     if(this.formLogin.form.valid){
-      this.loginService.login(this.login).subscribe((usuario) => {
+      
+      this.loginService.login(this.login).subscribe((usuarioArray) => {
+        let usuario: Usuario | null = usuarioArray? usuarioArray[0] : null;
+        
         if(usuario != null){
           this.loginService.usuarioLogado = usuario;
+          console.log(this.loginService.usuarioLogado);
+          
           this.loading = false;
           if(usuario.perfil == 'CLIENTE'){
             this.router.navigate(["/cliente/home"]);
@@ -57,7 +55,17 @@ export class LoginComponent implements OnInit {
     }
     this.loading = false;
   }
-
+  private verificaLogin(){
+    let usuarioLogado = this.loginService.usuarioLogado;
+    if(usuarioLogado){
+      if(usuarioLogado.perfil == 'CLIENTE'){
+        this.router.navigate(["/cliente"]);
+      }
+      else if(usuarioLogado.perfil == 'FUNC'){
+        this.router.navigate(['/funcionario']);
+      }
+    }
+  }
   togglePassword(): void{
     this.passwordVisible = !this.passwordVisible;
   }

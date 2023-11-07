@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/shared/models/pedido.model';
+import { map } from 'rxjs';
 
 const chave: string = "pedidos"
 @Injectable({
@@ -20,11 +21,16 @@ export class PedidoService {
 
   constructor(private httpClient: HttpClient) { }
 
-/*
-  listarAbertos(): Observable<Pedido[]> {
-
+  listarTodos(): Observable<Pedido[]> {
+    return this.httpClient.get<Pedido[]>(this.BASE_URL, this.httpOptions)
   }
 
+  listarAbertos(): Observable<Pedido[]> {
+    return this.listarTodos().pipe(
+      map(pedidos => pedidos.filter(pedido => pedido.status === 'ABERTO'))
+    )
+  }
+/*
   gerarPedido(): Observable<Pedido[]> {
 
   }
@@ -36,11 +42,6 @@ export class PedidoService {
   rejeitarOrcamento(): Observable<Pedido[]> {
 
   }
-*/
-  listarTodos(): Observable<Pedido[]> {
-    return this.httpClient.get<Pedido[]>(this.BASE_URL, this.httpOptions)
-  }
-/*
   cancelarPedido(): Observable<Pedido[]> {
 
   }

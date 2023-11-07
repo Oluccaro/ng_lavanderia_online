@@ -26,7 +26,7 @@ export class UsuarioService {
                                         this.httpOptions);
   }
 
-  public inserir(usuario: Usuario): Observable<Usuario>{
+  public inserir(usuario: Usuario){
     return this.http.post<Usuario>(this.BASE_URL,
                                    JSON.stringify(usuario),
                                    this.httpOptions)

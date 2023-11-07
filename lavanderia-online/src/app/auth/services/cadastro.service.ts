@@ -29,8 +29,4 @@ export class CadastroService {
     }
   }
 
-  public validaSenha(senha: string, confirmaSenha: string): boolean{
-    if (senha === confirmaSenha) return true;
-    return false;
-  }
 }

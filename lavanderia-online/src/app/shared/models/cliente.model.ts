@@ -1,9 +1,11 @@
+import { Endereco } from "./endereco.model";
+
 export class Cliente {
   private _id : number;
   private _nome : string;
-  private _endereco : string;
+  private _endereco : Endereco;
   
-  constructor(id : number, nome : string, endereco : string) {
+  constructor(id : number, nome : string, endereco : Endereco) {
     this._id = id;
     this._nome = nome;
     this._endereco = endereco;
@@ -25,11 +27,11 @@ export class Cliente {
     this._nome = nome;
   }
   
-  public get endereco() : string {
+  public get endereco() : Endereco {
     return this._endereco;
   }
   
-  public set endereco(endereco : string) {
+  public set endereco(endereco : Endereco) {
     this._endereco = endereco;
   }
   

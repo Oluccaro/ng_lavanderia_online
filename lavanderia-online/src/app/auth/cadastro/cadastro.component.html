@@ -16,13 +16,13 @@
             <div class="row g-3">
 
               <div class="col-lg-3 form-floating mb-3">
-                <input #CPF name="CPF" type="text" class="form-control"  placeholder="CPF" required>
-                <label for="floatingInputGrid">CPF</label>
+                <input #cpf="ngModel" [(ngModel)]="usuario.cpf" name="cpf" type="text" class="form-control"  placeholder="CPF" required>
+                <label>CPF</label>
               </div>
 
               <div class="col-lg-9 form-floating mb-3">
-                <input type="name" class="form-control" placeholder="Nome" required>
-                <label for="floatingInputGrid">Nome completo</label>
+                <input #nome="ngModel" [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" placeholder="Nome" required>
+                <label>Nome completo</label>
               </div>
 
             </div>
@@ -30,12 +30,12 @@
             <div class="row g-3">
 
               <div class="col-lg-6 form-floating mb-3">
-                <input type="email" class="form-control" placeholder="E-mail" required>
+                <input #login="ngModel" [(ngModel)]="usuario.login" name="login" type="email" class="form-control" placeholder="E-mail" required>
                 <label for="floatingInputGrid">E-mail</label>
               </div>
 
               <div class="col-lg-6 form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Telefone" required>
+                <input #telefone="ngModel" [(ngModel)]="usuario.telefone" name="telefone" type="text" class="form-control" placeholder="Telefone" required>
                 <label for="floatingInputGrid">Telefone com DDD</label>
               </div>
 
@@ -93,7 +93,7 @@
 
             </div>
             <div class="w-auto mb-3 text-center ">
-              <button type="submit" class="btn btn-primary mx-2" formaction="index.html">Cadastrar</button>
+              <button (click)="cadastrar()" type="submit" class="btn btn-primary mx-2">Cadastrar</button>
               <a [routerLink]="['/login']" class="btn btn-secondary mx-2">Voltar</a>
             </div>
           </form>

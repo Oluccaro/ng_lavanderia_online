@@ -1,22 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Cliente, Endereco, Usuario } from 'src/app/shared';
+import { Cliente, Endereco, Login, Usuario } from 'src/app/shared';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CadastroService } from '../services';
+import { CadastroService, LoginService, UsuarioService } from '../services';
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
+
 export class CadastroComponent implements OnInit {
   @ViewChild('cadastroForm') cadastroForm!: NgForm;
   public cliente!: Cliente;
   public endereco: Endereco = new Endereco();
   public usuario: Usuario = new Usuario();
-  public senhaValida!: boolean;
   public message!: string;
+  public login: Login = new Login();
   constructor(private cadastroService: CadastroService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router,
+              private usuarioService: UsuarioService,
+              private loginService: LoginService
               ) {
   }
 
@@ -41,7 +46,20 @@ export class CadastroComponent implements OnInit {
     return  this.endereco;
   }
 
-  public validaSenha(senha: string, confirmaSenha: string): void{
-    this.senhaValida = this.cadastroService.validaSenha(senha, confirmaSenha);
+  public cadastrar(): boolean {
+    this.usuario.setEndereco(this.endereco);
+    this.usuario.setPerfil('CLIENTE');
+    this.usuarioService.inserir(this.usuario).subscribe(usuario =>{
+      if(usuario != null){
+        this.loginService.usuarioLogado = usuario;
+        this.router.navigate(["/cliente/home"]);
+      }
+    });
+    return true;
+  }
+
+  private enviarEmail(): boolean{
+    console.log(`enviando email com senha para ${this.usuario.login}`);
+    return true;
   }
 }

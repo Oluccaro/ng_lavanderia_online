@@ -28,7 +28,6 @@ export class LoginService {
   
   public login(login: Login): Observable<Usuario[] | undefined>{
     let observableUsuario = this.usuarioService.login(login);
-    
     return observableUsuario;
   }
   

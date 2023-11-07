@@ -1,51 +1,13 @@
 {
-  "usuarios":[
-    {
-     "id": 1,
-     "nome": "João Clienteson",
-     "login": "joao-cliente",
-     "senha": "admin",
-     "perfil": "CLIENTE"
-    },
-    {
-     "id": 2,
-     "nome": "Maria Funcionaria",
-     "login": "maria-funcionaria",
-     "senha": "admin",
-     "perfil": "FUNC"
-    },
-    {
-     "id": 3,
-     "nome": "José Cliente",
-     "login": "jose-cliente",
-     "senha": "admin",
-     "perfil": "CLIENTE"
-    },
-    {
-     "id": 4,
-     "nome": "Joana Cliente",
-     "login": "joana-cliente",
-     "senha": "admin",
-     "perfil": "CLIENTE"
-    },
-    {
-     "id": 5,
-     "nome": "Joaquina Cliente",
-     "login": "joaquina-cliente",
-     "senha": "admin",
-     "perfil": "CLIENTE"
-    },
-    {
-     "id": 6,
-     "nome": "Mario Funcionário",
-     "login": "mario-funcionario",
-     "senha": "admin",
-     "perfil": "FUNC"
-    }
-  ],
-  "clientes":[
+  "usuarios": [
     {
       "id": 1,
+      "nome": "João Clienteson",
+      "login": "joao-cliente",
+      "senha": 1234,
+      "cpf": "111.111.111-11",
+      "perfil": "CLIENTE",
+      "telefone": "4199999-9999",
       "endereco": {
         "cep": "80540-400",
         "logradouro": "Avenida Anita Garibaldi",
@@ -59,12 +21,175 @@
         "siafi": "7535",
         "numero": "900"
       }
+    },
+    {
+      "id": 2,
+      "nome": "Maria Funcionaria",
+      "login": "maria-funcionaria",
+      "senha": 1234,
+      "cpf": "222.222.222-22",
+      "perfil": "FUNC",
+      "telefone": "4199999-9999",
+      "endereco": {
+        "cep": "70000-000",
+        "logradouro": "Rua das Flores",
+        "complemento": "Apto 301",
+        "bairro": "Centro",
+        "localidade": "Brasília",
+        "uf": "DF",
+        "ibge": "5300108",
+        "gia": "",
+        "ddd": "61",
+        "siafi": "9701",
+        "numero": "123"
+      }
+    },
+    {
+      "id": 3,
+      "nome": "José Cliente",
+      "login": "jose-cliente",
+      "senha": 1234,
+      "cpf": "333.333.333-33",
+      "perfil": "CLIENTE",
+      "telefone": "4199999-9999",
+      "endereco": {
+        "cep": "04101-300",
+        "logradouro": "Avenida Paulista",
+        "complemento": "Sala 502",
+        "bairro": "Bela Vista",
+        "localidade": "São Paulo",
+        "uf": "SP",
+        "ibge": "3550308",
+        "gia": "",
+        "ddd": "11",
+        "siafi": "7107",
+        "numero": "789"
+      }
+    },
+    {
+      "id": 4,
+      "nome": "Joana Cliente",
+      "login": "joana-cliente",
+      "senha": 1234,
+      "cpf": "444.444.444-44",
+      "perfil": "CLIENTE",
+      "telefone": "4199999-9999",
+      "endereco": {
+        "cep": "50000-000",
+        "logradouro": "Rua do Recife",
+        "complemento": "Casa 42",
+        "bairro": "Boa Viagem",
+        "localidade": "Recife",
+        "uf": "PE",
+        "ibge": "2611606",
+        "gia": "",
+        "ddd": "81",
+        "siafi": "2498",
+        "numero": "567"
+      }
+    },
+    {
+      "id": 5,
+      "nome": "Joaquina Cliente",
+      "login": "joaquina-cliente",
+      "senha": 1234,
+      "cpf": "555.555.555-55",
+      "perfil": "CLIENTE",
+      "telefone": "4199999-9999",
+      "endereco": {
+        "cep": "20000-000",
+        "logradouro": "Avenida Rio Branco",
+        "complemento": "Loja 15",
+        "bairro": "Centro",
+        "localidade": "Rio de Janeiro",
+        "uf": "RJ",
+        "ibge": "3304557",
+        "gia": "",
+        "ddd": "21",
+        "siafi": "6001",
+        "numero": "321"
+      }
+    },
+    {
+      "id": 6,
+      "nome": "Mario Funcionário",
+      "login": "mario-funcionario",
+      "senha": 1234,
+      "cpf": "666.666.666-66",
+      "perfil": "FUNC",
+      "endereco": {}
+    },
+    {
+      "id": 1699330497936,
+      "nome": "Juca do Teste",
+      "login": "jucateste96@teste.com",
+      "senha": 8638,
+      "cpf": "98765432199",
+      "perfil": "CLIENTE",
+      "telefone": "41999999999",
+      "endereco": {
+        "cep": "83010-160",
+        "logradouro": "Rua Irati",
+        "complemento": "de 222 a 1344 - lado par",
+        "bairro": "Cruzeiro",
+        "localidade": "São José dos Pinhais",
+        "uf": "PR",
+        "ibge": "4125506",
+        "gia": "",
+        "ddd": "41",
+        "siafi": "7885",
+        "numero": "56"
+      }
+    },
+    {
+      "id": 1699330973153,
+      "nome": "juquietas",
+      "login": "jq@email.com",
+      "senha": 7035,
+      "cpf": "98765432199",
+      "perfil": "CLIENTE",
+      "telefone": "419987987987",
+      "endereco": {
+        "cep": "85015-100",
+        "logradouro": "Travessa Social",
+        "complemento": "65",
+        "bairro": "Santa Cruz",
+        "localidade": "Guarapuava",
+        "uf": "PR",
+        "ibge": "4109401",
+        "gia": "",
+        "ddd": "42",
+        "siafi": "7583",
+        "numero": "65"
+      }
+    },
+    {
+      "id": 1699331268122,
+      "nome": "Juca do Teste",
+      "login": "asd@aw",
+      "senha": 383,
+      "cpf": "98765432199",
+      "perfil": "CLIENTE",
+      "telefone": "41999999999",
+      "endereco": {
+        "cep": "83010-160",
+        "logradouro": "Rua Irati",
+        "complemento": "casa",
+        "bairro": "Cruzeiro",
+        "localidade": "São José dos Pinhais",
+        "uf": "PR",
+        "ibge": "4125506",
+        "gia": "",
+        "ddd": "41",
+        "siafi": "7885",
+        "numero": "12"
+      }
     }
   ],
   "pedidos": [
     {
       "id": 1,
-      "item":"Calça Moletom",
+      "item": "Calça Moletom",
       "status": "FINALIZADO",
       "data": "2023/08/10"
     },
@@ -110,11 +235,11 @@
       "id": 1,
       "roupas": [
         {
-          "id_peca":1,
-          "descricao":"Calça Moletom",
-          "preco":"15",
-          "quantidade":"1",
-          "prazo":"5"
+          "id_peca": 1,
+          "descricao": "Calça Moletom",
+          "preco": "15",
+          "quantidade": "1",
+          "prazo": "5"
         }
       ],
       "status": "FINALIZADO",

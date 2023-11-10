@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FuncionarioService } from './services/funcionario.service';
+import { RoupaService } from './services/roupa.service';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-
-  providers: [FuncionarioService],
+  providers: [RoupaService],
 })
-export class FuncionarioModule {}
+export class RoupaModule {}

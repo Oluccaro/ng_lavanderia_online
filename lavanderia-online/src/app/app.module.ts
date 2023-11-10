@@ -6,13 +6,12 @@ import { ClienteModule } from './cliente';
 import { AuthModule } from './auth';
 import { NavBarModule } from './nav-bar';
 import { FuncionarioModule } from './funcionario';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { PedidoModule } from './pedido/pedido.module';
+import { RoupaModule } from './roupa/roupa.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,9 +20,10 @@ import { PedidoModule } from './pedido/pedido.module';
     NavBarModule,
     FuncionarioModule,
     HttpClientModule,
-    PedidoModule
+    PedidoModule,
+    RoupaModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

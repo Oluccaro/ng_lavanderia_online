@@ -36,18 +36,7 @@ export class HomeComponent implements OnInit{
     return this.pedidos;
   }
 
-  listarTodos(): Pedido[] {
-    this.pedidoService.listarTodos().subscribe({
-      next: (data: Pedido[]) => {
-        if (data == null) {
-          this.pedidos = [];
-        }
-        else {
-          this.pedidos = data;
-        }
-      }
-    });
-    return this.pedidos;
-  }
-
+  goPedidos() {
+    this.router.navigate(['./pedidos']);
+  };
 }

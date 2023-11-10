@@ -184,6 +184,27 @@
         "siafi": "7885",
         "numero": "12"
       }
+    },
+    {
+      "id": 1699594084260,
+      "nome": "Juca do Teste",
+      "login": "lucasfnunes96@gmail.com",
+      "senha": 7415,
+      "cpf": "98765432199",
+      "perfil": "CLIENTE",
+      "telefone": "41999999999",
+      "endereco": {
+        "cep": "83010-160",
+        "logradouro": "Rua Irati",
+        "complemento": "",
+        "bairro": "Cruzeiro",
+        "localidade": "São José dos Pinhais",
+        "uf": "PR",
+        "ibge": "4125506",
+        "gia": "",
+        "ddd": "41",
+        "siafi": "7885"
+      }
     }
   ],
   "pedidos": [

@@ -19,16 +19,14 @@ export class PedidoService {
     })
   };
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   listarTodos(): Observable<Pedido[]> {
-    return this.httpClient.get<Pedido[]>(this.BASE_URL, this.httpOptions)
+    return this.http.get<Pedido[]>(this.BASE_URL, this.httpOptions)
   }
 
-  listarAbertos(): Observable<Pedido[]> {
-    return this.listarTodos().pipe(
-      map(pedidos => pedidos.filter(pedido => pedido.status === 'ABERTO'))
-    )
+  listarPorStatus(status: String): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(this.BASE_URL + `?status=${status}` )
   }
 /*
   gerarPedido(): Observable<Pedido[]> {

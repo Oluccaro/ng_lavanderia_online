@@ -212,44 +212,72 @@
       "id": 1,
       "item": "Calça Moletom",
       "status": "FINALIZADO",
-      "data": "2023/08/10"
+      "data": "2023/08/10",
+      "valor": 80.3
     },
     {
       "id": 2,
       "item": "Camiseta Preta",
       "status": "PAGO",
-      "data": "2023/08/13"
+      "data": "2023/08/13",
+      "valor": 35.90
     },
     {
       "id": 3,
       "item": "Jaqueta de Camurça",
       "status": "REJEITADO",
-      "data": "2023/08/15"
+      "data": "2023/08/15",
+      "valor": 200.40
     },
     {
       "id": 4,
       "item": "Chapéu Fedora",
       "status": "CANCELADO",
-      "data": "2023/08/16"
+      "data": "2023/08/16",
+      "valor": 60.00
     },
     {
       "id": 5,
       "item": "Camiseta Branca",
       "status": "AGUARDANDO PAGAMENTO",
-      "data": "2023/08/17"
+      "data": "2023/08/17",
+      "valor": 34
     },
     {
       "id": 6,
       "item": "Vestido de Renda",
       "status": "RECOLHIDO",
-      "data": "2023/08/18"
+      "data": "2023/08/18",
+      "valor": 190.12
     },
     {
       "id": 7,
       "item": "Calça Jeans",
       "status": "ABERTO",
-      "data": "2023/08/19"
-    }
+      "data": "2023/08/19",
+      "valor": 90.00
+    },
+    {
+      "id": 8,
+      "item": "Camiseta Branca",
+      "status": "ABERTO",
+      "data": "2023/08/20",
+      "valor": 25.00
+    },
+    {
+      "id": 9,
+      "item": "Tênis Esportivo",
+      "status": "ABERTO",
+      "data": "2023/08/21",
+      "valor": 120.00
+    },
+    {
+      "id": 10,
+      "item": "Óculos de Sol",
+      "status": "ABERTO",
+      "data": "2023/08/22",
+      "valor": 50.00
+    }    
   ],
   "pedidos_completo": [
     {

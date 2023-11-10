@@ -34,5 +34,4 @@ export class Cliente {
   public set endereco(endereco : Endereco) {
     this._endereco = endereco;
   }
-  
 }

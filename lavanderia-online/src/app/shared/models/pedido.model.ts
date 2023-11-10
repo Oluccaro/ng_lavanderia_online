@@ -3,6 +3,7 @@ export class Pedido {
         public id: number,
         public item: string,
         public status: string,
-        public data: Date
+        public data: Date,
+        public valor: number
     ){}
 }

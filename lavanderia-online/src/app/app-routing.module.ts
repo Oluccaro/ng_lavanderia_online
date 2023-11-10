@@ -6,6 +6,7 @@ import { authGuard } from './auth';
 import { PedidosComponent } from './cliente/pedidos';
 import { ConsultarPedidoComponent } from './cliente/consultar-pedido';
 import { NovoPedidoComponent } from './cliente/novo-pedido';
+import { HomeFuncComponent } from './funcionario/home-func';
 
 const routes: Routes = [
   { path: '',
@@ -41,6 +42,16 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: {
       role: 'CLIENTE'
+    }
+  },
+  { path:'funcionario',
+    redirectTo: 'funcionario/home' 
+  },
+  { path: 'funcionario/home',
+    component: HomeFuncComponent,
+    canActivate: [authGuard],
+    data: {
+      role: 'FUNC'
     }
   },
   ...LoginRoutes

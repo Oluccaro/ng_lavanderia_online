@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeFuncComponent } from './home-func/home-func.component';
 
-
+import { FuncionarioService } from './services/funcionario.service';
 
 @NgModule({
   declarations: [
@@ -10,6 +10,7 @@ import { HomeFuncComponent } from './home-func/home-func.component';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  providers: [FuncionarioService],
 })
-export class FuncionarioModule { }
+export class FuncionarioModule {}

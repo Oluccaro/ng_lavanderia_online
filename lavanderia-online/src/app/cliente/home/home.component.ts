@@ -57,4 +57,7 @@ export class HomeComponent implements OnInit{
   public buscarPedidosAbertos(){
     this.pedidoService.listarPorStatus('ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
   }
+  goPedidos() {
+    this.router.navigate(['./pedidos']);
+  };
 }

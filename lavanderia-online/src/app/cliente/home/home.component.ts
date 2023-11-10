@@ -23,16 +23,7 @@ export class HomeComponent implements OnInit{
   }
 
   listarAbertos(): Pedido[] {
-    this.pedidoService.listarAbertos().subscribe({
-      next: (data: Pedido[]) => {
-        if (data == null) {
-          this.pedidos = [];
-        }
-        else {
-          this.pedidos = data;
-        }
-      }
-    });
+    this.buscarPedidosAbertos();
     return this.pedidos;
   }
 
@@ -49,5 +40,8 @@ export class HomeComponent implements OnInit{
     });
     return this.pedidos;
   }
-
+  
+  public buscarPedidosAbertos(){
+    this.pedidoService.listarPorStatus('ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
+  }
 }

@@ -5,15 +5,13 @@ import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalConfirmacaoComponent } from 'src/app/modal/modal-confirmacao';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-listar-pedidos',
+  templateUrl: './listar-pedidos.component.html',
+  styleUrls: ['./listar-pedidos.component.css']
 })
-export class HomeComponent implements OnInit{
+export class ListarPedidosComponent implements OnInit{
   private _usuario!: Usuario;
   pedidos: Pedido[] = [];
 
@@ -21,8 +19,7 @@ export class HomeComponent implements OnInit{
     private loginService: LoginService,
     private pedidoService: PedidoService,
     private router: Router,
-    route: ActivatedRoute,
-    private modalService: NgbModal
+    route: ActivatedRoute
   ) {}
 
   public get usuario(): Usuario {
@@ -34,7 +31,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
       this.pedidos = [];
-      this.listarAbertos();
+      this.listarTodos();
       this.usuario = this.loginService.usuarioLogado;
   }
 
@@ -44,23 +41,24 @@ export class HomeComponent implements OnInit{
   }
 
   public buscarPedidosAbertos(){
-    this.pedidoService.listarPorStatus('EM ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
+    this.pedidoService.listarPorStatus('ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
+  }
+
+  public listarTodos(): Pedido[] {
+    this.pedidoService.listarTodos().subscribe({
+      next: (data: Pedido[]) => {
+        if (data == null) {
+          this.pedidos = [];
+        }
+        else {
+          this.pedidos = data;
+        }
+      }
+    });
+    return this.pedidos;
   }
 
   goPedidos() {
     this.router.navigate(['/cliente/pedidos']);
   };
-
-  cancelarPedido(pedido: Pedido): void {
-    this.pedidoService.cancelarPedido(pedido).subscribe(
-      pedido => {
-        this.router.navigate( ["/cliente"]);
-      }
-    );
-  }
-
-  abrirModalCancelar(pedido: Pedido){
-    const modalRef = this.modalService.open(ModalConfirmacaoComponent);
-    modalRef.componentInstance.pedido = pedido;
-  }
 }

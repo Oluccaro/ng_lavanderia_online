@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/shared/models/pedido.model';
-import { map } from 'rxjs';
 
 const chave: string = "pedidos"
 @Injectable({
@@ -22,46 +21,79 @@ export class PedidoService {
   constructor(private http: HttpClient) { }
 
   listarTodos(): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(this.BASE_URL, this.httpOptions)
+    return this.http.get<Pedido[]>(
+      this.BASE_URL,
+      this.httpOptions)
   }
 
   listarPorStatus(status: String): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(this.BASE_URL + `?status=${status}` )
+    return this.http.get<Pedido[]>(
+      this.BASE_URL + `?status=${status}`,
+      this.httpOptions)
   }
 /*
   gerarPedido(): Observable<Pedido[]> {
 
   }
 
-  aprovarOrcamento(): Observable<Pedido[]> {
-
+  aprovarOrcamento(pedido: Pedido): Observable<Pedido> {
+    pedido.status = "EM ABERTO";
+    return this.http.put<Pedido>(
+      this.BASE_URL + `/${pedido.id}`,
+      JSON.stringify(pedido),
+      this.httpOptions)
   }
   
-  rejeitarOrcamento(): Observable<Pedido[]> {
-
+  rejeitarOrcamento(pedido: Pedido): Observable<Pedido> {
+    pedido.status = "REJEITADO";
+    return this.http.put<Pedido>(
+      this.BASE_URL + `/${pedido.id}`,
+      JSON.stringify(pedido),
+      this.httpOptions)
   }
-  cancelarPedido(): Observable<Pedido[]> {
-
+*/
+  cancelarPedido(pedido: Pedido): Observable<Pedido> {
+    pedido.status = "CANCELADO";
+    return this.http.put<Pedido>(
+      this.BASE_URL + `/${pedido.id}`,
+      JSON.stringify(pedido),
+      this.httpOptions)
   }
-
+/*
   consultarPedido(): Observable<Pedido[]> {
 
   }
 
-  pagarPedido(): Observable<Pedido[]> {
-
+  pagarPedido(pedido: Pedido): Observable<Pedido> {
+    pedido.status = "PAGO";
+    return this.http.put<Pedido>(
+      this.BASE_URL + `/${pedido.id}`,
+      JSON.stringify(pedido),
+      this.httpOptions)
   }
 
-  confirmarRecolhimento(): Observable<Pedido[]> {
-
+  confirmarRecolhimento(pedido: Pedido): Observable<Pedido> {
+    pedido.status = "RECOLHIDO";
+    return this.http.put<Pedido>(
+      this.BASE_URL + `/${pedido.id}`,
+      JSON.stringify(pedido),
+      this.httpOptions)
   }
 
-  confirmarLavagem(): Observable<Pedido[]> {
-
+  confirmarLavagem(pedido: Pedido): Observable<Pedido> {
+    pedido.status = "AGUARDANDO PAGAMENTO";
+    return this.http.put<Pedido>(
+      this.BASE_URL + `/${pedido.id}`,
+      JSON.stringify(pedido),
+      this.httpOptions)
   }
 
-  finalizarPedido(): Observable<Pedido[]> {
-
+  finalizarPedido(pedido: Pedido): Observable<Pedido> {
+    pedido.status = "FINALIZADO";
+    return this.http.put<Pedido>(
+      this.BASE_URL + `/${pedido.id}`,
+      JSON.stringify(pedido),
+      this.httpOptions)
   }
 */
 }

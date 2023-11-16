@@ -9,6 +9,7 @@ import { FuncionarioModule } from './funcionario';
 import { HttpClientModule } from '@angular/common/http';
 import { PedidoModule } from './pedido/pedido.module';
 import { RoupaModule } from './roupa/roupa.module';
+import { ModalModule } from './modal';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { RoupaModule } from './roupa/roupa.module';
     HttpClientModule,
     PedidoModule,
     RoupaModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent],

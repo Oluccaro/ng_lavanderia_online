@@ -13,7 +13,7 @@
                 </div>
                 <div class="container-lg">
                   <div class="list-group" id="lista-pedido">
-                    <a *ngFor="let pedido of pedidos" href="#" class="list-group-item list-group-item-action" aria-current="true">
+                    <a *ngFor="let pedido of pedidos" class="list-group-item list-group-item-action" aria-current="true">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Pedido #{{pedido.id}}</h5>
                         <small>Realizado {{pedido.data}}</small>
@@ -24,7 +24,7 @@
                           <p class="mb-1"> Status: {{pedido.status}}</p>
                         </div>
                         <form>
-                          <button class="btn btn-danger" (click)="cancelarPedido(pedido)">Cancelar Pedido</button>
+                          <button class="btn btn-danger" (click)="abrirModalCancelar(pedido)">Cancelar Pedido</button>
                         </form>
                       </div>
                         <small>Entrega prevista: {{pedido.data}}</small>            

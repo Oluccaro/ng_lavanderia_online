@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit{
   }
 
   public buscarPedidosAbertos(){
-    this.pedidoService.listarPorStatus('ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
+    this.pedidoService.listarPorStatus('EM ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
   }
 
   goPedidos() {
@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit{
   }
 
   abrirModalCancelar(pedido: Pedido){
-
+    const modalRef = this.modalService.open(ModalConfirmacaoComponent);
+    modalRef.componentInstance.pedido = pedido;
   }
 }

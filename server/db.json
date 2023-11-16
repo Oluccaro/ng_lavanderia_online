@@ -253,28 +253,28 @@
     {
       "id": 7,
       "item": "Calça Jeans",
-      "status": "ABERTO",
+      "status": "EM ABERTO",
       "data": "2023/08/19",
       "valor": 90
     },
     {
       "id": 8,
       "item": "Camiseta Branca",
-      "status": "ABERTO",
+      "status": "EM ABERTO",
       "data": "2023/08/20",
       "valor": 25
     },
     {
       "id": 9,
       "item": "Tênis Esportivo",
-      "status": "ABERTO",
+      "status": "EM ABERTO",
       "data": "2023/08/21",
       "valor": 120
     },
     {
       "id": 10,
       "item": "Óculos de Sol",
-      "status": "ABERTO",
+      "status": "EM ABERTO",
       "data": "2023/08/22",
       "valor": 50
     }

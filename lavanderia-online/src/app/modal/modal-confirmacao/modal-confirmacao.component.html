@@ -9,8 +9,10 @@
     <div>
         <p>Tem certeza que deseja cancelar o pedido número {{pedido.id}}?</p>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"
-    (click)="activeModal.close()"> Fechar </button>
+    <div>
+        <button type="button" class="btn btn-outline-dark"
+        (click)="cancelarPedido(pedido)"> Sim </button>
+        <button type="button" class="btn btn-outline-dark"
+        (click)="activeModal.close()"> Não </button>
+    </div>
 </div>

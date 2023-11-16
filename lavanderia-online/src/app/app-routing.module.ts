@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './cliente/home/home.component';
 import { LoginRoutes } from './auth/auth-routing.module';
 import { authGuard } from './auth';
-import { PedidosComponent } from './cliente/pedidos';
 import { ConsultarPedidoComponent } from './cliente/consultar-pedido';
 import { NovoPedidoComponent } from './cliente/novo-pedido';
 import { HomeFuncComponent } from './funcionario/home-func';
+import { ListarPedidosComponent } from './cliente/listar-pedidos';
 
 const routes: Routes = [
   { path: '',
@@ -24,7 +24,7 @@ const routes: Routes = [
     }
   },
   { path: 'cliente/pedidos',
-    component: PedidosComponent,
+    component: ListarPedidosComponent,
     canActivate: [authGuard],
     data: {
       role: 'CLIENTE'

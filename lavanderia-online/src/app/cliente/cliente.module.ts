@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home';
-import { ConsultarPedidoComponent } from './consultar-pedido/consultar-pedido.component';
-import { NovoPedidoComponent } from './novo-pedido/novo-pedido.component';
-import { PedidosComponent } from './pedidos/pedidos.component'
+import { ConsultarPedidoComponent } from './consultar-pedido';
+import { NovoPedidoComponent } from './novo-pedido';
+import { ListarPedidosComponent } from './listar-pedidos'
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import { PedidosComponent } from './pedidos/pedidos.component'
     HomeComponent,
     ConsultarPedidoComponent,
     NovoPedidoComponent,
-    PedidosComponent
+    ListarPedidosComponent
   ],
   imports: [
     CommonModule
@@ -20,7 +20,7 @@ import { PedidosComponent } from './pedidos/pedidos.component'
     HomeComponent,
     ConsultarPedidoComponent,
     NovoPedidoComponent,
-    PedidosComponent
+    ListarPedidosComponent
   ]
 })
 export class ClienteModule { }

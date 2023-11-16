@@ -24,7 +24,7 @@
                           <p class="mb-1"> Status: {{pedido.status}}</p>
                         </div>
                         <form>
-                          <button class="btn btn-danger" formaction="cancela.html">Cancelar Pedido</button>
+                          <button class="btn btn-danger" (click)="cancelarPedido(pedido)">Cancelar Pedido</button>
                         </form>
                       </div>
                         <small>Entrega prevista: {{pedido.data}}</small>            

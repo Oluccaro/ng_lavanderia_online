@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PedidoModule } from './pedido/pedido.module';
 import { RoupaModule } from './roupa/roupa.module';
 import { ModalModule } from './modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,8 @@ import { ModalModule } from './modal';
     HttpClientModule,
     PedidoModule,
     RoupaModule,
-    ModalModule
+    ModalModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

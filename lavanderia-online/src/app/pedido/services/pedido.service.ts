@@ -52,8 +52,8 @@ export class PedidoService {
       this.httpOptions)
   }
 */
-  cancelarPedido(pedido: Pedido): Observable<Pedido> {
-    pedido.status = "CANCELADO";
+  atualizarStatus(novoStatus: string, pedido: Pedido): Observable<Pedido> {
+    pedido.status = novoStatus;
     return this.http.put<Pedido>(
       this.BASE_URL + `/${pedido.id}`,
       JSON.stringify(pedido),

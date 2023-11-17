@@ -5,6 +5,8 @@ import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmacaoComponent } from 'src/app/modal/modal-confirmacao';
 
 @Component({
   selector: 'app-listar-pedidos',
@@ -19,7 +21,8 @@ export class ListarPedidosComponent implements OnInit{
     private loginService: LoginService,
     private pedidoService: PedidoService,
     private router: Router,
-    route: ActivatedRoute
+    route: ActivatedRoute,
+    private modalService: NgbModal
   ) {}
 
   public get usuario(): Usuario {
@@ -61,4 +64,9 @@ export class ListarPedidosComponent implements OnInit{
   goPedidos() {
     this.router.navigate(['/cliente/pedidos']);
   };
+
+  abrirModal(pedido: Pedido){
+    const modalRef = this.modalService.open(ModalConfirmacaoComponent);
+    modalRef.componentInstance.pedido = pedido;
+  }
 }

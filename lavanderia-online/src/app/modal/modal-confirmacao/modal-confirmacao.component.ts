@@ -24,10 +24,22 @@ export class ModalConfirmacaoComponent {
   }
 
   cancelarPedido(pedido: Pedido): void {
-    this.pedidoService.cancelarPedido(pedido).subscribe(
-      pedido => {
-        this.router.navigate( ["/cliente"]);
-      }
-    );
+    this.pedidoService.atualizarStatus('CANCELADO', pedido);
+    this.activeModal.close();
+  }
+
+  lavarPedido(pedido: Pedido): void {
+    this.pedidoService.atualizarStatus('AGUARDANDO PAGAMENTO', pedido);
+    this.activeModal.close();
+  }
+
+  finalizarPedido(pedido: Pedido): void{
+    this.pedidoService.atualizarStatus('FINALIZADO', pedido);
+    this.activeModal.close();
+  }
+
+  pagarPedido(pedido: Pedido): void{
+    this.router.navigate(["/cliente/pagar"]);
+    this.activeModal.close();
   }
 }

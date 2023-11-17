@@ -51,15 +51,15 @@ export class HomeComponent implements OnInit{
     this.router.navigate(['/cliente/pedidos']);
   };
 
-  cancelarPedido(pedido: Pedido): void {
-    this.pedidoService.cancelarPedido(pedido).subscribe(
-      pedido => {
-        this.router.navigate( ["/cliente"]);
-      }
-    );
-  }
+  // cancelarPedido(pedido: Pedido): void {
+  //   this.pedidoService.cancelarPedido(pedido).subscribe(
+  //     pedido => {
+  //       this.router.navigate( ["/cliente"]);
+  //     }
+  //   );
+  // }
 
-  abrirModalCancelar(pedido: Pedido){
+  abrirModal(pedido: Pedido){
     const modalRef = this.modalService.open(ModalConfirmacaoComponent);
     modalRef.componentInstance.pedido = pedido;
   }

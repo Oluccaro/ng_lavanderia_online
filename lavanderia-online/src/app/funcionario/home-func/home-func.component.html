@@ -32,7 +32,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let pedido of pedidos; index as i;">
+                  <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
                     <th scope="row">#{{pedido.id}}</th>
                     <td>{{pedido.status}}</td>
                     <td>{{pedido.data}}</td>

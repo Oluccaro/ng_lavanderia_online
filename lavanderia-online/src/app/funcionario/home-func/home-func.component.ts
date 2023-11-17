@@ -11,16 +11,15 @@ import { Pedido } from 'src/app/shared/models/pedido.model';
 })
 export class HomeFuncComponent implements OnInit{
   private _usuario: Usuario;
-  private _pedidos!: Pedido[];
+  private _pedidos: Pedido[] = [];
   
   constructor(private loginService: LoginService,
               private pedidoService: PedidoService) {
     this._usuario = loginService.usuarioLogado;
+    this.buscarPedidosAbertos();
   }
 
-  ngOnInit(): void {
-    this.usuario = this.loginService.usuarioLogado;
-    this.buscarPedidosAbertos();   
+  ngOnInit(): void { 
   }
 
   public get usuario(): Usuario {
@@ -38,7 +37,15 @@ export class HomeFuncComponent implements OnInit{
   }
 
   public buscarPedidosAbertos(){
-    return this.pedidoService.listarPorStatus('ABERTO').subscribe(pedidos => { this.pedidos = pedidos});
+    return this.pedidoService.listarPorStatus('EM ABERTO')
+               .subscribe(pedidos => { this.pedidos = pedidos});
   }
-  
+
+  public get pedidosOrdenados(){
+    return this.pedidos.sort(function(a,b){
+      let dataA = new Date(a.data!);
+      let dataB = new Date(b.data!);
+      return dataA.getTime() - dataB.getTime();
+    })
+  }
 }

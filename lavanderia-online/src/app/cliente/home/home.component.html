@@ -24,7 +24,7 @@
                           <p class="mb-1"> Status: {{pedido.status}}</p>
                         </div>
                         <form>
-                          <button class="btn btn-danger" (click)="abrirModalCancelar(pedido)">Cancelar Pedido</button>
+                          <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-danger" (click)="abrirModal(pedido)">Cancelar Pedido</button>
                         </form>
                       </div>
                         <small>Entrega prevista: {{pedido.data}}</small>            

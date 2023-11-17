@@ -7,12 +7,17 @@
 </div>
 <div class="modal-body text-center">
     <div>
-        <p>Tem certeza que deseja cancelar o pedido número {{pedido.id}}?</p>
+        <p *ngIf="pedido.status == 'EM ABERTO'">Tem certeza que deseja cancelar o pedido número {{pedido.id}}?</p>
+        <p *ngIf="pedido.status == 'RECOLHIDO'">Tem certeza que deseja cancelar o confirmar a lavagem do pedido número {{pedido.id}}?</p>
+        <p *ngIf="pedido.status == 'PAGO'">Tem certeza que deseja cancelar o finalizar o pedido número {{pedido.id}}?</p>
+        <p *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'">Deseja Pagar o pedido número {{pedido.id}}?</p>
     </div>
     <div>
-        <button type="button" class="btn btn-outline-dark"
-        (click)="cancelarPedido(pedido)"> Sim </button>
-        <button type="button" class="btn btn-outline-dark"
-        (click)="activeModal.close()"> Não </button>
+        <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-outline-dark" (click)="cancelarPedido(pedido)"> Sim </button>
+        <button *ngIf="pedido.status == 'RECOLHIDO'" type="button" class="btn btn-outline-dark" (click)="lavarPedido(pedido)"> Sim </button>
+        <button *ngIf="pedido.status == 'PAGO'" type="button" class="btn btn-outline-dark" (click)="finalizarPedido(pedido)"> Sim </button>
+        <button *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" type="button" class="btn btn-outline-dark" (click)="pagarPedido(pedido)"> Sim </button>
+        
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()"> Não </button>
     </div>
 </div>

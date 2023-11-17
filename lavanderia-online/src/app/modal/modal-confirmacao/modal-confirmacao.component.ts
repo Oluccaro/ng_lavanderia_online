@@ -24,18 +24,27 @@ export class ModalConfirmacaoComponent {
   }
 
   cancelarPedido(pedido: Pedido): void {
-    this.pedidoService.atualizarStatus('CANCELADO', pedido);
-    this.activeModal.close();
+    this.pedidoService.atualizarStatus('CANCELADO', pedido).subscribe(
+      pedido => {
+        this.activeModal.close();
+      }
+    );
   }
 
   lavarPedido(pedido: Pedido): void {
-    this.pedidoService.atualizarStatus('AGUARDANDO PAGAMENTO', pedido);
-    this.activeModal.close();
+    this.pedidoService.atualizarStatus('AGUARDANDO PAGAMENTO', pedido).subscribe(
+      pedido => {
+        this.activeModal.close();
+      }
+    );
   }
 
   finalizarPedido(pedido: Pedido): void{
-    this.pedidoService.atualizarStatus('FINALIZADO', pedido);
-    this.activeModal.close();
+    this.pedidoService.atualizarStatus('FINALIZADO', pedido).subscribe(
+      pedido => {
+        this.activeModal.close();
+      }
+    );
   }
 
   pagarPedido(pedido: Pedido): void{

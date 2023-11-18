@@ -61,6 +61,18 @@ export class ListarPedidosComponent implements OnInit{
     return this.pedidos;
   }
 
+  filtroStatus: string = '';
+
+  aplicarFiltro() {
+    if (this.filtroStatus) {
+      this.pedidoService.listarPorStatus(this.filtroStatus).subscribe(pedidos => {
+        this.pedidos = pedidos;
+      });
+    } else {
+      this.listarTodos();
+    }
+  }
+
   goPedidos() {
     this.router.navigate(['/cliente/pedidos']);
   };

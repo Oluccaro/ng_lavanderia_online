@@ -6,7 +6,7 @@ import { NovoPedidoComponent } from './novo-pedido';
 import { ListarPedidosComponent } from './listar-pedidos'
 import { ModalConfirmacaoComponent } from '../modal/modal-confirmacao';
 import { ModalModule } from '../modal';
-import { PagarComponent } from './pagar/pagar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +15,11 @@ import { PagarComponent } from './pagar/pagar.component';
     ConsultarPedidoComponent,
     NovoPedidoComponent,
     ListarPedidosComponent,
-    PagarComponent
   ],
   imports: [
     CommonModule,
-    ModalModule
+    ModalModule,
+    FormsModule
   ],
   exports: [
     HomeComponent,

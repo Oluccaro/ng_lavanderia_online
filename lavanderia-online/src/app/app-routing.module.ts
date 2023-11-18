@@ -7,7 +7,6 @@ import { ConsultarPedidoComponent } from './cliente/consultar-pedido';
 import { NovoPedidoComponent } from './cliente/novo-pedido';
 import { HomeFuncComponent } from './funcionario/home-func';
 import { ListarPedidosComponent } from './cliente/listar-pedidos';
-import { PagarComponent } from './cliente/pagar';
 
 const routes: Routes = [
   { path: '',
@@ -53,18 +52,6 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: {
       role: 'FUNC'
-    }
-  },
-  {
-    path: 'pagar',
-    redirectTo: 'cliente/pagar'
-  },
-  {
-    path: 'cliente/pagar',
-    component: PagarComponent,
-    canActivate: [authGuard],
-    data: {
-      role: 'CLIENTE'
     }
   },
   ...LoginRoutes

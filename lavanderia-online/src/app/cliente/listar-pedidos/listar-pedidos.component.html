@@ -10,6 +10,20 @@
                     <h3 class="p-2 fw-bold mb-0 text-light">Olá, {{usuario.nome}}<span id="nome-cliente"></span></h3>
                   </div>
                   <h5 class="p-2 fw-bold mb-2 text-light-emphasis">Confira seus pedidos:</h5>
+                  <div class="form-label mb-0 me-2  col-3">
+                    <label for="filtroStatus" class="form-label">Filtro por Status</label>
+                    <select class="form-select" id="filtroStatus" [(ngModel)]="filtroStatus">
+                      <option value="">Todos</option>
+                      <option value="EM ABERTO">Aberto</option>
+                      <option value="AGUARDANDO PAGAMENTO">Aguardando Pagamento</option>
+                      <option value="PAGO">Pago</option>
+                      <option value="RECOLHIDO">Recolhido</option>                      
+                      <option value="FINALIZADO">Finalizado</option>                     
+                      <option value="REJEITADO">Rejeitado</option>
+                      <option value="CANCELADO">Cancelado</option>
+                    </select>                    
+                    <button class="btn btn-primary mt-3" (click)="aplicarFiltro()">Aplicar Filtro</button>
+                  </div>
                 </div>
                 <div class="container-lg">
                   <div class="list-group" id="lista-pedido">

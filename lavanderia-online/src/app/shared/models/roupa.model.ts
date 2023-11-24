@@ -1,9 +1,9 @@
 export class Roupa {
-  public _id: number;
-  public _preco: number;
-  public _prazo: number;
-  public _descricao: string;
-  public _imagem: string;
+  private _id: number;
+  private _preco: number;
+  private _prazo: number;
+  private _descricao: string;
+  private _imagem: string;
 
   constructor(
     id: number,

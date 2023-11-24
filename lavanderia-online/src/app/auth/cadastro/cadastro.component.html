@@ -16,7 +16,7 @@
             <div class="row g-3">
 
               <div class="col-lg-3 form-floating mb-3">
-                <input #cpf="ngModel" [(ngModel)]="usuario.cpf" name="cpf" type="text" class="form-control"  placeholder="CPF" required>
+                <input #cpf="ngModel" [(ngModel)]="usuario.cpf" name="cpf" type="text" [showMaskTyped]="true" [shownMaskExpression]="'___.___.___-__'" mask="000.000.000-00" class="form-control"  placeholder="CPF" required>
                 <label>CPF</label>
               </div>
 
@@ -35,7 +35,7 @@
               </div>
 
               <div class="col-lg-6 form-floating mb-3">
-                <input #telefone="ngModel" [(ngModel)]="usuario.telefone" name="telefone" type="text" class="form-control" placeholder="Telefone" required>
+                <input #telefone="ngModel" [(ngModel)]="usuario.telefone" name="telefone" type="text" [showMaskTyped]="true" [specialCharacters]="['(', ')', '-', ' ']" [shownMaskExpression]="'( __ ) _____-____'" mask="( 00 ) 00000-0000" class="form-control" placeholder="Telefone" required>
                 <label for="floatingInputGrid">Telefone com DDD</label>
               </div>
 

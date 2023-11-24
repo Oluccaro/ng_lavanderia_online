@@ -205,6 +205,20 @@
         "ddd": "41",
         "siafi": "7885"
       }
+    },
+    {
+      "id": 1700829826361,
+      "login": "lucas.cazionato@ufpr.br",
+      "senha": 6408,
+      "perfil": "CLIENTE",
+      "endereco": {}
+    },
+    {
+      "id": 1700829940088,
+      "login": "lucascazidddd@ufpr.br",
+      "senha": 1933,
+      "perfil": "CLIENTE",
+      "endereco": {}
     }
   ],
   "pedidos": [

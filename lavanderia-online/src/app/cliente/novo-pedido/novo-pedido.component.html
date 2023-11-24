@@ -20,7 +20,7 @@
               <a *ngFor="let roupa of roupas" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="col">
                   <div class="card" style="width: 17rem" id="roupaItem">
-                    <img src="./imagens/moletom.svg" class="card-img-top" alt={{roupa.descricao}}>
+                    <img [src]="'data:image/jpg;base64,' + roupa.imagem" class="card-img-top" alt={{roupa.descricao}}>
                     <div class="card-body">
                       <h5 class="card-title">{{roupa.descricao}}</h5>
                       <div class="info">

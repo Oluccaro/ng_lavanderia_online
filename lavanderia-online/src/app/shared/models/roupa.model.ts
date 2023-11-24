@@ -1,25 +1,22 @@
 export class Roupa {
   private _id: number;
   private _preco: number;
-  private _tipo: string;
-  private _material?: string;
-  private _prazo: string;
+  private _prazo: number;
   private _descricao: string;
+  private _imagem: string;
 
   constructor(
     id: number,
     preco: number,
-    tipo: string,
-    prazo: string,
+    prazo: number,
     descricao: string,
-    material?: string
+    imagem: string
   ) {
     this._id = id;
     this._preco = preco;
-    this._tipo = tipo;
     this._prazo = prazo;
     this._descricao = descricao;
-    this._material = material;
+    this._imagem = imagem;
   }
 
   public get id(): number {
@@ -38,27 +35,19 @@ export class Roupa {
     this._preco = preco;
   }
 
-  public get tipo(): string {
-    return this._tipo;
+  public get imagem(): string {
+    return this._imagem;
   }
 
-  public set tipo(tipo: string) {
-    this._tipo = tipo;
+  public set imagem(imagem: string) {
+    this._imagem = this.imagem;
   }
 
-  public get material(): string | undefined {
-    return this._material;
-  }
-
-  public set material(material: string | undefined) {
-    this._material = material;
-  }
-
-  public get prazo(): string {
+  public get prazo(): number {
     return this._prazo;
   }
 
-  public set prazo(prazo: string) {
+  public set prazo(prazo: number) {
     this._prazo = prazo;
   }
 

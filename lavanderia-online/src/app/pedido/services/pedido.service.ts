@@ -4,12 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 
-const chave: string = "pedidos"
+const LS_CHAVE: string = "pedidos"
+
 @Injectable({
   providedIn: 'root'
 })
 export class PedidoService {
-
   BASE_URL = "http://localhost:3000/pedidos";
 
   httpOptions = {

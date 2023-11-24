@@ -1,1 +1,116 @@
-<p>novo-pedido works!</p>
+<body style="background-color: lightblue;">
+  <header>
+  <!--Título-->
+  <main>
+    <section class="d-flex">
+      <div class="container py-5 h-100 mb-2">
+        <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
+          <div class="row g-0">
+            <div class="row">
+              <div class="col-12 mb-0">
+                <div class="card-title p-2">
+                  <div class="border border-info-subtle border-3 rounded-pill col-5 px-4 py-2" style="background-color: #63E1B4;">
+                    <h2 class="p-2 mb-0 text-light">FAÇA SEU PEDIDO</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Categorias de roupas-->
+            <div class="row row-cols-2 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-5">
+              <a *ngFor="let roupa of roupas" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="col">
+                  <div class="card" style="width: 17rem" id="roupaItem">
+                    <img [src]="'data:image/jpg;base64,' + roupa.imagem" class="card-img-top" alt={{roupa.descricao}}>
+                    <div class="card-body">
+                      <h5 class="card-title">{{roupa.descricao}}</h5>
+                      <div class="info">
+                        <span class="preco">R${{roupa.preco}}</span> <br>
+                        <span class="prazo">{{roupa.prazo}} dias úteis.</span>
+                      </div>
+                      <div class="hstack gap-3">
+                        <input class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade">
+                        <button type="submit" class="btn btn-primary" id="adicionarRoupa">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <p *ngIf="roupas.length==0"> Sem roupas cadastradas, contate o administrador do sistema. </p>
+              <div class="col">
+                <div class="card" style="width: 17rem;" id="roupaItem">
+                  <img src="./imagens/vestido.svg" class="card-img-top" alt="Vestido">
+                  <div class="card-body">
+                    <h5 class="card-title">Formal</h5>
+                    <div class="info">
+                      <span class="preco">R$ 10</span> <br>
+                      <span class="preco">10 dias úteis.</span>
+                    </div>
+                    <p class="card-text">Roupas formais, de gala ou luxo. Ternos e vestidos. </p>
+                    <div class="hstack gap-3">
+                      <input class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade">
+                      <button type="submit" class="btn btn-primary" id="adicionarRoupa">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 17rem;" id="roupaItem">
+                  <img src="./imagens/bebe-coracao.svg" class="card-img-top" alt="Roupa de bebÊ">
+                  <div class="card-body">
+                    <h5 class="card-title">Delicadas</h5>
+                    <div class="info">
+                      <span class="preco">R$ 10</span> <br>
+                      <span class="preco">3 dias úteis.</span>
+                    </div>
+                    <p class="card-text">Roupas delicadas, que precisam de cuidado especial.</p>
+                    <div class="hstack gap-3">
+                      <input class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade">
+                      <button type="submit" class="btn btn-primary" id="adicionarRoupa">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 17rem;" id="roupaItem">
+                  <img src="./imagens/cobertor.svg" class="card-img-top" alt="Cobertor">
+                  <div class="card-body">
+                    <h5 class="card-title">Cama, Mesa e Banho</h5>
+                    <div class="info">
+                      <span class="preco">R$ 10</span> <br>
+                      <span class="preco">10 dias úteis.</span>
+                    </div>
+                    <p class="card-text">Cobertores, toalhas, almofadas. </p>
+                    <div class="hstack gap-3">
+                      <input class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade">
+                      <button type="submit" class="btn btn-primary" id="adicionarRoupa">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <h1></h1>
+                <a class="btn btn-primary btn-block btn-lg" type="button" href="orcamento.html" id="finalizarPedido"> Finalizar Pedido </a>
+                <h1></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

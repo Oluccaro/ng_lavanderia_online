@@ -21,7 +21,7 @@
               </div>
 
               <div class="col-lg-9 form-floating mb-3">
-                <input #nome="ngModel" [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" placeholder="Nome" required>
+                <input #nome="ngModel" [(ngModel)]="usuario.nome" name="nome" type="text" alfabetico class="form-control" placeholder="Nome" required>
                 <label>Nome completo</label>
               </div>
 
@@ -30,12 +30,16 @@
             <div class="row g-3">
 
               <div class="col-lg-6 form-floating mb-3">
-                <input #login="ngModel" [(ngModel)]="usuario.login" name="login" type="email" class="form-control" placeholder="E-mail" required>
+                <input #email="ngModel" [(ngModel)]="usuario.email" name="email" type="text" email class="form-control" placeholder="E-mail" required (blur)="limparEmail()">
+                <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                  <div *ngIf="email.errors?.['invalidEmail']">
+                    Informe um e-mail válido.
+                  </div>
+                </div>
                 <label for="floatingInputGrid">E-mail</label>
               </div>
-
               <div class="col-lg-6 form-floating mb-3">
-                <input #telefone="ngModel" [(ngModel)]="usuario.telefone" name="telefone" type="text" [showMaskTyped]="true" [specialCharacters]="['(', ')', '-', ' ']" [shownMaskExpression]="'( __ ) _____-____'" mask="( 00 ) 00000-0000" class="form-control" placeholder="Telefone" required>
+                <input #telefone="ngModel" [(ngModel)]="usuario.telefone" name="telefone" type="text" [showMaskTyped]="true" [specialCharacters]="['(', ')', '-', ' ']" [shownMaskExpression]="'(__) _____-____'" mask="(00) 00000-0000" class="form-control" placeholder="Telefone" required>
                 <label for="floatingInputGrid">Telefone com DDD</label>
               </div>
 
@@ -47,25 +51,26 @@
               <div class="col-lg-2 form-floating mb-3">
                 <input #cep="ngModel" [(ngModel)]="endereco.cep" type="text"
                        name="cep" class="form-control" placeholder="CEP"
-                       (change)="buscaEndereco(cep.value)" required>
+                       (change)="buscaEndereco(cep.value)" 
+                       [showMaskTyped]="true" [shownMaskExpression]="'_____-___'" mask="00000-000" required>
                 <label for="cep">CEP</label>
               </div>
 
               <div class="col-lg-6 form-floating mb-3">
                 <input #logradouro="ngModel" [(ngModel)]="endereco.logradouro" 
-                       name="logradouro" type="text" class="form-control" placeholder="Logradouro" required>
+                       name="logradouro" type="text" alfanumerico class="form-control" placeholder="Logradouro" required>
                 <label for="logradouro">Logradouro</label>
               </div>
 
               <div class="col-lg-2 form-floating mb-3">
                 <input #numero="ngModel" [(ngModel)]="endereco.numero" 
-                       name="numero" type="text" class="form-control" placeholder="Número" required>
+                       name="numero" type="text" numerico class="form-control" placeholder="Número" required>
                 <label for="numero">Número</label>
               </div>
 
               <div class="col-lg-2 form-floating mb-3">
                 <input #complemento="ngModel" [(ngModel)]="endereco.complemento" 
-                       name="complemento" type="text" class="form-control" placeholder="Complemento" required>
+                       name="complemento" type="text" alfanumerico class="form-control" placeholder="Complemento" required>
                 <label for="complemento">Complemento</label>
               </div>
 
@@ -75,19 +80,19 @@
 
               <div class="col-lg-6 form-floating mb-3">
                 <input #bairro="ngModel" [(ngModel)]="endereco.bairro" 
-                       name="bairro" type="text" class="form-control" placeholder="Bairro" required>
+                       name="bairro" type="text" alfanumerico class="form-control" placeholder="Bairro" required>
                 <label for="bairro">Bairro</label>
               </div>
 
               <div class="col-lg-4 form-floating mb-3">
                 <input #localidade="ngModel" [(ngModel)]="endereco.localidade" 
-                       name="localidade" type="text" class="form-control" placeholder="Cidade" required>
+                       name="localidade" type="text" class="form-control" placeholder="Cidade" required disabled>
                 <label for="localidade">Cidade</label>
               </div>
 
               <div class="col-lg-2 form-floating mb-3">
                 <input #uf="ngModel" [(ngModel)]="endereco.uf" 
-                       name="uf" type="text" class="form-control" placeholder="UF" required>
+                       name="uf" type="text" class="form-control" placeholder="UF" required disabled>
                 <label for="uf">Estado</label>
               </div>
 

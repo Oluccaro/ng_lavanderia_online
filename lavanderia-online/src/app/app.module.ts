@@ -11,6 +11,7 @@ import { PedidoModule } from './pedido/pedido.module';
 import { RoupaModule } from './roupa/roupa.module';
 import { ModalModule } from './modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PedidoModule,
     RoupaModule,
     ModalModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],

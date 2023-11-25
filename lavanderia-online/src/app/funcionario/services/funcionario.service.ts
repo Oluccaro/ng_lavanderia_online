@@ -17,7 +17,7 @@ export class FuncionarioService {
     }),
   };
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   listarFuncionarios(): Observable<Funcionario[]> {
     return this.http.get<Funcionario[]>(this.BASE_URL, this.httpOptions);
@@ -27,11 +27,9 @@ export class FuncionarioService {
     return this.http.post<Funcionario>(this.BASE_URL, funcionario);
   }
 
-  atualizarFuncionario(
-    id: number,
-    funcionario: Funcionario
+  atualizarFuncionario(funcionario: Funcionario
   ): Observable<Funcionario> {
-    return this.http.put<Roupa>(`${this.BASE_URL}/${id}`, roupa);
+    return this.http.put<Funcionario>(this.BASE_URL, funcionario);
   }
 
   excluirFuncionario(id: number): Observable<any> {

@@ -58,6 +58,14 @@ export class CadastroComponent implements OnInit {
     return true;
   }
 
+  public limparEmail() {
+    const emailFormControl = this.cadastroForm.controls['email'];
+  
+    if (emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)) {
+      this.usuario.email = ''; // Limpa o valor do campo de e-mail
+    }
+  }
+
   private enviarEmail(): boolean{
     console.log(`enviando email com senha para ${this.usuario.login}`);
     return true;

@@ -5,6 +5,7 @@ export class Usuario {
               public id? : number,
               public nome? : string,
               public login? : string,
+              public email? : string,
               public senha? : number,
               public cpf?: string,
               public perfil? : string,

@@ -6,6 +6,7 @@ import { authGuard } from './auth';
 import { ConsultarPedidoComponent } from './cliente/consultar-pedido';
 import { NovoPedidoComponent } from './cliente/novo-pedido';
 import { HomeFuncComponent } from './funcionario/home-func';
+import { RelatoriosComponent } from './funcionario/relatorios';
 import { ListarPedidosComponent } from './cliente/listar-pedidos';
 
 const routes: Routes = [
@@ -49,6 +50,13 @@ const routes: Routes = [
   },
   { path: 'funcionario/home',
     component: HomeFuncComponent,
+    canActivate: [authGuard],
+    data: {
+      role: 'FUNC'
+    }
+  },
+  { path: 'funcionario/relatorios',
+    component: RelatoriosComponent,
     canActivate: [authGuard],
     data: {
       role: 'FUNC'

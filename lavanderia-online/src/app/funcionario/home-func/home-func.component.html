@@ -19,6 +19,7 @@
                     <h5></h5>
                     <h5 class="mb-0 text">{{pedidos.length}} pedidos em ABERTO</h5>
                   </div>
+                  <button type="button" class="btn btn-success btn-lg mt-2 mb-2" (click)="goRelatorios()">Relatórios</button>
                 </div>
               </div>
               <table *ngIf="pedidos" class="table table-hover" style="border-radius: 15px;">
@@ -35,7 +36,7 @@
                   <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
                     <th scope="row">#{{pedido.id}}</th>
                     <td>{{pedido.status}}</td>
-                    <td>{{pedido.data}}</td>
+                    <td>{{pedido.data | date:'dd/MM/yyyy'}}</td>
                     <td>{{pedido.valor}}</td>
                     <td><a class="btn btn-primary" href="#" role="button">Registrar Recolhimento</a></td>
                   </tr>

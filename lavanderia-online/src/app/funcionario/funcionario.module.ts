@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HomeFuncComponent } from './home-func/home-func.component';
-
 import { FuncionarioService } from './services/funcionario.service';
+import { SharedModule } from '../shared';
+import { RelatoriosComponent } from './relatorios/relatorios.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
-    HomeFuncComponent
+    HomeFuncComponent,
+    RelatoriosComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    BsDatepickerModule
   ],
   providers: [FuncionarioService],
 })

@@ -3,6 +3,7 @@ import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-func',
@@ -14,7 +15,8 @@ export class HomeFuncComponent implements OnInit{
   private _pedidos: Pedido[] = [];
   
   constructor(private loginService: LoginService,
-              private pedidoService: PedidoService) {
+              private pedidoService: PedidoService,
+              private router: Router) {
     this._usuario = loginService.usuarioLogado;
     this.buscarPedidosAbertos();
   }
@@ -48,4 +50,8 @@ export class HomeFuncComponent implements OnInit{
       return dataA.getTime() - dataB.getTime();
     })
   }
+
+  goRelatorios() {
+    this.router.navigate(['/funcionario/relatorios']);
+  };
 }

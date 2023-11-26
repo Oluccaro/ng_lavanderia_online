@@ -16,7 +16,7 @@
                     <a *ngFor="let pedido of pedidos" class="list-group-item list-group-item-action" aria-current="true">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Pedido #{{pedido.id}}</h5>
-                        <small>Realizado {{pedido.data}}</small>
+                        <small>Realizado {{pedido.data | date:'dd/MM/yyyy'}}</small>
                       </div>
                       <div class="d-flex w-100 justify-content-between">
                         <div>
@@ -27,7 +27,7 @@
                           <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-danger" (click)="abrirModal(pedido)">Cancelar Pedido</button>
                         </form>
                       </div>
-                        <small>Entrega prevista: {{pedido.data}}</small>            
+                        <small>Entrega prevista: {{pedido.data | date:'dd/MM/yyyy'}}</small>            
                     </a>
                     <p *ngIf="pedidos.length==0"> Sem pedidos abertos</p>
                   </div>

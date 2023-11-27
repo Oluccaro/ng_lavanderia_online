@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modalLabel"> Orçamento do pedido </h4>
+  <button type="button" class="close" aria-label="Fechar" (click)="activeModal.dismiss()">
+  <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body text-center">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-start">Descrição</th>
+          <th>Prazo</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let roupa of roupas" class="text-start">
+          <td>{{roupa.descricao}}</td>
+          <td class="text-center">{{roupa.prazo}}</td>
+          <td>{{roupa.preco}}</td>
+          <td class="text-center">{{roupa.quantidade}}</td>
+          <td>{{roupa.quantidade * roupa.preco}}</td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-end fw-bold">Data prevista:</td>
+          <td class="fw-bold">{{pedido.data_prevista}}</td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-end fw-bold">Total do pedido:</td>
+          <td class="fw-bold">{{pedido.valor}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+    <button type="button" class="btn btn-danger btn-block btn-lg fs-5" (click)="rejeitarOrcamento(pedido)"> Rejeitar </button>
+    <button type="button" class="btn btn-success btn-block btn-lg fs-5"  (click)="aprovarOrcamento(pedido)"> Confirmar </button>
+  </div>
+  </div>

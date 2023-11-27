@@ -34,7 +34,7 @@
                       </div>
                       <div class="d-flex w-100 justify-content-between">
                         <div>
-                          <p class="mb-1">Item: {{pedido.item}}</p>
+                          <p class="mb-1">Item: {{pedido.roupas}}</p>
                           <p class="mb-1"> Status: {{pedido.status}}</p>
                         </div>
                         <button *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" type="button" class="btn btn-primary" (click)="abrirModal(pedido)">Pagar Pedido</button>

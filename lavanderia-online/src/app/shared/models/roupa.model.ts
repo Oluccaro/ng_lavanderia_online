@@ -4,19 +4,22 @@ export class Roupa {
   private _prazo: number;
   private _descricao: string;
   private _imagem: string;
+  private _quantidade?: number;
 
   constructor(
     id: number,
     preco: number,
     prazo: number,
     descricao: string,
-    imagem: string
+    imagem: string,
+    quantidade: number = 0
   ) {
     this._id = id;
     this._preco = preco;
     this._prazo = prazo;
     this._descricao = descricao;
     this._imagem = imagem;
+    this._quantidade = quantidade;
   }
 
   public get id(): number {
@@ -57,5 +60,13 @@ export class Roupa {
 
   public set descricao(descricao: string) {
     this._descricao = descricao;
+  }
+
+  public get quantidade(): number {
+    return this._quantidade!;
+  }
+
+  public set quantidade(quantidade: number) {
+    this._quantidade = quantidade;
   }
 }

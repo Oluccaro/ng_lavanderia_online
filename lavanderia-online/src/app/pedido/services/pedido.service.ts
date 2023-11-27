@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/shared/models/pedido.model';
@@ -31,27 +30,14 @@ export class PedidoService {
       this.BASE_URL + `?status=${status}`,
       this.httpOptions)
   }
-/*
-  gerarPedido(): Observable<Pedido[]> {
 
-  }
-
-  aprovarOrcamento(pedido: Pedido): Observable<Pedido> {
-    pedido.status = "EM ABERTO";
-    return this.http.put<Pedido>(
-      this.BASE_URL + `/${pedido.id}`,
+  gerarPedido(pedido: Pedido): Observable<Pedido> {
+    return this.http.post<Pedido>(
+      this.BASE_URL,
       JSON.stringify(pedido),
       this.httpOptions)
   }
-  
-  rejeitarOrcamento(pedido: Pedido): Observable<Pedido> {
-    pedido.status = "REJEITADO";
-    return this.http.put<Pedido>(
-      this.BASE_URL + `/${pedido.id}`,
-      JSON.stringify(pedido),
-      this.httpOptions)
-  }
-*/
+
   atualizarStatus(novoStatus: string, pedido: Pedido): Observable<Pedido> {
     pedido.status = novoStatus;
     return this.http.put<Pedido>(

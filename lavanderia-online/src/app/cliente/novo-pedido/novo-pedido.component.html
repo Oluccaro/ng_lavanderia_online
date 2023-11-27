@@ -10,8 +10,9 @@
               <div class="col-12 mb-0">
                 <div class="card-title p-2">
                   <div class="border border-info-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: #63E1B4;">
-                    <h2 class="p-2 mb-0 text-light">FAÇA SEU PEDIDO</h2>
+                    <h3 class="p-2 mb-0 text-light">Novo Pedido</h3>
                   </div>
+                  <h1></h1>
                 </div>
               </div>
             </div>
@@ -29,8 +30,8 @@
                           <span class="prazo">Prazo: {{roupa.prazo}} dias úteis.</span>
                         </div>
                         <div class="hstack gap-3">
-                          <input #quantidade="ngModel" [(ngModel)]="roupa.quantidade" name="quantidade"
-                          class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade" numerico>
+                          <input #quantidade="ngModel" [(ngModel)]="roupa.quantidade" name="quantidade" id="quantidade"
+                          class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade" numerico appNotzero>
                         </div>
                       </div>
                     </div>
@@ -42,7 +43,7 @@
             <h1></h1>
             <div class="row">
               <div class="text-end d-inline-block">
-                <a *ngIf="roupas.length !== 0" class="btn btn-primary btn-block btn-lg fs-4" type="button" (click)="abrirModal()"> Finalizar Pedido </a>
+                <button *ngIf="roupas.length !== 0" [disabled]="!pedidoForm.form.valid" class="btn btn-outline-primary btn-block btn-lg fs-4" type="button" (click)="abrirModal()"> Finalizar Pedido </button>
               </div>
             </div>
             <h1></h1>

@@ -9,7 +9,7 @@ import { Usuario } from 'src/app/shared';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-
+  
   constructor(private loginService: LoginService,
               private router: Router,
               route: ActivatedRoute) {
@@ -23,5 +23,25 @@ export class NavBarComponent {
     this.loginService.logout();
     this.router.navigate(['/login']);
   }
+
+  isCurrentRoute(route: string): boolean {
+    return this.router.url === route;
+  }
+
+  goHome() {
+    this.router.navigate(['/cliente/home']);
+  };
+
+  goPedidos() {
+    this.router.navigate(['/cliente/pedidos']);
+  };
+
+  goConsulta() {
+    this.router.navigate(['/cliente/consulta']);
+  };
+
+  goNovo() {
+    this.router.navigate(['/cliente/novo']);
+  };
   
 }

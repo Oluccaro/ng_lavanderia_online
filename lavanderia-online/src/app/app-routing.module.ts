@@ -30,14 +30,14 @@ const routes: Routes = [
       role: 'CLIENTE'
     }
   },
-  { path: 'cliente/consultar-pedido',
+  { path: 'cliente/consulta',
     component: ConsultarPedidoComponent,
     canActivate: [authGuard],
     data: {
       role: 'CLIENTE'
     }
   },
-  { path: 'cliente/novo-pedido',
+  { path: 'cliente/novo',
     component: NovoPedidoComponent,
     canActivate: [authGuard],
     data: {

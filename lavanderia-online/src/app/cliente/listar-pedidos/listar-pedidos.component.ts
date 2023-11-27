@@ -7,6 +7,7 @@ import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmacaoComponent } from 'src/app/modal/modal-confirmacao';
+import { ModalPedidoComponent } from 'src/app/modal/modal-pedido';
 
 @Component({
   selector: 'app-listar-pedidos',
@@ -81,4 +82,10 @@ export class ListarPedidosComponent implements OnInit{
     const modalRef = this.modalService.open(ModalConfirmacaoComponent);
     modalRef.componentInstance.pedido = pedido;
   }
+
+  abrirModalPedido(pedido: Pedido){
+    const modalRef = this.modalService.open(ModalPedidoComponent);
+    modalRef.componentInstance.pedido = pedido;
+  }
+
 }

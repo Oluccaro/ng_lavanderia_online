@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let roupa of roupas" class="text-start">
+        <tr *ngFor="let roupa of pedido.roupas" class="text-start">
           <td>{{roupa.descricao}}</td>
           <td class="text-center">{{roupa.prazo}}</td>
           <td>{{roupa.preco}}</td>
@@ -34,8 +34,7 @@
       </tbody>
     </table>
   </div>
-  <div style="margin-top: 20px; display: flex; justify-content: space-between;">
-    <button type="button" class="btn btn-outline-danger btn-block btn-lg fs-5" (click)="rejeitarOrcamento(pedido)"> Rejeitar </button>
-    <button type="button" class="btn btn-outline-success btn-block btn-lg fs-5"  (click)="aprovarOrcamento(pedido)"> Confirmar </button>
-  </div>
+    <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+      <button type="button" class="btn btn-outline-primary btn-block btn-lg fs-5" (click)="activeModal.close()"> OK </button>
+    </div>
   </div>

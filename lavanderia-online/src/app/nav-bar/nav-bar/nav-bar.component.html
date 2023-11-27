@@ -1,11 +1,7 @@
 <nav class="navbar bg-body-tertiary sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"
-      style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#0A57A2">FORMULA CLEAN</a>
+    <a class="navbar-brand" href="#" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#0A57A2">FORMULA CLEAN</a>
     <ul *ngIf="usuario?.perfil?.includes('CLIENTE') " class="nav hstack gap-4">
-      <li class="nav-item">
-        <a href="orcamento.html" class="text"><i class="bi bi-cart h4 border-black"></i></a>
-      </li>
       <li class="nav-item">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -15,20 +11,20 @@
     </ul>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="offcanvasNavbarLabel"> João</h4>
+        <h4 class="offcanvas-title" id="offcanvasNavbarLabel">Olá, {{usuario?.nome}}</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Início</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="lista-pedidos.html">Meus Pedidos</a>
-            <a class="nav-link" href="consulta-pedidos.html">Consultar Pedido</a>
-            <a class="nav-link active" aria-current="page" href="pedido.html">Novo Pedido</a>
-          </li>
-          <li class="nav-item">
+          <li class="nav-item" data-bs-dismiss="offcanvas">
+            <a *ngIf="!isCurrentRoute('/cliente/home')" class="nav-link" (click)="goHome()">Pedidos em Aberto</a>
+            <a *ngIf="isCurrentRoute('/cliente/home')" class="nav-link active" aria-current="page" (click)="goHome()">Pedidos em Aberto</a>
+            <a *ngIf="!isCurrentRoute('/cliente/pedidos')"class="nav-link" (click)="goPedidos()">Todos os Pedidos</a>
+            <a *ngIf="isCurrentRoute('/cliente/pedidos')"class="nav-link active" aria-current="page" (click)="goPedidos()">Todos os Pedidos</a>
+            <a *ngIf="!isCurrentRoute('/cliente/consulta')"class="nav-link" (click)="goConsulta()">Consultar Pedido</a>
+            <a *ngIf="isCurrentRoute('/cliente/consulta')"class="nav-link active" aria-current="page" (click)="goConsulta()">Consultar Pedido</a>
+            <a *ngIf="!isCurrentRoute('/cliente/novo')"class="nav-link" (click)="goNovo()">Novo Pedido</a>
+            <a *ngIf="isCurrentRoute('/cliente/novo')"class="nav-link active" aria-current="page" (click)="goNovo()">Novo Pedido</a>
             <a class="nav-link" (click)="logout()">Sair</a>
           </li>
         </ul>

@@ -19,6 +19,8 @@ export class NovoPedidoComponent implements OnInit{
   private _usuario!: Usuario;
   roupas: Roupa[] = [];
   valorPedido: number = 0;
+  roupasComQuantidade = this.roupas.filter(roupa => roupa.quantidade && roupa.quantidade !== 0);
+    
 
   constructor(
     private loginService: LoginService,
@@ -53,18 +55,23 @@ export class NovoPedidoComponent implements OnInit{
     return this.roupas;
   }
 
-  abrirModal(){
+  abrirModal(): Boolean{
     const roupasComQuantidade = this.roupas.filter(roupa => roupa.quantidade && roupa.quantidade !== 0);
-    const maiorPrazo = "12/08/2023";
-    const valorTotal = roupasComQuantidade.reduce((total, roupa) => {
-      return total + (roupa.quantidade || 0) * roupa.preco;
-    }, 0);
-    const modalRef = this.modalService.open(ModalOrcamentoComponent);
-    this.pedido.setRoupas = roupasComQuantidade;
-    this.pedido.setDataPrevista = maiorPrazo;
-    this.pedido.setValor = valorTotal;
-    modalRef.componentInstance.pedido = this.pedido;
-    modalRef.componentInstance.roupas = roupasComQuantidade;
+    if (roupasComQuantidade.length>0){
+      const maiorPrazo = "12/08/2023";
+      const valorTotal = roupasComQuantidade.reduce((total, roupa) => {
+        return total + (roupa.quantidade || 0) * roupa.preco;
+      }, 0);
+      const modalRef = this.modalService.open(ModalOrcamentoComponent);
+      this.pedido.setRoupas = roupasComQuantidade;
+      this.pedido.setDataPrevista = maiorPrazo;
+      this.pedido.setValor = valorTotal;
+      modalRef.componentInstance.pedido = this.pedido;
+      modalRef.componentInstance.roupas = roupasComQuantidade;
+      return true
+    }
+    else {
+      return false
+    }
   }
-
 }

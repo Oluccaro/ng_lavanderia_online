@@ -45,11 +45,14 @@ export class PedidoService {
       JSON.stringify(pedido),
       this.httpOptions)
   }
-/*
-  consultarPedido(): Observable<Pedido[]> {
 
+  buscarPorId(id: number): Observable<Pedido> {
+    return this.http.get<Pedido>(
+      this.BASE_URL + `/${id}`,
+      this.httpOptions);
   }
 
+/*
   pagarPedido(pedido: Pedido): Observable<Pedido> {
     pedido.status = "PAGO";
     return this.http.put<Pedido>(

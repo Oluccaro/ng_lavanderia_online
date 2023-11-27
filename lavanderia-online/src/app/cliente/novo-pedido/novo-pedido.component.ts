@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/auth';
 import { Roupa } from 'src/app/shared/models/roupa.model';
 import { RoupaService } from 'src/app/roupa/services/roupa.service';
 import { Usuario } from 'src/app/shared';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalConfirmacaoComponent } from 'src/app/modal/modal-confirmacao';
+import { ModalOrcamentoComponent } from 'src/app/modal/modal-orcamento';
+import { Pedido } from 'src/app/shared/models/pedido.model';
 
 @Component({
   selector: 'app-novo-pedido',
@@ -15,14 +15,14 @@ import { ModalConfirmacaoComponent } from 'src/app/modal/modal-confirmacao';
 })
 
 export class NovoPedidoComponent implements OnInit{
+  pedido : Pedido = new Pedido();
   private _usuario!: Usuario;
   roupas: Roupa[] = [];
+  valorPedido: number = 0;
 
   constructor(
     private loginService: LoginService,
     private roupaService: RoupaService,
-    private router: Router,
-    route: ActivatedRoute,
     private modalService: NgbModal
   ) {}
 
@@ -52,4 +52,19 @@ export class NovoPedidoComponent implements OnInit{
     });
     return this.roupas;
   }
+
+  abrirModal(){
+    const roupasComQuantidade = this.roupas.filter(roupa => roupa.quantidade && roupa.quantidade !== 0);
+    const maiorPrazo = "12/08/2023";
+    const valorTotal = roupasComQuantidade.reduce((total, roupa) => {
+      return total + (roupa.quantidade || 0) * roupa.preco;
+    }, 0);
+    const modalRef = this.modalService.open(ModalOrcamentoComponent);
+    this.pedido.setRoupas = roupasComQuantidade;
+    this.pedido.setDataPrevista = maiorPrazo;
+    this.pedido.setValor = valorTotal;
+    modalRef.componentInstance.pedido = this.pedido;
+    modalRef.componentInstance.roupas = roupasComQuantidade;
+  }
+
 }

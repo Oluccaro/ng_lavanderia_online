@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/shared/models/pedido.model';
+import { map } from 'rxjs';
 
 const LS_CHAVE: string = "pedidos"
 
@@ -32,9 +33,18 @@ export class PedidoService {
   }
 
   listarPorData(dataInicial: Date, dataFinal: Date): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(
-      this.BASE_URL + `?status=${status}`,
-      this.httpOptions)
+    return this.listarTodos().pipe(
+      map(pedidos => pedidos.filter(pedido => {
+        if (pedido.data){
+          const dataPedido = new Date(pedido.data);
+          return (
+            (dataPedido.getDate() >= dataInicial.getDate()&& dataPedido.getMonth() <= dataFinal.getMonth())
+            &&(dataPedido.getMonth() >= dataInicial.getMonth() && dataPedido.getMonth() <= dataFinal.getMonth())
+            &&(dataPedido.getFullYear() >= dataInicial.getFullYear() && dataPedido.getFullYear() <= dataFinal.getFullYear()));  
+        }
+        return false;
+      }))
+    );
   }
 
   gerarPedido(pedido: Pedido): Observable<Pedido> {

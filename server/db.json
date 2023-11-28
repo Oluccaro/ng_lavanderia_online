@@ -328,6 +328,23 @@
       "data": "Sun Nov 26 2023 21:54:56 GMT-0300 (Brasilia Standard Time)",
       "data_prevista": "Sun Nov 26 2023 21:54:56 GMT-0300 (Brasilia Standard Time)",
       "valor": 45
+    },
+    {
+      "id": 1701210292794,
+      "roupas": [
+        {
+          "id_peca": 1,
+          "preco": 15,
+          "prazo": 5,
+          "descricao": "Camiseta",
+          "imagem": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII",
+          "quantidade": "5"
+        }
+      ],
+      "status": "PAGO",
+      "data": "Tue Nov 28 2023 19:24:52 GMT-0300 (Brasilia Standard Time)",
+      "data_prevista": "12/08/2023",
+      "valor": 75
     }
   ],
   "roupas": [

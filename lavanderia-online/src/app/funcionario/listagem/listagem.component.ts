@@ -3,9 +3,10 @@ import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
-import { NgbModal, NgbDateStruct, NgbCalendar, NgbDatepickerConfig, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmacaoFuncComponent } from 'src/app/modal/modal-confirmacao-func';
-
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-listagem',
   templateUrl: './listagem.component.html',
@@ -15,8 +16,13 @@ export class ListagemComponent implements OnInit{
   private _usuario: Usuario;
   private _pedidos: Pedido[] = [];
   filtroListagem: string = '';
-  dataInicial!: Date;
-  dataFinal!: Date;
+  dataInicial: Date = new Date();
+  dataFinal: Date = new Date();
+
+  datepickerConfig: Partial<BsDatepickerConfig> = {
+    containerClass: 'theme-default',
+    dateInputFormat: 'DD/MM/YYYY',
+  };
   
   constructor(
     private loginService: LoginService,
@@ -59,6 +65,12 @@ export class ListagemComponent implements OnInit{
   }
 
   aplicarFiltroIntervalo() {
+    if (this.filtroListagem == 'HOJE'){
+      let hojeInicial = new Date;
+      let hojeFinal = new Date;
+      this.dataInicial = hojeInicial
+      this.dataFinal = hojeFinal
+    }
     this.pedidoService.listarPorData(this.dataInicial, this.dataFinal).subscribe(pedidos => {
       this.pedidos = pedidos;
     })

@@ -3,17 +3,20 @@ import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDateStruct, NgbCalendar, NgbDatepickerConfig, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmacaoFuncComponent } from 'src/app/modal/modal-confirmacao-func';
 
 @Component({
-  selector: 'app-home-func',
-  templateUrl: './home-func.component.html',
-  styleUrls: ['./home-func.component.css']
+  selector: 'app-listagem',
+  templateUrl: './listagem.component.html',
+  styleUrls: ['./listagem.component.css']
 })
-export class HomeFuncComponent implements OnInit{
+export class ListagemComponent implements OnInit{
   private _usuario: Usuario;
   private _pedidos: Pedido[] = [];
+  filtroListagem: string = '';
+  dataInicial!: Date;
+  dataFinal!: Date;
   
   constructor(
     private loginService: LoginService,
@@ -25,8 +28,10 @@ export class HomeFuncComponent implements OnInit{
 
   ngOnInit(): void {
     this.pedidos = [];
-    this.buscarPedidosAbertos();
+    this.buscarPedidos();
     this.usuario = this.loginService.usuarioLogado;
+    this.dataFinal = new Date;
+    this.dataInicial = new Date;
   }
 
   public get usuario(): Usuario {
@@ -43,14 +48,20 @@ export class HomeFuncComponent implements OnInit{
     this._pedidos = value;
   }
 
-  public buscarPedidosAbertos(){
-    return this.pedidoService.listarPorStatus('EM ABERTO')
+  public buscarPedidos(){
+    return this.pedidoService.listarTodos()
                .subscribe(pedidos => { this.pedidos = pedidos});
   }
 
   abrirModal(pedido: Pedido){
     const modalRef = this.modalService.open(ModalConfirmacaoFuncComponent);
     modalRef.componentInstance.pedido = pedido;
+  }
+
+  aplicarFiltroIntervalo() {
+    this.pedidoService.listarPorData(this.dataInicial, this.dataFinal).subscribe(pedidos => {
+      this.pedidos = pedidos;
+    })
   }
 
   public get pedidosOrdenados(){

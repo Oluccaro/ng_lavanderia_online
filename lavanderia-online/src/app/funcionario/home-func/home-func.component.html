@@ -1,30 +1,19 @@
-<section class=" h-25 h-custom">
-  <div class="container py-5 h-100">
-    <div class="container-fluid bg-body-light h-100">
-      <div class="col-12">
-        <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
-          <div class="row g-0">
-            <div class="row">
-              <div class="col-12 mb-0">
-                <div class="card-title p-2">
-                  <div class="row d-flex justify-content-center align-items-center h-100 mb-0">
-                    <div class="hstack gap-4">
-                      <div class="border border-dark-subtle border-3 rounded-pill col-3 px-4 pt-2 mb-3" style="background-color: gray;">
-                        <h2 class="fw-bold mb-3 text-light">Olá, {{this.usuario.nome}}</h2>
-                      </div>
-                      <h4 class="fw-bold mb-0 text-black align-bottom p-4 ms-auto">Você possui</h4>
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h5></h5>
-                    <h5 class="mb-0 text">{{pedidos.length}} pedidos em ABERTO</h5>
-                  </div>
+<body style="background-color: rgb(218, 235, 236);">
+  <section class="d-flex">
+    <div class="container py-5 h-100 mb-2">
+      <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
+        <div class="row g-0">
+          <div class="row">
+            <div class="col-12 mb-0">
+              <div class="card-title p-2 vstack gap-3 d-inline-block">
+                <div class="border border-dark-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: gray;">
+                  <h3 class="p-2 fw-bold mb-0 text-light">Pedidos em Aberto: {{pedidos.length}}</h3>
                 </div>
               </div>
               <table *ngIf="pedidos" class="table table-hover" style="border-radius: 15px;">
                 <thead>
                   <tr>
-                    <th scope="col">Nº do Pedido</th>
+                    <th scope="col">Pedido</th>
                     <th scope="col">Status</th>
                     <th scope="col">Data</th>
                     <th scope="col">Valor</th>
@@ -34,10 +23,10 @@
                 <tbody>
                   <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
                     <th scope="row">#{{pedido.id}}</th>
-                    <td>{{pedido.status}}</td>
-                    <td>{{pedido.data}}</td>
-                    <td>{{pedido.valor}}</td>
-                    <td><a class="btn btn-primary" href="#" role="button">Registrar Recolhimento</a></td>
+                    <td class="text-warning">{{pedido.status}}</td>
+                    <td>{{pedido.data | date:'dd/MM/yyyy hh:mm'}}</td>
+                    <td class="text-end">R${{pedido.valor}}</td>
+                    <td *ngIf="pedido.status == 'EM ABERTO'"><a class="btn btn-outline-primary" (click)="abrirModal(pedido)" role="button">Registrar Recolhimento</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -46,5 +35,5 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</body>

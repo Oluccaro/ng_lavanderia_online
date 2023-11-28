@@ -1,0 +1,1 @@
+export * from "./modal-confirmacao-func.component";

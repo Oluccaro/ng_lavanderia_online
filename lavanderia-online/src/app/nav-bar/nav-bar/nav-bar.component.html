@@ -9,7 +9,7 @@
         </button>
       </li>
     </ul>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div *ngIf="usuario?.perfil?.includes('CLIENTE')" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h4 class="offcanvas-title" id="offcanvasNavbarLabel">Olá, {{usuario?.nome}}</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -33,9 +33,6 @@
     <!---->
     <ul *ngIf="usuario?.perfil?.includes('FUNC')" class="nav hstack gap-4">
       <li class="nav-item">
-        <a href="orcamento.html" class="text"><i class="bi bi-cart h4 border-black"></i></a>
-      </li>
-      <li class="nav-item">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,26 +41,23 @@
     </ul>
     <div *ngIf="usuario?.perfil?.includes('FUNC')" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="offcanvasNavbarLabel">{{usuario?.nome}}</h4>
+        <h4 class="offcanvas-title" id="offcanvasNavbarLabel">Olá, {{usuario?.nome}}</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Início</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pedidos-funcionarios.html">Pedidos</a>
-            <a class="nav-link" href="manutencao-roupas.html">Roupas</a>
-            <a class="nav-link" href="manutencao-funcionarios.html">Funcionários</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="painel-relatorios.html">
-              Relatórios
-            </a>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" (click)="logout()">Sair</button>
+          <li class="nav-item" data-bs-dismiss="offcanvas">
+            <a *ngIf="!isCurrentRoute('/funcionario/home')" class="nav-link" (click)="goHomeFunc()">Pedidos em Aberto</a>
+            <a *ngIf="isCurrentRoute('/funcionario/home')" class="nav-link active" aria-current="page" (click)="goHomeFunc()">Pedidos em Aberto</a>
+            <a *ngIf="!isCurrentRoute('/funcionario/listagem')"class="nav-link" (click)="goListagem()">Listagem de Pedidos</a>
+            <a *ngIf="isCurrentRoute('/funcionario/listagem')"class="nav-link active" aria-current="page" (click)="goListagem()">Listagem de Pedidos</a>
+            <a *ngIf="!isCurrentRoute('/funcionario/roupas')"class="nav-link" (click)="goRoupas()">Cadastro de Roupas</a>
+            <a *ngIf="isCurrentRoute('/funcionario/roupas')"class="nav-link active" aria-current="page" (click)="goRoupas()">Cadastro de Roupas</a>
+            <a *ngIf="!isCurrentRoute('/funcionario/funcionarios')"class="nav-link" (click)="goFuncionarios()">Cadastro de Funcionários</a>
+            <a *ngIf="isCurrentRoute('/funcionario/funcionarios')"class="nav-link active" aria-current="page" (click)="goFuncionarios()">Cadastro de Funcionários</a>
+            <a *ngIf="!isCurrentRoute('/funcionario/relatorios')"class="nav-link" (click)="goRelatorios()">Relatórios</a>
+            <a *ngIf="isCurrentRoute('/funcionario/relatorios')"class="nav-link active" aria-current="page" (click)="goRelatorios()">Relatórios</a>
+            <a class="nav-link" (click)="logout()">Sair</a>
           </li>
         </ul>
       </div>

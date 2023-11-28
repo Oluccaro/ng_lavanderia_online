@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-modal-confirmacao',
-  templateUrl: './modal-confirmacao.component.html',
-  styleUrls: ['./modal-confirmacao.component.css']
+  selector: 'app-modal-confirmacao-func',
+  templateUrl: './modal-confirmacao-func.component.html',
+  styleUrls: ['./modal-confirmacao-func.component.css']
 })
-export class ModalConfirmacaoComponent {
+export class ModalConfirmacaoFuncComponent {
   @Input() pedido!: Pedido;
 
   constructor(
@@ -22,20 +22,30 @@ export class ModalConfirmacaoComponent {
   ngOnInit(): void{
     
   }
-
-  cancelarPedido(pedido: Pedido): void {
-    this.pedidoService.atualizarStatus('CANCELADO', pedido).subscribe(
+  
+  recolherPedido(pedido: Pedido): void {
+    this.pedidoService.atualizarStatus('RECOLHIDO', pedido).subscribe(
       pedido => {
         this.activeModal.close();
       }
     );
   }
 
-  pagarPedido(pedido: Pedido): void{
-    this.pedidoService.atualizarStatus('PAGO', pedido).subscribe(
+  lavarPedido(pedido: Pedido): void {
+    this.pedidoService.atualizarStatus('AGUARDANDO PAGAMENTO', pedido).subscribe(
       pedido => {
         this.activeModal.close();
       }
     );
   }
+
+  finalizarPedido(pedido: Pedido): void{
+    this.pedidoService.atualizarStatus('FINALIZADO', pedido).subscribe(
+      pedido => {
+        this.activeModal.close();
+      }
+    );
+  }
+
+
 }

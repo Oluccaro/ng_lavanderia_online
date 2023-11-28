@@ -60,4 +60,8 @@ export class HomeFuncComponent implements OnInit{
       return dataA.getTime() - dataB.getTime();
     })
   }
+
+  goRelatorios() {
+    this.router.navigate(['/funcionario/relatorios']);
+  };
 }

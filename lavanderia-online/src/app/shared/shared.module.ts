@@ -17,7 +17,7 @@ import { AlfabeticoDirective, AlfanumericoDirective, EmailDirective, NumericoDir
   imports: [
     CommonModule,
     NgxMaskDirective,
-    NgxMaskPipe  
+    NgxMaskPipe,
   ],
   exports: [
     AlfabeticoDirective,
@@ -26,10 +26,10 @@ import { AlfabeticoDirective, AlfanumericoDirective, EmailDirective, NumericoDir
     NumericoDirective,
     NotzeroDirective,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
   ],
   providers: [
-    provideNgxMask()
+    provideNgxMask(),
   ]
 })
 export class SharedModule { }

@@ -12,6 +12,7 @@ import { RoupaModule } from './roupa/roupa.module';
 import { ModalModule } from './modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,9 +28,9 @@ import { SharedModule } from './shared';
     RoupaModule,
     ModalModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    BsDatepickerModule.forRoot(),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

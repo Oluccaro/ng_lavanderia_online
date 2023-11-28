@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
@@ -18,7 +19,8 @@ export class HomeFuncComponent implements OnInit{
   constructor(
     private loginService: LoginService,
     private pedidoService: PedidoService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router,
   ) {
       this._usuario = loginService.usuarioLogado;
     }

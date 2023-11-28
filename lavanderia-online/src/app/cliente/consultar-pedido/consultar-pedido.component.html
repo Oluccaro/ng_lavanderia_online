@@ -42,11 +42,11 @@
                                 <td class="text-center">{{roupa.prazo}}</td>
                                 <td>{{roupa.preco}}</td>
                                 <td class="text-center">{{roupa.quantidade}}</td>
-                                <td>{{roupa.quantidade * roupa.preco}}</td>
+                                <td>{{roupa.quantidade * roupa.preco | pipeReal }}</td>
                               </tr>
                               <tr>
                                 <td colspan="4" class="text-end fw-bold">Total do pedido:</td>
-                                <td class="fw-bold">{{pedido.valor}}</td>
+                                <td class="fw-bold">{{pedido.valor !== undefined ? (pedido.valor | pipeReal) : ''}}</td>
                               </tr>
                             </tbody>
                           </table>

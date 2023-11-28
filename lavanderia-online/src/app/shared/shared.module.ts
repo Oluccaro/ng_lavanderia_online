@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 // Diretivas
 import { AlfabeticoDirective, AlfanumericoDirective, EmailDirective, NumericoDirective, NotzeroDirective } from './directives';
+import { PipeRealPipe } from './pipes';
 
 
 
@@ -12,7 +13,8 @@ import { AlfabeticoDirective, AlfanumericoDirective, EmailDirective, NumericoDir
     AlfanumericoDirective,
     EmailDirective,
     NumericoDirective,
-    NotzeroDirective
+    NotzeroDirective,
+    PipeRealPipe
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { AlfabeticoDirective, AlfanumericoDirective, EmailDirective, NumericoDir
     NotzeroDirective,
     NgxMaskDirective,
     NgxMaskPipe,
+    PipeRealPipe
   ],
   providers: [
     provideNgxMask(),

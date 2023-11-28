@@ -219,6 +219,26 @@
       "senha": 1933,
       "perfil": "CLIENTE",
       "endereco": {}
+    },
+    {
+      "id": 1701190708383,
+      "senha": 2261,
+      "perfil": "CLIENTE",
+      "endereco": {
+        "numero": "0"
+      }
+    },
+    {
+      "id": 1701190716640,
+      "senha": 6322,
+      "perfil": "CLIENTE",
+      "endereco": {}
+    },
+    {
+      "id": 1701190722407,
+      "senha": 10,
+      "perfil": "CLIENTE",
+      "endereco": {}
     }
   ],
   "pedidos": [

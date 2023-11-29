@@ -1,0 +1,1 @@
+export * from "./listar-roupa.component";

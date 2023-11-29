@@ -9,6 +9,7 @@ import { HomeFuncComponent } from './funcionario/home-func';
 import { RelatoriosComponent } from './funcionario/relatorios';
 import { ListarPedidosComponent } from './cliente/listar-pedidos';
 import { ListagemComponent } from './funcionario/listagem';
+import { ListarRoupaComponent } from './roupa/listar-roupa/listar-roupa.component';
 
 const routes: Routes = [
   { path: '',
@@ -65,6 +66,13 @@ const routes: Routes = [
   },
   { path: 'funcionario/relatorios',
     component: RelatoriosComponent,
+    canActivate: [authGuard],
+    data: {
+      role: 'FUNC'
+    }
+  },
+  { path: 'funcionario/roupas',
+    component: ListarRoupaComponent,
     canActivate: [authGuard],
     data: {
       role: 'FUNC'

@@ -8,7 +8,7 @@ const LS_CHAVE: string = 'roupas';
   providedIn: 'root',
 })
 export class RoupaService {
-  BASE_URL = 'http://localhost:4200/roupas';
+  BASE_URL = 'http://localhost:3000/roupas';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -26,13 +26,16 @@ export class RoupaService {
     return this.http.post<Roupa>(this.BASE_URL, roupa);
   }
 
-  /*obterRoupa(id: number): Observable<Roupa> {
-    return this.http.get<Roupa>(
-      `${this.BASE_URL}/${id}`);
-  }
-*/
   atualizarRoupa(id: number, roupa: Roupa): Observable<Roupa> {
-    return this.http.put<Roupa>(`${this.BASE_URL}/${id}`, roupa);
+    roupa.descricao = novaDescricao;
+    roupa.preco = novoPreco;
+    roupa.prazo = novoPrazo;
+    roupa.imagem = novaImagem;
+    return this.http.put<Roupa>(
+      this.BASE_URL + `/${roupa.id}`,
+      JSON.stringify(roupa),
+      this.httpOptions
+    );
   }
 
   excluirRoupa(id: number): Observable<any> {

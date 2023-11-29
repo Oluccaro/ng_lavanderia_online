@@ -6,6 +6,7 @@ import { ModalOrcamentoComponent } from './modal-orcamento/modal-orcamento.compo
 import { ModalPedidoComponent } from './modal-pedido/modal-pedido.component';
 import { ModalManutencaoRoupaComponent } from './modal-manutencao-roupa/modal-manutencao-roupa.component';
 import { ModalFuncionarioManutencaoComponent } from './modal-funcionario-manutencao/modal-funcionario-manutencao.component';
+import { ModalConfirmacaoFuncComponent } from './modal-confirmacao-func/modal-confirmacao-func.component';
 
 @NgModule({
   declarations: [
@@ -14,12 +15,19 @@ import { ModalFuncionarioManutencaoComponent } from './modal-funcionario-manuten
     ModalPedidoComponent,
     ModalManutencaoRoupaComponent,
     ModalFuncionarioManutencaoComponent,
+    ModalConfirmacaoFuncComponent,
+  ],
+  imports: [
+    CommonModule
   ],
   imports: [CommonModule, FormsModule],
   exports: [
     ModalConfirmacaoComponent,
     ModalOrcamentoComponent,
     ModalPedidoComponent,
-  ],
+    ModalManutencaoRoupaComponent,
+    ModalFuncionarioManutencaoComponent,
+    ModalConfirmacaoFuncComponent
+  ]
 })
 export class ModalModule {}

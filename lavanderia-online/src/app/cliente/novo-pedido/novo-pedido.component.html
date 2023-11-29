@@ -26,7 +26,7 @@
                       <div class="card-body">
                         <h5 class="card-title">{{roupa.descricao}}</h5>
                         <div class="info mb-2">
-                          <span class="preco">Valor: R${{roupa.preco}}</span> <br>
+                          <span class="preco">Valor: {{roupa.preco | pipeReal}}</span> <br>
                           <span class="prazo">Prazo: {{roupa.prazo}} dias úteis.</span>
                         </div>
                         <div class="hstack gap-3">

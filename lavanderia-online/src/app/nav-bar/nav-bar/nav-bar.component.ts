@@ -43,5 +43,25 @@ export class NavBarComponent {
   goNovo() {
     this.router.navigate(['/cliente/novo']);
   };
+
+  goHomeFunc() {
+    this.router.navigate(['/funcionario/home']);
+  };
+
+  goListagem() {
+    this.router.navigate(['/funcionario/listagem']);
+  };
+
+  goRoupas() {
+    this.router.navigate(['/funcionario/roupas']);
+  };
+
+  goFuncionarios() {
+    this.router.navigate(['/funcionario/funcionarios']);
+  };
+
+  goRelatorios() {
+    this.router.navigate(['/funcionario/relatorios']);
+  };
   
 }

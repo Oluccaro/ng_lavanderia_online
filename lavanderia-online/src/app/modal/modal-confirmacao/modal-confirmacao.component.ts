@@ -29,24 +29,10 @@ export class ModalConfirmacaoComponent {
       });
   }
 
-  lavarPedido(pedido: Pedido): void {
-    this.pedidoService
-      .atualizarStatus('AGUARDANDO PAGAMENTO', pedido)
-      .subscribe((pedido) => {
+  pagarPedido(pedido: Pedido): void{
+    this.pedidoService.atualizarStatus('PAGO', pedido).subscribe(
+      pedido => {
         this.activeModal.close();
       });
-  }
-
-  finalizarPedido(pedido: Pedido): void {
-    this.pedidoService
-      .atualizarStatus('FINALIZADO', pedido)
-      .subscribe((pedido) => {
-        this.activeModal.close();
-      });
-  }
-
-  pagarPedido(pedido: Pedido): void {
-    this.router.navigate(['/cliente/pagar']);
-    this.activeModal.close();
   }
 }

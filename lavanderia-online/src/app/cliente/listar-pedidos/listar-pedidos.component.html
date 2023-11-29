@@ -1,55 +1,55 @@
 <body style="background-color: lightblue;">
-    <section class="d-flex">
-      <div class="container py-5 h-100 mb-2">
-        <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
-          <div class="row g-0">
-            <div class="row">
-              <div class="col-12 mb-0">
-                <div class="card-title p-2 vstack gap-3 d-inline-block">
-                  <div class="border border-info-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: #63E1B4;">
-                    <h3 class="p-2 fw-bold mb-0 text-light">Todos os Pedidos</h3>
-                  </div>
+  <section class="d-flex">
+    <div class="container py-5 h-100 mb-2">
+      <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
+        <div class="row g-0">
+          <div class="row">
+            <div class="col-12 mb-0">
+              <div class="card-title p-2 vstack gap-3 d-inline-block">
+                <div class="border border-info-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: #63E1B4;">
+                  <h3 class="p-2 fw-bold mb-0 text-light">Todos os Pedidos</h3>
                 </div>
-                  <div class="form-label container-sm">
-                    <div class="mb-3">
-                      <label for="filtroStatus" class="form-label">Filtro por Status</label>
-                      <select class="form-select" id="filtroStatus" [(ngModel)]="filtroStatus">
-                        <option value="">Todos</option>
-                        <option value="EM ABERTO">Aberto</option>
-                        <option value="AGUARDANDO PAGAMENTO">Aguardando Pagamento</option>
-                        <option value="PAGO">Pago</option>
-                        <option value="RECOLHIDO">Recolhido</option>                      
-                        <option value="FINALIZADO">Finalizado</option>                     
-                        <option value="REJEITADO">Rejeitado</option>
-                        <option value="CANCELADO">Cancelado</option>
-                      </select>                    
-                      <button class="btn btn-outline-primary mt-3" (click)="aplicarFiltro()">Aplicar Filtro</button>
+              </div>
+              <div class="form-label container-sm">
+                <div class="mb-3">
+                  <label for="filtroStatus" class="form-label">Filtro por Status</label>
+                  <select class="form-select" id="filtroStatus" [(ngModel)]="filtroStatus">
+                    <option value="">Todos</option>
+                    <option value="EM ABERTO">Aberto</option>
+                    <option value="AGUARDANDO PAGAMENTO">Aguardando Pagamento</option>
+                    <option value="PAGO">Pago</option>
+                    <option value="RECOLHIDO">Recolhido</option>                      
+                    <option value="FINALIZADO">Finalizado</option>                     
+                    <option value="REJEITADO">Rejeitado</option>
+                    <option value="CANCELADO">Cancelado</option>
+                  </select>                    
+                  <button class="btn btn-outline-primary mt-3" (click)="aplicarFiltro()">Aplicar Filtro</button>
+                </div>
+              </div>
+              <div class="container-lg">
+                <div class="list-group" id="lista-pedido">
+                  <a *ngFor="let pedido of pedidos" class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">Pedido #{{pedido.id}}</h5>
+                      <small>Realizado {{pedido.data | date:'dd/MM/yyyy'}}</small>
                     </div>
-                  </div>
-                <div class="container-lg">
-                  <div class="list-group" id="lista-pedido">
-                    <a *ngFor="let pedido of pedidos" class="list-group-item list-group-item-action" aria-current="true">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Pedido #{{pedido.id}}</h5>
-                        <small>Realizado {{pedido.data | date:'dd/MM/yyyy'}}</small>
+                    <div class="d-flex w-100 justify-content-between">
+                      <div>
+                        <p class="mb-1">Item: {{pedido.roupas}}</p>
+                        <p class="mb-1"> Status: {{pedido.status}}</p>
                       </div>
-                      <div class="d-flex w-100 justify-content-between">
-                        <div>
-                          <p class="mb-1">Item: {{pedido.roupas}}</p>
-                          <p class="mb-1"> Status: {{pedido.status}}</p>
-                        </div>
-                        <button *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" type="button" class="btn btn-outline-primary" (click)="abrirModal(pedido)">Pagar Pedido</button>
-                        <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-outline-danger" (click)="abrirModal(pedido)">Cancelar Pedido</button>
-                      </div>
-                        <small>Entrega prevista: {{pedido.data | date:'dd/MM/yyyy'}}</small>            
-                    </a>
-                    <p *ngIf="pedidos.length==0"> Sem pedidos </p>
-                  </div>
+                      <button *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" type="button" class="btn btn-outline-success" (click)="abrirModal(pedido)">Pagar Pedido</button>
+                      <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-outline-danger" (click)="abrirModal(pedido)">Cancelar Pedido</button>
+                    </div>
+                      <small>Entrega prevista: {{pedido.data | date:'dd/MM/yyyy'}}</small>            
+                  </a>
+                  <p *ngIf="pedidos.length==0"> Sem pedidos </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    </body>
+    </div>
+  </section>
+</body>

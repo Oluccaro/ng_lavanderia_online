@@ -1,34 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmacaoFuncComponent } from 'src/app/modal/modal-confirmacao-func';
-
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { map } from 'rxjs';
 @Component({
-  selector: 'app-home-func',
-  templateUrl: './home-func.component.html',
-  styleUrls: ['./home-func.component.css']
+  selector: 'app-listagem',
+  templateUrl: './listagem.component.html',
+  styleUrls: ['./listagem.component.css']
 })
-export class HomeFuncComponent implements OnInit{
+export class ListagemComponent implements OnInit{
   private _usuario: Usuario;
   private _pedidos: Pedido[] = [];
+  filtroListagem: string = '';
+  dataInicial: Date = new Date();
+  dataFinal: Date = new Date();
+
+  datepickerConfig: Partial<BsDatepickerConfig> = {
+    containerClass: 'theme-default',
+    dateInputFormat: 'DD/MM/YYYY',
+  };
   
   constructor(
     private loginService: LoginService,
     private pedidoService: PedidoService,
-    private modalService: NgbModal,
-    private router: Router,
+    private modalService: NgbModal
   ) {
       this._usuario = loginService.usuarioLogado;
     }
 
   ngOnInit(): void {
     this.pedidos = [];
-    this.buscarPedidosAbertos();
+    this.buscarPedidos();
     this.usuario = this.loginService.usuarioLogado;
+    this.dataFinal = new Date;
+    this.dataInicial = new Date;
   }
 
   public get usuario(): Usuario {
@@ -45,14 +54,26 @@ export class HomeFuncComponent implements OnInit{
     this._pedidos = value;
   }
 
-  public buscarPedidosAbertos(){
-    return this.pedidoService.listarPorStatus('EM ABERTO')
+  public buscarPedidos(){
+    return this.pedidoService.listarTodos()
                .subscribe(pedidos => { this.pedidos = pedidos});
   }
 
   abrirModal(pedido: Pedido){
     const modalRef = this.modalService.open(ModalConfirmacaoFuncComponent);
     modalRef.componentInstance.pedido = pedido;
+  }
+
+  aplicarFiltroIntervalo() {
+    if (this.filtroListagem == 'HOJE'){
+      let hojeInicial = new Date;
+      let hojeFinal = new Date;
+      this.dataInicial = hojeInicial
+      this.dataFinal = hojeFinal
+    }
+    this.pedidoService.listarPorData(this.dataInicial, this.dataFinal).subscribe(pedidos => {
+      this.pedidos = pedidos;
+    })
   }
 
   public get pedidosOrdenados(){
@@ -62,8 +83,4 @@ export class HomeFuncComponent implements OnInit{
       return dataA.getTime() - dataB.getTime();
     })
   }
-
-  goRelatorios() {
-    this.router.navigate(['/funcionario/relatorios']);
-  };
 }

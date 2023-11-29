@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/shared/models/pedido.model';
+import { map } from 'rxjs';
 
 const LS_CHAVE: string = "pedidos"
 
@@ -31,6 +32,21 @@ export class PedidoService {
       this.httpOptions)
   }
 
+  listarPorData(dataInicial: Date, dataFinal: Date): Observable<Pedido[]> {
+    return this.listarTodos().pipe(
+      map(pedidos => pedidos.filter(pedido => {
+        if (pedido.data){
+          const dataPedido = new Date(pedido.data);
+          return (
+            (dataPedido.getDate() >= dataInicial.getDate()&& dataPedido.getMonth() <= dataFinal.getMonth())
+            &&(dataPedido.getMonth() >= dataInicial.getMonth() && dataPedido.getMonth() <= dataFinal.getMonth())
+            &&(dataPedido.getFullYear() >= dataInicial.getFullYear() && dataPedido.getFullYear() <= dataFinal.getFullYear()));  
+        }
+        return false;
+      }))
+    );
+  }
+
   gerarPedido(pedido: Pedido): Observable<Pedido> {
     return this.http.post<Pedido>(
       this.BASE_URL,
@@ -51,38 +67,4 @@ export class PedidoService {
       this.BASE_URL + `/${id}`,
       this.httpOptions);
   }
-
-/*
-  pagarPedido(pedido: Pedido): Observable<Pedido> {
-    pedido.status = "PAGO";
-    return this.http.put<Pedido>(
-      this.BASE_URL + `/${pedido.id}`,
-      JSON.stringify(pedido),
-      this.httpOptions)
-  }
-
-  confirmarRecolhimento(pedido: Pedido): Observable<Pedido> {
-    pedido.status = "RECOLHIDO";
-    return this.http.put<Pedido>(
-      this.BASE_URL + `/${pedido.id}`,
-      JSON.stringify(pedido),
-      this.httpOptions)
-  }
-
-  confirmarLavagem(pedido: Pedido): Observable<Pedido> {
-    pedido.status = "AGUARDANDO PAGAMENTO";
-    return this.http.put<Pedido>(
-      this.BASE_URL + `/${pedido.id}`,
-      JSON.stringify(pedido),
-      this.httpOptions)
-  }
-
-  finalizarPedido(pedido: Pedido): Observable<Pedido> {
-    pedido.status = "FINALIZADO";
-    return this.http.put<Pedido>(
-      this.BASE_URL + `/${pedido.id}`,
-      JSON.stringify(pedido),
-      this.httpOptions)
-  }
-*/
 }

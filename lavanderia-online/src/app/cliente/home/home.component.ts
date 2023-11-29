@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth';
 import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
     private loginService: LoginService,
     private pedidoService: PedidoService,
     private router: Router,
-    route: ActivatedRoute,
     private modalService: NgbModal
   ) {}
 
@@ -52,14 +51,6 @@ export class HomeComponent implements OnInit {
   goPedidos() {
     this.router.navigate(['/cliente/pedidos']);
   }
-
-  // cancelarPedido(pedido: Pedido): void {
-  //   this.pedidoService.cancelarPedido(pedido).subscribe(
-  //     pedido => {
-  //       this.router.navigate( ["/cliente"]);
-  //     }
-  //   );
-  // }
 
   abrirModal(pedido: Pedido) {
     const modalRef = this.modalService.open(ModalConfirmacaoComponent);

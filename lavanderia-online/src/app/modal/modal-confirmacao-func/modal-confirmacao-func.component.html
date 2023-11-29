@@ -1,21 +1,25 @@
-<div class="modal-header">
-  <h4 class="modal-title" id="modalLabel"> Confirmação </h4>
-  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"
-  (click)="activeModal.dismiss()">
-  </button>
-</div>
-<div class="modal-body text-center">
-  <div>
-    <h5 *ngIf="pedido.status == 'EM ABERTO'">Tem certeza que deseja confirmar o recolhimento do pedido #{{pedido.id}}?</h5>
-    <h5 *ngIf="pedido.status == 'RECOLHIDO'">Tem certeza que deseja confirmar a lavagem do pedido #{{pedido.id}}?</h5>
-    <h5 *ngIf="pedido.status == 'PAGO'">Tem certeza que deseja finalizar o pedido #{{pedido.id}}?</h5>
-  </div>
+<div class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modalLabel"> Confirmação </h4>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar" (click)="activeModal.dismiss()">
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <div>
+        <h5 *ngIf="pedido.status == 'EM ABERTO'">Tem certeza que deseja confirmar o recolhimento do pedido #{{pedido.id}}?</h5>
+        <h5 *ngIf="pedido.status == 'RECOLHIDO'">Tem certeza que deseja confirmar a lavagem do pedido #{{pedido.id}}?</h5>
+        <h5 *ngIf="pedido.status == 'PAGO'">Tem certeza que deseja finalizar o pedido #{{pedido.id}}?</h5>
+      </div>
 
-<div class="modal-foot text-center">
-  <div>
-    <button type="button" style="margin-right: 100px;" class="btn btn-outline-danger btn-block btn-lg" (click)="activeModal.close()"> Não </button>
-    <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-outline-success btn-block btn-lg"  (click)="recolherPedido(pedido)"> Sim </button>
-    <button *ngIf="pedido.status == 'RECOLHIDO'" type="button" class="btn btn-outline-success btn-block btn-lg" (click)="lavarPedido(pedido)"> Sim </button>
-    <button *ngIf="pedido.status == 'PAGO'" type="button" class="btn btn-outline-success btn-block btn-lg" (click)="finalizarPedido(pedido)"> Sim </button>
+      <div class="modal-foot text-center">
+        <div>
+          <button type="button" style="margin-right: 100px;" class="btn btn-outline-danger btn-block btn-lg" (click)="activeModal.close()"> Não </button>
+          <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-outline-success btn-block btn-lg" (click)="recolherPedido(pedido)"> Sim </button>
+          <button *ngIf="pedido.status == 'RECOLHIDO'" type="button" class="btn btn-outline-success btn-block btn-lg" (click)="lavarPedido(pedido)"> Sim </button>
+          <button *ngIf="pedido.status == 'PAGO'" type="button" class="btn btn-outline-success btn-block btn-lg" (click)="finalizarPedido(pedido)"> Sim </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

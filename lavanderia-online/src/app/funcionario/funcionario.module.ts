@@ -6,11 +6,13 @@ import { FuncionarioService } from './services/funcionario.service';
 import { SharedModule } from '../shared';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ManutencaoComponent } from './manutencao/manutencao.component';
 
 @NgModule({
   declarations: [
     HomeFuncComponent,
-    RelatoriosComponent
+    RelatoriosComponent,
+    ManutencaoComponent
   ],
   imports: [
     CommonModule,

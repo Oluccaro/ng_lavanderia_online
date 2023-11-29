@@ -11,9 +11,9 @@ import { ModalConfirmacaoComponent } from 'src/app/modal/modal-confirmacao';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   private _usuario!: Usuario;
   pedidos: Pedido[] = [];
 
@@ -33,9 +33,9 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.pedidos = [];
-      this.listarAbertos();
-      this.usuario = this.loginService.usuarioLogado;
+    this.pedidos = [];
+    this.listarAbertos();
+    this.usuario = this.loginService.usuarioLogado;
   }
 
   listarAbertos(): Pedido[] {
@@ -43,13 +43,15 @@ export class HomeComponent implements OnInit{
     return this.pedidos;
   }
 
-  public buscarPedidosAbertos(){
-    this.pedidoService.listarPorStatus('EM ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
+  public buscarPedidosAbertos() {
+    this.pedidoService.listarPorStatus('EM ABERTO').subscribe((pedidos) => {
+      this.pedidos = pedidos;
+    });
   }
 
   goPedidos() {
     this.router.navigate(['/cliente/pedidos']);
-  };
+  }
 
   // cancelarPedido(pedido: Pedido): void {
   //   this.pedidoService.cancelarPedido(pedido).subscribe(
@@ -59,7 +61,7 @@ export class HomeComponent implements OnInit{
   //   );
   // }
 
-  abrirModal(pedido: Pedido){
+  abrirModal(pedido: Pedido) {
     const modalRef = this.modalService.open(ModalConfirmacaoComponent);
     modalRef.componentInstance.pedido = pedido;
   }

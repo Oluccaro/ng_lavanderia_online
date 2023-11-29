@@ -4,16 +4,16 @@ import { RoupaService } from './services/roupa.service';
 import { ListarRoupaComponent } from './listar-roupa/listar-roupa.component';
 import { AdicionarRoupaComponent } from './adicionar-roupa/adicionar-roupa.component';
 import { AtualizarRoupaComponent } from './atualizar-roupa/atualizar-roupa.component';
-import { ExcluirRoupaComponent } from './excluir-roupa/excluir-roupa.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     ListarRoupaComponent,
     AdicionarRoupaComponent,
     AtualizarRoupaComponent,
-    ExcluirRoupaComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   providers: [RoupaService],
 })
 export class RoupaModule {}

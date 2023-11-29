@@ -8,11 +8,13 @@ import { ModalModule } from '../modal';
 import { SharedModule } from '../shared';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ManutencaoComponent } from './manutencao/manutencao.component';
 
 @NgModule({
   declarations: [
     HomeFuncComponent,
     RelatoriosComponent,
+    ManutencaoComponent
     ListagemComponent
   ],
   imports: [
@@ -24,6 +26,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   ],
   exports: [
     HomeFuncComponent,
+    RelatoriosComponent,
+    ManutencaoComponent,
     ListagemComponent
   ],
   providers: [FuncionarioService],

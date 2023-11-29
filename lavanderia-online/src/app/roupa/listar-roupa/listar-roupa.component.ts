@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../auth';
 import { RoupaService } from '../services/roupa.service';
 import { Usuario } from '../../shared';
@@ -14,12 +16,13 @@ import { ModalManutencaoRoupaComponent } from '../../modal/modal-manutencao-roup
 })
 export class ListarRoupaComponent implements OnInit {
   private _usuario!: Usuario;
-  public roupas: Roupa[] = [];
-  public roupa: Roupa;
+  roupas: Roupa[] = [];
 
   constructor(
     private loginService: LoginService,
     private roupaService: RoupaService,
+    private router: Router,
+    route: ActivatedRoute,
     private modalService: NgbModal
   ) {}
 
@@ -43,7 +46,7 @@ export class ListarRoupaComponent implements OnInit {
     return this.roupas;
   }
 
-  abrirModal(roupa: Roupa) {
+  abrirModal() {
     const modalRef = this.modalService.open(ModalManutencaoRoupaComponent);
   }
 

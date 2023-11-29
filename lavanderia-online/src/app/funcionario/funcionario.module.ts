@@ -14,21 +14,21 @@ import { ManutencaoComponent } from './manutencao/manutencao.component';
   declarations: [
     HomeFuncComponent,
     RelatoriosComponent,
-    ManutencaoComponent
-    ListagemComponent
+    ManutencaoComponent,
+    ListagemComponent,
   ],
   imports: [
     CommonModule,
     ModalModule,
     FormsModule,
     SharedModule,
-    BsDatepickerModule
+    BsDatepickerModule,
   ],
   exports: [
     HomeFuncComponent,
     RelatoriosComponent,
     ManutencaoComponent,
-    ListagemComponent
+    ListagemComponent,
   ],
   providers: [FuncionarioService],
 })

@@ -17,9 +17,7 @@ import { ModalConfirmacaoFuncComponent } from './modal-confirmacao-func/modal-co
     ModalFuncionarioManutencaoComponent,
     ModalConfirmacaoFuncComponent,
   ],
-  imports: [
-    CommonModule
-  ],
+
   imports: [CommonModule, FormsModule],
   exports: [
     ModalConfirmacaoComponent,
@@ -27,7 +25,7 @@ import { ModalConfirmacaoFuncComponent } from './modal-confirmacao-func/modal-co
     ModalPedidoComponent,
     ModalManutencaoRoupaComponent,
     ModalFuncionarioManutencaoComponent,
-    ModalConfirmacaoFuncComponent
-  ]
+    ModalConfirmacaoFuncComponent,
+  ],
 })
 export class ModalModule {}

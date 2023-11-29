@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from 'src/app/auth';
+import { LoginService } from '../../auth';
 import { RoupaService } from '../services/roupa.service';
-import { Usuario } from 'src/app/shared';
+import { Usuario } from '../../shared';
 import { Roupa } from '../../shared/models/roupa.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmacaoComponent } from '../../modal/modal-confirmacao';

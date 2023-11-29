@@ -8,7 +8,7 @@ const LS_CHAVE: string = 'roupas';
   providedIn: 'root',
 })
 export class RoupaService {
-  BASE_URL = 'http://localhost:4200/roupas';
+  BASE_URL = 'http://localhost:3000/roupas';
 
   httpOptions = {
     headers: new HttpHeaders({

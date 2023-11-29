@@ -4,6 +4,7 @@ import { RoupaService } from '../../roupa/services/roupa.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-modal-manutencao-roupa',
   templateUrl: './modal-manutencao-roupa.component.html',
@@ -12,12 +13,15 @@ import { Router } from '@angular/router';
 export class ModalManutencaoRoupaComponent {
   @ViewChild('formRoupa') formRoupa!: NgForm;
   @Input() roupa!: Roupa;
+
   constructor(
     public activeModal: NgbActiveModal,
     private roupaService: RoupaService,
     private router: Router
   ) {}
+  
   ngOnInit(): void {}
+
   salvarRoupa(): void {
     if (this.formRoupa.form.valid) {
       this.roupaService.adicionarRoupa(this.roupa).subscribe(

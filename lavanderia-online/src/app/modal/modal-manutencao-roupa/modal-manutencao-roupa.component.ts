@@ -17,9 +17,7 @@ export class ModalManutencaoRoupaComponent {
     private roupaService: RoupaService,
     private router: Router
   ) {}
-  ngOnInit(): void {
-    this.roupa = new Roupa();
-  }
+  ngOnInit(): void {}
   salvarRoupa(): void {
     if (this.formRoupa.form.valid) {
       this.roupaService.adicionarRoupa(this.roupa).subscribe(

@@ -1,5 +1,5 @@
 export class Roupa {
-  private _id: number;
+  private _id?: number;
   private _preco: number;
   private _prazo: number;
   private _descricao: string;
@@ -22,7 +22,7 @@ export class Roupa {
     this._quantidade = quantidade;
   }
 
-  public get id(): number {
+  public get id(): number | undefined {
     return this._id;
   }
 

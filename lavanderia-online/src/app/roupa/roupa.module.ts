@@ -9,9 +9,23 @@ import { ModalModule } from '../modal';
 import { SharedModule } from '../shared';
 
 @NgModule({
-  declarations: [ListarRoupaComponent, AtualizarRoupaComponent],
-  imports: [CommonModule, RouterModule, FormsModule, ModalModule, SharedModule],
-  providers: [RoupaService],
-  exports: [ListarRoupaComponent, AtualizarRoupaComponent],
+  declarations: [
+    ListarRoupaComponent,
+    AtualizarRoupaComponent
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ModalModule,
+    SharedModule
+  ],
+  providers: [
+    RoupaService
+  ],
+  exports: [
+    ListarRoupaComponent,
+    AtualizarRoupaComponent
+  ]
 })
 export class RoupaModule {}

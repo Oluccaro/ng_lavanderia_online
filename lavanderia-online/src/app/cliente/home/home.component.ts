@@ -42,6 +42,14 @@ export class HomeComponent implements OnInit {
     return this.pedidos;
   }
 
+  public get pedidosOrdenados(){
+    return this.pedidos.sort(function(a,b){
+      let dataA = new Date(a.data!);
+      let dataB = new Date(b.data!);
+      return dataB.getTime() - dataA.getTime();
+    })
+  }
+
   public buscarPedidosAbertos() {
     this.pedidoService.listarPorStatus('EM ABERTO').subscribe((pedidos) => {
       this.pedidos = pedidos;

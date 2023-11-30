@@ -10,26 +10,28 @@
                   <h3 class="p-2 fw-bold mb-0 text-light">Pedidos em Aberto: {{pedidos.length}}</h3>
                 </div>
               </div>
-              <table *ngIf="pedidos" class="table table-hover" style="border-radius: 15px;">
-                <thead>
-                  <tr>
-                    <th scope="col">Pedido</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
-                    <th scope="row">#{{pedido.id}}</th>
-                    <td class="text-warning">{{pedido.status}}</td>
-                    <td>{{pedido.data | date:'dd/MM/yyyy hh:mm'}}</td>
-                    <td class="text-end">R${{pedido.valor}}</td>
-                    <td *ngIf="pedido.status == 'EM ABERTO'"><a class="btn btn-outline-primary" (click)="abrirModal(pedido)" role="button">Registrar Recolhimento</a></td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="overflow-x-auto">
+                <table *ngIf="pedidos" class="table table-hover" style="border-radius: 15px;">
+                  <thead>
+                    <tr>
+                      <th>Pedido</th>
+                      <th style="white-space: nowrap;">Solicitado em</th>
+                      <th style="white-space: nowrap;">Entrega até</th>
+                      <th class="text-end" scope="col">Valor</th>
+                      <th class="text-center">Ação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
+                      <th class="align-middle">#{{pedido.id}}</th>
+                      <td class="align-middle">{{pedido.data | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle">{{pedido.data_prevista | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle text-end" style="white-space: nowrap;">{{pedido.valor | pipeReal}}</td>
+                      <td *ngIf="pedido.status == 'EM ABERTO'" class="align-middle text-center"><a class="btn btn-outline-primary" (click)="abrirModal(pedido)" role="button">Registrar Recolhimento</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

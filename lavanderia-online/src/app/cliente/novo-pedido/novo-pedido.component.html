@@ -1,54 +1,53 @@
 <body style="background-color: lightblue;">
-  <header>
-  <!--Título-->
-  <main>
-    <section class="d-flex">
-      <div class="container py-5 h-100 mb-2">
-        <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
-          <div class="row g-0">
-            <div class="row">
-              <div class="col-12 mb-0">
-                <div class="card-title p-2">
-                  <div class="border border-info-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: #63E1B4;">
-                    <h3 class="p-2 mb-0 text-light">Novo Pedido</h3>
-                  </div>
-                  <h1></h1>
+  <section class="d-flex">
+    <div class="container py-5 h-100 mb-2">
+      <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
+        <div class="row g-0">
+          <div class="row">
+            <div class="col-12 mb-0">
+              <div class="card-title p-2 vstack gap-3 d-inline-block">
+                <div class="border border-info-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: #63E1B4;">
+                  <h3 class="p-2 fw-bold mb-0 text-light">Novo Pedido</h3>
                 </div>
+                <h1></h1>
               </div>
-            </div>
-            <!--Categorias de roupas-->
-            <form #pedidoForm="ngForm">
-              <div class="row g-3">
-                <div *ngFor="let roupa of roupas" class="col mb-3">
-                  <a class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="card" style="width: 11rem" id="roupaItem">
-                      <img [src]="'data:image/jpg;base64,' + roupa.imagem" class="card-img-top" alt={{roupa.descricao}}>
-                      <div class="card-body">
-                        <h5 class="card-title">{{roupa.descricao}}</h5>
-                        <div class="info mb-2">
-                          <span class="preco">Valor: {{roupa.preco | pipeReal}}</span> <br>
-                          <span class="prazo">Prazo: {{roupa.prazo}} dias úteis.</span>
-                        </div>
-                        <div class="hstack gap-3">
-                          <input #quantidade="ngModel" [(ngModel)]="roupa.quantidade" name="quantidade" id="quantidade"
-                          class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade" numerico appNotzero>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
+              <div class="container-lg">
                 <p *ngIf="roupas.length==0"> Sem roupas cadastradas, contate o administrador do sistema. </p>
               </div>
-            </form>
-            <h1></h1>
-            <div class="row">
-              <div class="text-end d-inline-block">
-                <button *ngIf="roupas.length !== 0" [disabled]="!pedidoForm.form.valid" class="btn btn-outline-primary btn-block btn-lg fs-4" type="button" (click)="abrirModal()"> Finalizar Pedido </button>
+            </div>
+          </div>
+          <!--Categorias de roupas-->
+          <form #pedidoForm="ngForm">
+            <div class="row g-3">
+              <div *ngFor="let roupa of roupas" class="col mb-3">
+                <a class="list-group-item list-group-item-action" aria-current="true">
+                  <div class="card" style="width: 11rem" id="roupaItem">
+                    <img [src]="'data:image/jpg;base64,' + roupa.imagem" class="card-img-top" alt={{roupa.descricao}}>
+                    <div class="card-body">
+                      <h5 class="card-title">{{roupa.descricao}}</h5>
+                      <div class="info mb-2">
+                        <span class="preco">Valor: {{roupa.preco | pipeReal}}</span> <br>
+                        <span class="prazo">Prazo: {{roupa.prazo}} dias úteis.</span>
+                      </div>
+                      <div class="hstack gap-3">
+                        <input #quantidade="ngModel" [(ngModel)]="roupa.quantidade" name="quantidade" id="quantidade"
+                        class="form-control me-auto" type="number" placeholder="Quantidade" aria-label="quantidade" numerico appNotzero>
+                      </div>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
-            <h1></h1>
+          </form>
+          <h1></h1>
+          <div class="row">
+            <div class="text-end d-inline-block">
+              <button *ngIf="roupas.length !== 0" [disabled]="!pedidoForm.form.valid" class="btn btn-outline-primary btn-block btn-lg fs-4" type="button" (click)="abrirModal()"> Finalizar Pedido </button>
+            </div>
           </div>
+          <h1></h1>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</body>

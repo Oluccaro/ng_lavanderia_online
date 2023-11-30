@@ -38,35 +38,42 @@
                   </div>
                 </div>
               </div>
-              <table *ngIf="pedidos" class="table table-hover" style="border-radius: 15px;">
-                <thead>
-                  <tr>
-                    <th scope="col">Pedido</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Data</th>
-                    <th scope="col" class="text-end">Valor</th>
-                    <th scope="col" class="text-center">Ação</th>
-                  </tr>
-                
-                <tbody>
-                  <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
-                    <th class="align-middle">#{{pedido.id}}</th>
-                    <td *ngIf="pedido.status == 'EM ABERTO'" class="align-middle text-warning">{{pedido.status}}</td>
-                    <td *ngIf="pedido.status == 'CANCELADO'" class="align-middle text-danger">{{pedido.status}}</td>
-                    <td *ngIf="pedido.status == 'REJEITADO'" class="align-middle text-danger">{{pedido.status}}</td>
-                    <td *ngIf="pedido.status == 'RECOLHIDO'" class="align-middle text-secondary">{{pedido.status}}</td>
-                    <td *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" class="align-middle text-primary">{{pedido.status}}</td>
-                    <td *ngIf="pedido.status == 'PAGO'" class="align-middle" style="color: rgb(255, 119, 29);">{{pedido.status}}</td>
-                    <td *ngIf="pedido.status == 'FINALIZADO'" class="align-middle text-success">{{pedido.status}}</td>
-                    <td>{{pedido.data | date:'dd/MM/yyyy hh:mm'}}</td>
-                    <td class="text-end">{{pedido.valor | pipeReal}}</td>
-                    <td class="text-center" *ngIf="pedido.status == 'EM ABERTO'"><a class="btn btn-outline-secondary" (click)="abrirModal(pedido)" role="button">Confirmar recolhimento</a></td>
-                    <td class="text-center" *ngIf="pedido.status == 'RECOLHIDO'"><a class="btn btn-outline-primary" (click)="abrirModal(pedido)" role="button">Confirmar lavagem</a></td>
-                    <td class="text-center" *ngIf="pedido.status == 'PAGO'"><a class="btn btn-outline-success" (click)="abrirModal(pedido)" role="button">Confirmar finalização</a></td>
-                    <td class="text-center" *ngIf="pedido.status !== 'PAGO' && pedido.status !== 'RECOLHIDO' && pedido.status !== 'EM ABERTO' "><a></a></td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="overflow-x-auto">
+                <table *ngIf="pedidos.length!==0" class="table table-hover" style="border-radius: 15px;">
+                  <thead>
+                    <tr>
+                      <th>Pedido</th>
+                      <th>Status</th>
+                      <th style="white-space: nowrap;">Solicitado em</th>
+                      <th style="white-space: nowrap;">Entrega até</th>
+                      <th class="text-end" scope="col">Valor</th>
+                      <th class="text-center">Ação</th>
+                    </tr>
+                  
+                  <tbody>
+                    <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
+                      <th class="align-middle">#{{pedido.id}}</th>
+                      <td *ngIf="pedido.status == 'EM ABERTO'" class="align-middle text-warning">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'CANCELADO'" class="align-middle text-danger">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'REJEITADO'" class="align-middle text-danger">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'RECOLHIDO'" class="align-middle text-secondary">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" class="align-middle text-primary">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'PAGO'" class="align-middle" style="color: rgb(255, 119, 29);">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'FINALIZADO'" class="align-middle text-success">{{pedido.status}}</td>
+                      <td class="align-middle">{{pedido.data | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle">{{pedido.data_prevista | date:'dd/MM/yyyy'}}</td>
+                      <td class="text-end align-middle" style="white-space: nowrap;">{{pedido.valor | pipeReal}}</td>
+                      <td class="align-middle text-center" *ngIf="pedido.status == 'EM ABERTO'"><a class="btn btn-outline-secondary" (click)="abrirModal(pedido)" role="button">Confirmar recolhimento</a></td>
+                      <td class="align-middle text-center" *ngIf="pedido.status == 'RECOLHIDO'"><a class="btn btn-outline-primary" (click)="abrirModal(pedido)" role="button">Confirmar lavagem</a></td>
+                      <td class="align-middle text-center" *ngIf="pedido.status == 'PAGO'"><a class="btn btn-outline-success" (click)="abrirModal(pedido)" role="button">Confirmar finalização</a></td>
+                      <td class="align-middle text-center" *ngIf="pedido.status !== 'PAGO' && pedido.status !== 'RECOLHIDO' && pedido.status !== 'EM ABERTO' "><a></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="container-lg">
+                <p *ngIf="pedidos.length==0"> Sem pedidos </p>
+            </div>
             </div>
           </div>
         </div>

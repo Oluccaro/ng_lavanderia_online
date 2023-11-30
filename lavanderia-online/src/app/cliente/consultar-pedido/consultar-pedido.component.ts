@@ -5,6 +5,7 @@ import { PedidoService } from 'src/app/pedido/services/pedido.service';
 import { Usuario } from 'src/app/shared';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmacaoComponent } from 'src/app/modal/modal-confirmacao';
 
 @Component({
   selector: 'app-consultar-pedido',
@@ -41,5 +42,10 @@ export class ConsultarPedidoComponent {
         this.pedido = pedido;
       }
     )
+  }
+  
+  abrirModal(pedido: Pedido){
+    const modalRef = this.modalService.open(ModalConfirmacaoComponent);
+    modalRef.componentInstance.pedido = pedido;
   }
 }

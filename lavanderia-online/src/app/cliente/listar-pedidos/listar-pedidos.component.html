@@ -7,7 +7,7 @@
             <div class="col-12 mb-0">
               <div class="card-title p-2 vstack gap-3 d-inline-block">
                 <div class="border border-info-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: #63E1B4;">
-                  <h3 class="p-2 fw-bold mb-0 text-light">Todos os Pedidos</h3>
+                  <h3 class="p-2 fw-bold mb-0 text-light">Todos os Pedidos ({{pedidos.length}})</h3>
                 </div>
               </div>
               <div class="form-label container-sm">
@@ -26,25 +26,40 @@
                   <button class="btn btn-outline-primary mt-3" (click)="aplicarFiltro()">Aplicar Filtro</button>
                 </div>
               </div>
+              <div class="overflow-x-auto">
+                <table *ngIf="pedidos.length!==0" class="table table-hover" style="border-radius: 15px;">
+                  <thead>
+                    <tr>
+                      <th>Pedido</th>
+                      <th>Status</th>
+                      <th style="white-space: nowrap;">Solicitado em</th>
+                      <th style="white-space: nowrap;">Entrega até</th>
+                      <th class="text-end">Valor</th>
+                      <th class="text-center">Ação</th>
+                    </tr>
+                  
+                  <tbody>
+                    <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
+                      <th class="align-middle">#{{pedido.id}}</th>
+                      <td *ngIf="pedido.status == 'EM ABERTO'" class="align-middle text-warning">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'CANCELADO'" class="align-middle text-danger">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'REJEITADO'" class="align-middle text-danger">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'RECOLHIDO'" class="align-middle text-secondary">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" class="align-middle text-primary">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'PAGO'" class="align-middle" style="color: rgb(255, 119, 29);">{{pedido.status}}</td>
+                      <td *ngIf="pedido.status == 'FINALIZADO'" class="align-middle text-success">{{pedido.status}}</td>
+                      <td class="align-middle">{{pedido.data | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle">{{pedido.data_prevista | date:'dd/MM/yyyy'}}</td>
+                      <td class="text-end align-middle" style="white-space: nowrap;">{{pedido.valor | pipeReal}}</td>
+                      <td class="align-middle text-center" *ngIf="pedido.status == 'EM ABERTO'"><a class="btn btn-outline-danger" (click)="abrirModal(pedido)" role="button">Cancelar Pedido</a></td>
+                      <td class="align-middle text-center" *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'"><a class="btn btn-outline-success" (click)="abrirModal(pedido)" role="button">Pagar Pedido</a></td>
+                      <td class="align-middle text-center" *ngIf="pedido.status !== 'AGUARDANDO PAGAMENTO' && pedido.status !== 'EM ABERTO' "><a></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <div class="container-lg">
-                <div class="list-group" id="lista-pedido">
-                  <a *ngFor="let pedido of pedidos" class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">Pedido #{{pedido.id}}</h5>
-                      <small>Realizado {{pedido.data | date:'dd/MM/yyyy'}}</small>
-                    </div>
-                    <div class="d-flex w-100 justify-content-between">
-                      <div>
-                        <p class="mb-1">Item: {{pedido.roupas}}</p>
-                        <p class="mb-1"> Status: {{pedido.status}}</p>
-                      </div>
-                      <button *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" type="button" class="btn btn-outline-success" (click)="abrirModal(pedido)">Pagar Pedido</button>
-                      <button *ngIf="pedido.status == 'EM ABERTO'" type="button" class="btn btn-outline-danger" (click)="abrirModal(pedido)">Cancelar Pedido</button>
-                    </div>
-                      <small>Entrega prevista: {{pedido.data | date:'dd/MM/yyyy'}}</small>            
-                  </a>
                   <p *ngIf="pedidos.length==0"> Sem pedidos </p>
-                </div>
               </div>
             </div>
           </div>

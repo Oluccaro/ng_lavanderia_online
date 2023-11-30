@@ -10,31 +10,30 @@ import { Router } from '@angular/router';
   templateUrl: './modal-manutencao-roupa.component.html',
   styleUrls: ['./modal-manutencao-roupa.component.css'],
 })
-export class ModalManutencaoRoupaComponent {
+export class ModalManutencaoRoupaComponent implements OnInit {
   @ViewChild('formRoupa') formRoupa!: NgForm;
-  @Input() roupa!: Roupa;
+  @Input() novaRoupa = Roupa;
+  public roupa: Roupa = new Roupa();
 
   constructor(
     public activeModal: NgbActiveModal,
     private roupaService: RoupaService,
     private router: Router
   ) {}
-  
+
   ngOnInit(): void {}
 
-  salvarRoupa(): void {
+  public salvarRoupa(): boolean {
     if (this.formRoupa.form.valid) {
-      this.roupaService.adicionarRoupa(this.roupa).subscribe(
-        (novaRoupa) => {
-          console.log('Roupa salva com sucesso:', novaRoupa);
+      this.roupaService.gerarRoupa(this.roupa).subscribe((roupa) => {
+        if (roupa != null) {
+          console.log('Roupa salva com sucesso:', this.novaRoupa);
           this.activeModal.close();
-        },
-        (erro) => {
-          console.error('Erro ao salvar a roupa:', erro);
+          this.roupaService.listarRoupas();
         }
-      );
-    } else {
-      console.warn('Roupa não está definida para salvar.');
+      });
+      return true;
     }
+    return false;
   }
 }

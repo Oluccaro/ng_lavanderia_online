@@ -50,8 +50,8 @@ export class ListarRoupaComponent implements OnInit {
     const modalRef = this.modalService.open(ModalManutencaoRoupaComponent);
   }
 
-  remover($event: any, roupa: Roupa): void {
-    $event.preventDefault();
+  remover(event: Event, roupa: Roupa): void {
+    event.preventDefault();
     if (confirm(`Deseja realmente remover a roupa ${roupa.descricao}?`)) {
       this.roupaService.excluirRoupa(roupa.id!);
       this.roupas = this.listarRoupas();

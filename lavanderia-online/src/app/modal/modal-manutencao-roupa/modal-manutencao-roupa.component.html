@@ -1,41 +1,53 @@
 <div class="modal-header">
   <h4 class="modal-title" id="modalLabel"> Nova Roupa </h4>
-  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"
-  (click)="activeModal.dismiss()">
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar" (click)="activeModal.dismiss()">
   </button>
 </div>
 
 <div class="modal-body text-center">
   <div class="modal-container row mb-4 d-flex justify-content-between align-items-center">
     <form #formRoupa="ngForm" (ngSubmit)="salvarRoupa()">
-      <div class="form-group">
-        <label for="Descrição">Descrição:</label>
-        <input type="text" class="form-control" id="descricao" name="descricao" [(ngModel)]="roupa.descricao" #descricao="ngModel" minlength="2" required>
-        <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
-          <div [hidden]="!descricao.errors || !descricao.errors['required']">Digite o nome da roupa.</div>
-          <div [hidden]="!descricao.errors || !descricao.errors['minlength']">O nome deve conter ao menos 2 caracteres.</div>
+      <div class="form-group row mb-3">
+        <label for="descricao" class="col-sm-2 col-form-label">Descrição:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="descricao" name="descricao" [(ngModel)]="roupa.descricao" #descricao="ngModel" minlength="3" required placeholder="Nome">
+          <div *ngIf="formRoupa.controls['descricao']?.hasError('required') && (formRoupa.controls['descricao']?.dirty || formRoupa.controls['descricao']?.touched)">
+            A descrição é obrigatória.
+          </div>
+          <div *ngIf="formRoupa.controls['descricao']?.hasError('minlength') && (formRoupa.controls['descricao']?.dirty || formRoupa.controls['descricao']?.touched)">
+            A descrição deve ter no mínimo 3 caracteres.
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="Preço">Preço:</label>
-        <input type="number" class="form-control" id="preco" name="preco" [(ngModel)]="roupa.preco" #preco="ngModel" required>
-        <div *ngIf="preco.errors && (preco.dirty || preco.touched)" class="alert alert-danger">
-          <div [hidden]="!preco.errors || !preco.errors['required']">Digite o preço da roupa. </div>
+        <label for="preco" class="col-sm-2 col-form-label">Preço:</label>
+        <div class="col-sm-4">
+          <span class="input-group-text col-2">$</span>
+          <input type="number" class="form-control" id="preco" name="preco" [(ngModel)]="roupa.preco" #preco="ngModel" required min="1" placeholder="Preço">
+          <div *ngIf="formRoupa.controls['preco']?.hasError('required') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
+            O preço é obrigatório.
+          </div>
+          <div *ngIf="formRoupa.controls['preco']?.hasError('min') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
+            O preço deve ser maior que 0.
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="Prazo">Prazo:</label>
-        <input type="number" class="form-control" id="prazo" name="prazo" [(ngModel)]="roupa.prazo" #prazo="ngModel" required>
-        <div *ngIf="prazo.errors && (prazo.dirty || prazo.touched)" class="alert alert-danger">
-          <div [hidden]="!prazo.errors || !prazo.errors['required']">Digite o prazo de lavagem da roupa.</div>
+      <div class="form-group row mb-3">
+        <label for="prazo" class="col-sm-2 col-form-label">Prazo:</label>
+        <input type="number" class="form-control" id="prazo" name="prazo" [(ngModel)]="roupa.prazo" #prazo="ngModel" required min="1">
+        <div *ngIf="formRoupa.controls['prazo']?.hasError('required') && (formRoupa.controls['prazo']?.dirty || formRoupa.controls['prazo']?.touched)">
+          O prazo é obrigatório.
+        </div>
+        <div *ngIf="formRoupa.controls['prazo']?.hasError('min') && (formRoupa.controls['prazo']?.dirty || formRoupa.controls['prazo']?.touched)">
+          O prazo deve ser maior que 0.
         </div>
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" (click)="salvarRoupa()">
-          <i class="fa fa-save" aria-hidden="true"></i> Salvar
-        </button>
+      <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
         <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">
           <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="salvarRoupa()">
+          <i class="fa fa-save" aria-hidden="true"></i> Salvar
         </button>
       </div>
     </form>

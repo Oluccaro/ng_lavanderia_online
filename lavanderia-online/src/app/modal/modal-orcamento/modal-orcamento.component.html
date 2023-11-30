@@ -10,27 +10,27 @@
       <thead>
         <tr>
           <th class="text-start">Descrição</th>
-          <th>Prazo</th>
-          <th>Preço</th>
-          <th>Quantidade</th>
-          <th>Total</th>
+          <th class="text-end">Prazo</th>
+          <th class="text-end">Preço</th>
+          <th class="text-end">Qtde</th>
+          <th class="text-end">Total</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let roupa of roupas" class="text-start">
           <td>{{roupa.descricao}}</td>
-          <td class="text-center">{{roupa.prazo}}</td>
-          <td>{{roupa.preco}}</td>
-          <td class="text-center">{{roupa.quantidade}}</td>
-          <td>{{roupa.quantidade * roupa.preco}}</td>
+          <td class="align-middle text-end">{{roupa.prazo}} dias</td>
+          <td class="align-middle text-end" style="white-space: nowrap;">{{roupa.preco | pipeReal}}</td>
+          <td class="align-middle text-end">{{roupa.quantidade}}</td>
+          <td class="align-middle text-end" style="white-space: nowrap;">{{roupa.quantidade * roupa.preco | pipeReal}}</td>
         </tr>
         <tr>
           <td colspan="4" class="text-end fw-bold">Data prevista:</td>
-          <td class="fw-bold">{{pedido.data_prevista}}</td>
+          <td class="text-end fw-bold">{{pedido.data_prevista | date:'dd/MM/yyyy'}}</td>
         </tr>
         <tr>
           <td colspan="4" class="text-end fw-bold">Total do pedido:</td>
-          <td class="fw-bold">{{pedido.valor}}</td>
+          <td class="text-end fw-bold" style="white-space: nowrap;">{{pedido.valor | pipeReal}}</td>
         </tr>
       </tbody>
     </table>

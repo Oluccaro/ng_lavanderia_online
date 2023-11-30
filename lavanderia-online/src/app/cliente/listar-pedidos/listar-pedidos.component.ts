@@ -62,6 +62,14 @@ export class ListarPedidosComponent implements OnInit{
     return this.pedidos;
   }
 
+  public get pedidosOrdenados(){
+    return this.pedidos.sort(function(a,b){
+      let dataA = new Date(a.data!);
+      let dataB = new Date(b.data!);
+      return dataB.getTime() - dataA.getTime();
+    })
+  }
+
   filtroStatus: string = '';
 
   aplicarFiltro() {

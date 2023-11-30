@@ -7,6 +7,7 @@ import { ModalPedidoComponent } from './modal-pedido/modal-pedido.component';
 import { ModalManutencaoRoupaComponent } from './modal-manutencao-roupa/modal-manutencao-roupa.component';
 import { ModalFuncionarioManutencaoComponent } from './modal-funcionario-manutencao/modal-funcionario-manutencao.component';
 import { ModalConfirmacaoFuncComponent } from './modal-confirmacao-func/modal-confirmacao-func.component';
+import { SharedModule } from '../shared';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,11 @@ import { ModalConfirmacaoFuncComponent } from './modal-confirmacao-func/modal-co
     ModalConfirmacaoFuncComponent,
   ],
 
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule
+  ],
   exports: [
     ModalConfirmacaoComponent,
     ModalOrcamentoComponent,

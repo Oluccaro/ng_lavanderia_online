@@ -22,43 +22,47 @@
                   <div class="col-md-12">
                     <div class="card border-primary">
                       <div class="card-header bg-primary text-white text-center">
-                        <h4>Pedido #{{pedido.id}}</h4>
-                        <h5>Data da solicitação: {{pedido.data | date:'dd/MM/yyyy'}}</h5>
+                        <h4>PEDIDO #{{pedido.id}}</h4>
+                        <h5>Data da solicitação: {{pedido.data | date:'dd/MM/yyyy HH:mm'}}</h5>
                       </div>
                       <div class="card-body table-responsive">
                           <table class="table">
                             <thead>
                               <tr>
                                 <th class="text-start">Descrição</th>
-                                <th>Prazo</th>
-                                <th>Preço</th>
-                                <th>Quantidade</th>
-                                <th>Total</th>
+                                <th class="text-end">Prazo</th>
+                                <th class="text-end">Preço</th>
+                                <th class="text-end">Qtde</th>
+                                <th class="text-end">Total</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr *ngFor="let roupa of pedido.roupas" class="text-start">
                                 <td>{{roupa.descricao}}</td>
-                                <td class="text-center">{{roupa.prazo}}</td>
-                                <td>{{roupa.preco}}</td>
-                                <td class="text-center">{{roupa.quantidade}}</td>
-                                <td>{{roupa.quantidade * roupa.preco | pipeReal }}</td>
+                                <td class="align-middle text-end">{{roupa.prazo}} dias</td>
+                                <td class="align-middle text-end" style="white-space: nowrap;">{{roupa.preco | pipeReal}}</td>
+                                <td class="align-middle text-end">{{roupa.quantidade}}</td>
+                                <td class="align-middle text-end" style="white-space: nowrap;">{{roupa.quantidade * roupa.preco | pipeReal}}</td>
                               </tr>
                               <tr>
                                 <td colspan="4" class="text-end fw-bold">Total do pedido:</td>
-                                <td class="fw-bold">{{pedido.valor !== undefined ? (pedido.valor | pipeReal) : ''}}</td>
+                                <td class="text-end fw-bold">{{pedido.valor !== undefined ? (pedido.valor | pipeReal) : ''}}</td>
                               </tr>
                             </tbody>
                           </table>
-                        <div class="hstack gap-3">
-                          <h4>Status: {{pedido.status}}</h4>
-                          <div class=" container mt-4 text-center">
-                            <h4 class="text-primary">Entrega prevista: {{pedido.data_prevista | date:'dd/MM/yyyy'}}</h4>
+                        <h4 *ngIf="pedido.status == 'EM ABERTO' || pedido.status == 'RECOLHIDO' || pedido.status == 'AGUARDANDO PAGAMENTO' || pedido.status == 'PAGO'"class="text-primary">Entrega prevista: {{pedido.data_prevista | date:'dd/MM/yyyy'}}</h4>
+                        <div class="row hstack gap-3">
+                          <div class="col">
+                            <h4 *ngIf="pedido.status == 'EM ABERTO'" class="align-middle text-warning">Status: {{pedido.status}}</h4>
+                            <h4 *ngIf="pedido.status == 'CANCELADO'" class="align-middle text-danger">Status: {{pedido.status}}</h4>
+                            <h4 *ngIf="pedido.status == 'REJEITADO'" class="align-middle text-danger">Status: {{pedido.status}}</h4>
+                            <h4 *ngIf="pedido.status == 'RECOLHIDO'" class="align-middle text-secondary">Status: {{pedido.status}}</h4>
+                            <h4 *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" class="align-middle text-primary">Status: {{pedido.status}}</h4>
+                            <h4 *ngIf="pedido.status == 'PAGO'" class="align-middle" style="color: rgb(255, 119, 29);">Status: {{pedido.status}}</h4>
+                            <h4 *ngIf="pedido.status == 'FINALIZADO'" class="align-middle text-success">Status: {{pedido.status}}</h4>
                           </div>
-                          <div id="cancelarPedido" class="container mt-5 text-center">
-                            <div class="mt-5 mb-2">
-                              <button id="btnCancelamento" class="btn btn-outline-danger">Cancelar Pedido</button>
-                            </div>
+                          <div class="col text-end">
+                             <a *ngIf="pedido.status == 'EM ABERTO'" class="btn btn-lg btn-outline-danger" (click)="abrirModal(pedido)" role="button">Cancelar Pedido</a>
                           </div>
                         </div>
                       </div>

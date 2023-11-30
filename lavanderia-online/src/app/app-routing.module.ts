@@ -10,79 +10,89 @@ import { RelatoriosComponent } from './funcionario/relatorios';
 import { ListarPedidosComponent } from './cliente/listar-pedidos';
 import { ListagemComponent } from './funcionario/listagem';
 import { ListarRoupaComponent } from './roupa/listar-roupa/listar-roupa.component';
+import { ManutencaoComponent } from './funcionario/manutencao/manutencao.component';
 
 const routes: Routes = [
-  { path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  { path: 'cliente',
-    redirectTo: 'cliente/home'
-  },
-  { path: 'cliente/home',
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'cliente', redirectTo: 'cliente/home' },
+  {
+    path: 'cliente/home',
     component: HomeComponent,
     canActivate: [authGuard],
     data: {
-      role: 'CLIENTE'
-    }
+      role: 'CLIENTE',
+    },
   },
-  { path: 'cliente/pedidos',
+  {
+    path: 'cliente/pedidos',
     component: ListarPedidosComponent,
     canActivate: [authGuard],
     data: {
-      role: 'CLIENTE'
-    }
+      role: 'CLIENTE',
+    },
   },
-  { path: 'cliente/consulta',
+  {
+    path: 'cliente/consulta',
     component: ConsultarPedidoComponent,
     canActivate: [authGuard],
     data: {
-      role: 'CLIENTE'
-    }
+      role: 'CLIENTE',
+    },
   },
-  { path: 'cliente/novo',
+  {
+    path: 'cliente/novo',
     component: NovoPedidoComponent,
     canActivate: [authGuard],
     data: {
-      role: 'CLIENTE'
-    }
+      role: 'CLIENTE',
+    },
   },
-  { path:'funcionario',
-    redirectTo: 'funcionario/home' 
-  },
-  { path: 'funcionario/home',
+  { path: 'funcionario', redirectTo: 'funcionario/home' },
+  {
+    path: 'funcionario/home',
     component: HomeFuncComponent,
     canActivate: [authGuard],
     data: {
-      role: 'FUNC'
-    }
+      role: 'FUNC',
+    },
   },
-  { path: 'funcionario/listagem',
+  {
+    path: 'funcionario/listagem',
     component: ListagemComponent,
     canActivate: [authGuard],
     data: {
-      role: 'FUNC'
-    }
+      role: 'FUNC',
+    },
   },
-  { path: 'funcionario/relatorios',
+  {
+    path: 'funcionario/relatorios',
     component: RelatoriosComponent,
     canActivate: [authGuard],
     data: {
-      role: 'FUNC'
-    }
+      role: 'FUNC',
+    },
   },
-  { path: 'funcionario/roupas',
+  {
+    path: 'funcionario/roupas',
     component: ListarRoupaComponent,
     canActivate: [authGuard],
     data: {
-      role: 'FUNC'
-    }
+      role: 'FUNC',
+    },
   },
-  ...LoginRoutes
+  {
+    path: 'funcionario/manutenção',
+    component: ManutencaoComponent,
+    canActivate: [authGuard],
+    data: {
+      role: 'FUNC',
+    },
+  },
+  ...LoginRoutes,
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,17 +1,17 @@
 export class Roupa {
   private _id?: number;
-  private _preco: number;
-  private _prazo: number;
-  private _descricao: string;
-  private _imagem: string;
+  private _preco?: number;
+  private _prazo?: number;
+  private _descricao?: string;
+  private _imagem?: string;
   private _quantidade?: number;
 
   constructor(
-    id: number,
-    preco: number,
-    prazo: number,
-    descricao: string,
-    imagem: string,
+    id?: number,
+    preco?: number,
+    prazo?: number,
+    descricao?: string,
+    imagem?: string,
     quantidade: number = 0
   ) {
     this._id = id;
@@ -23,43 +23,43 @@ export class Roupa {
   }
 
   public get id(): number | undefined {
-    return this._id;
+    return this._id!;
   }
 
   public set id(id: number) {
-    this._id = id;
+    this._id! = id;
   }
 
   public get preco(): number {
-    return this._preco;
+    return this._preco!;
   }
 
   public set preco(preco: number) {
-    this._preco = preco;
+    this._preco! = preco;
   }
 
   public get imagem(): string {
-    return this._imagem;
+    return this._imagem!;
   }
 
   public set imagem(imagem: string) {
-    this._imagem = this.imagem;
+    this._imagem! = imagem;
   }
 
   public get prazo(): number {
-    return this._prazo;
+    return this._prazo!;
   }
 
   public set prazo(prazo: number) {
-    this._prazo = prazo;
+    this._prazo! = prazo;
   }
 
   public get descricao(): string {
-    return this._descricao;
+    return this._descricao!;
   }
 
   public set descricao(descricao: string) {
-    this._descricao = descricao;
+    this._descricao! = descricao;
   }
 
   public get quantidade(): number {
@@ -67,6 +67,6 @@ export class Roupa {
   }
 
   public set quantidade(quantidade: number) {
-    this._quantidade = quantidade;
+    this._quantidade! = quantidade;
   }
 }

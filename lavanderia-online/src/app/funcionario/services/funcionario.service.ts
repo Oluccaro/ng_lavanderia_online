@@ -47,18 +47,14 @@ export class FuncionarioService {
   public atualizarFuncionario(
     funcionario: Funcionario
   ): Observable<Funcionario> {
-    funcionario.nome = novoNome;
-    funcionario.login = novoLogin;
-    funcionario.dataDeNascimento = novaData;
+    funcionario.nome = funcionario.nome;
+    funcionario.login = funcionario.login;
+    funcionario.dtNascimento = funcionario.dtNascimento;
     return this.http.put<Funcionario>(
       this.BASE_URL + `/${funcionario.id}`,
       JSON.stringify(funcionario),
       this.httpOptions
     );
-  }
-
-  public excluirFuncionario(id: number): Observable<Funcionario> {
-    return this.http.delete<Funcionario>(this.BASE_URL + `${id}`, this.httpOptions);
   }
 
   // Função para lidar com erros
@@ -82,10 +78,4 @@ export class FuncionarioService {
     return this.http.delete<Funcionario>(url, this.httpOptions);
   }
 
-  public listarFuncionarios(): Observable<Funcionario[]> {
-    return this.http.get<Funcionario[]>(this.BASE_URL, this.httpOptions);
-  }
-  public buscarPorId(id: number): Observable<Funcionario> {
-    return this.http.get<Funcionario>(this.BASE_URL + id, this.httpOptions);
-  }
 }

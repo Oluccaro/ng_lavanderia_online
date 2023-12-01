@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Roupa } from '../../shared/models/roupa.model';
 import { Funcionario } from 'src/app/shared/models/funcionario.model';
 const LS_CHAVE: string = 'roupas';
@@ -10,6 +10,7 @@ const LS_CHAVE: string = 'roupas';
 })
 export class RoupaService {
   BASE_URL = 'http://localhost:3000/roupas';
+  private roupaAdicionadaSubject = new Subject<Roupa>();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,6 +19,14 @@ export class RoupaService {
   };
 
   constructor(private http: HttpClient) {}
+
+  emitirRoupaAdicionada(roupa: Roupa): void {
+    this.roupaAdicionadaSubject.next(roupa);
+  }
+
+  obterRoupaAdicionada(): Observable<Roupa> {
+    return this.roupaAdicionadaSubject.asObservable();
+  }
 
   listarRoupas(): Observable<Roupa[]> {
     return this.http.get<Roupa[]>(
@@ -33,6 +42,7 @@ export class RoupaService {
     );
   }
 
+
   obterRoupa(id_peca: number): Observable<Roupa> {
     return this.http.get<Roupa>(
       `${this.BASE_URL}/${id_peca}`);
@@ -43,6 +53,7 @@ export class RoupaService {
     novoPreco: number,
     novoPrazo: number,
     novaImagem: string,
+    id: number,
     roupa: Roupa
   ): Observable<Roupa> {
     roupa.descricao = novaDescricao;

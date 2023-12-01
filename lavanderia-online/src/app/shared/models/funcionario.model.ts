@@ -5,20 +5,20 @@ export class Funcionario {
   private _nome?: string;
   private _login?: string;
   private _perfil?: string;
-  private _dataDeNascimento?: string;
+  private _dtNascimento?: string;
 
   constructor(
     id?: number,
     nome?: string,
     login?: string,
     perfil?: string,
-    dataDeNascimento?: string
+    dtNascimento?: string
   ) {
     this._id = id;
     this._nome = nome;
     this._login = login;
     this._perfil = perfil;
-    this._dataDeNascimento = dataDeNascimento;
+    this._dtNascimento = dtNascimento;
   }
 
   public get id(): number {
@@ -53,11 +53,11 @@ export class Funcionario {
     this._perfil! = perfil;
   }
 
-  public get dataDeNascimento(): string {
-    return this._dataDeNascimento!;
+  public get dtNascimento(): string {
+    return this._dtNascimento!;
   }
 
-  public set dataDeNascimento(dataDeNascimento: string) {
-    this._dataDeNascimento! = dataDeNascimento;
+  public set dtNascimento(dataDeNascimento: string) {
+    this._dtNascimento! = dataDeNascimento;
   }
 }

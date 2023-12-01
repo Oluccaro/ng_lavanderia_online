@@ -3,7 +3,6 @@ import { Roupa } from '../../shared/models/roupa.model';
 import { RoupaService } from '../../roupa/services/roupa.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-manutencao-roupa',
@@ -18,8 +17,7 @@ export class ModalManutencaoRoupaComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private roupaService: RoupaService,
-    private router: Router
+    private roupaService: RoupaService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +39,7 @@ export class ModalManutencaoRoupaComponent implements OnInit {
       });
       return true;
     }
-  return false;
+    console.log('Falha ao salvar!', this.roupa);
+    return false;
   }
 }

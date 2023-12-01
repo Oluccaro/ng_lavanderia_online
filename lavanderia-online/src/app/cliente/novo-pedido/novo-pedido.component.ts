@@ -59,13 +59,13 @@ export class NovoPedidoComponent implements OnInit {
       (roupa) => roupa.quantidade && roupa.quantidade !== 0
     );
     if (roupasComQuantidade.length > 0) {
-      const maiorPrazo = '12/08/2023';
+      const maiorPrazo = '12/12/2023';
       const valorTotal = roupasComQuantidade.reduce((total, roupa) => {
         return total + (roupa.quantidade || 0) * roupa.preco!;
       }, 0);
       const modalRef = this.modalService.open(ModalOrcamentoComponent);
       this.pedido.setRoupas = roupasComQuantidade;
-      this.pedido.setDataPrevista = maiorPrazo;
+      this.pedido.setDtEntregaPrevista = maiorPrazo;
       this.pedido.setValor = valorTotal;
       modalRef.componentInstance.pedido = this.pedido;
       modalRef.componentInstance.roupas = roupasComQuantidade;

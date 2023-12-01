@@ -5,12 +5,13 @@ export class Pedido {
       public id?: number,
       public roupas?: Array<Roupa>,
       public status?: string,
-      public data?: string,
-      public data_prevista?: string,
+      public dataPedido?: string,
+      public dtEntregaPrevista?: string,
       public valor?: number,
+      public idCliente?: number,
   ){
     this.id = this.gerarId();
-    this.data = this.gerarData();
+    this.dataPedido = this.gerarData();
   }
 
   public get getId(): number {
@@ -33,16 +34,16 @@ export class Pedido {
     this.status! = status;
   }
 
-  public get getData(): string {
-    return this.data!;
+  public get getDataPedido(): string {
+    return this.dataPedido!;
   }
 
-  public get getDataPrevista(): string {
-    return this.data_prevista!;
+  public get getDtEntregaPrevista(): string {
+    return this.dtEntregaPrevista!;
   }
   
-  public set setDataPrevista(data_prevista: string) {
-    this.data_prevista! = data_prevista;
+  public set setDtEntregaPrevista(dtEntregaPrevista: string) {
+    this.dtEntregaPrevista! = dtEntregaPrevista;
   }
 
   public get getValor(): number {
@@ -50,6 +51,12 @@ export class Pedido {
   }
   public set setValor(valor: number) {
     this.valor! = valor;
+  }
+  public get getIdCliente(): number {
+    return this.idCliente!;
+  }
+  public set setIdCliente(idCliente: number) {
+    this.idCliente! = idCliente;
   }
 
   private gerarId(): number{

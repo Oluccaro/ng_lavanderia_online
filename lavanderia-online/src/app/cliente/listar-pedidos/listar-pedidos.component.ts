@@ -46,7 +46,7 @@ export class ListarPedidosComponent implements OnInit{
 
   public buscarPedidosAbertos(){
     if (this.usuario?.id) {
-      return this.pedidoService.listarPorStatus()
+      return this.pedidoService.listarPorStatusCliente('EM ABERTO')
                .subscribe(pedidos => { this.pedidos = pedidos});
     }
     else {
@@ -55,7 +55,7 @@ export class ListarPedidosComponent implements OnInit{
   }
 
   public listarTodos(): Pedido[] {
-    this.pedidoService.listarTodos().subscribe({
+    this.pedidoService.listarTodosCliente().subscribe({
       next: (data: Pedido[]) => {
         if (data == null) {
           this.pedidos = [];
@@ -76,11 +76,11 @@ export class ListarPedidosComponent implements OnInit{
     })
   }
 
-  filtroStatus: number = 0;
+  filtroStatus: String = "";
 
   aplicarFiltro() {
     if (this.filtroStatus) {
-      this.pedidoService.listarPorStatus().subscribe(pedidos => {
+      this.pedidoService.listarPorStatusCliente(this.filtroStatus).subscribe(pedidos => {
         this.pedidos = pedidos;
       });
     } else {

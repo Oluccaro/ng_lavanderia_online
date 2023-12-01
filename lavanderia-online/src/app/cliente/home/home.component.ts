@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   public buscarPedidosAbertos(){
-    return this.pedidoService.listarPorStatus()
+    return this.pedidoService.listarPorStatusCliente('EM ABERTO')
                .subscribe(pedidos => { this.pedidos = pedidos});
   }
 

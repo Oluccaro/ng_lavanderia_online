@@ -13,6 +13,7 @@ const LS_CHAVE: string = "pedidos"
 })
 export class PedidoService {
   BASE_URL = "http://localhost:9090/pedido";
+
   private usuario: Usuario;
 
   httpOptions = {
@@ -35,13 +36,25 @@ export class PedidoService {
 
   listarTodos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
+      this.BASE_URL,
+      this.httpOptions)
+  }
+
+  listarPorStatus(status : String): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(
+      this.BASE_URL+`/status/${status}`,
+      this.httpOptions)
+  }
+
+  listarTodosCliente(): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(
       this.BASE_URL + `/cliente/${this.usuario.id}`,
       this.httpOptions)
   }
 
-  listarPorStatus(): Observable<Pedido[]> {
+  listarPorStatusCliente(status : String): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
-      this.BASE_URL + `/cliente/${this.usuario.id}`,
+      this.BASE_URL + `/cliente/${this.usuario.id}/${status}`,
       this.httpOptions)
   }
 

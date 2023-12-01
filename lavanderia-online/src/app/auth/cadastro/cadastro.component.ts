@@ -51,14 +51,10 @@ export class CadastroComponent implements OnInit {
     
     this.usuario.setEndereco(this.endereco);
     this.usuario.setPerfil('CLIENTE');
-<<<<<<< HEAD
-    console.log(JSON.stringify(this.usuario));   
     this.usuarioService.inserir(this.usuario).subscribe(usuario =>{
       if(usuario != null){
-=======
     this.usuarioService.inserir(this.usuario).subscribe((usuario) => {
       if (usuario != null) {
->>>>>>> 00b97dea64d65c5db80d59e917d9d23ac6f6f45b
         this.loginService.usuarioLogado = usuario;
         this.router.navigate(['/cliente/home']);
       }
@@ -68,15 +64,11 @@ export class CadastroComponent implements OnInit {
 
   public limparEmail() {
     const emailFormControl = this.cadastroForm.controls['email'];
-<<<<<<< HEAD
   
     if (emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)) {
       this.usuario.login = ''; // Limpa o valor do campo de e-mail
     }
   }
-
-=======
-
     if (
       emailFormControl.invalid &&
       (emailFormControl.dirty || emailFormControl.touched)
@@ -84,10 +76,4 @@ export class CadastroComponent implements OnInit {
       this.usuario.email = ''; // Limpa o valor do campo de e-mail
     }
   }
-
-  private enviarEmail(): boolean {
-    console.log(`enviando email com senha para ${this.usuario.login}`);
-    return true;
-  }
->>>>>>> 00b97dea64d65c5db80d59e917d9d23ac6f6f45b
 }

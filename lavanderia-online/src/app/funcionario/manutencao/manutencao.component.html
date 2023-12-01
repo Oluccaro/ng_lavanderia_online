@@ -1,4 +1,4 @@
-<body style="background-color:rgb(218, 235, 236)">
+<body class="h-100" style="background-color:rgb(218, 235, 236)">
   <section class="h-100">
     <div class="container py-5 h-100">
       <div class="col-12">
@@ -15,19 +15,21 @@
                   <table *ngIf="funcionarios" class="table table-hover" style="border-radius: 15px;">
                     <thead>
                       <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Preço (R$)</th>
-                        <th scope="col">Prazo (dias)</th>
-                        <th scope="col"><button class="btn btn-primary btn-block btn-md align-item-end" type="button" (click)="abrirModal()">Cadastrar Roupa</button></th>
+                        <th scope="col">Nome Completo</th>
+                        <th scope="col">Login </th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Data de Nascimento</th>
+                        <th scope="col"><button class="btn btn-primary btn-block btn-md align-item-end" type="button" (click)="abrirModal()">Cadastrar Funcionário</button></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let funcionario of funcionarios">
-                        <td> {{funcionario.id}} </td>
                         <td> {{funcionario.nome}} </td>
-                        <td> {{funcionario.dataDeNascimento}} </td>
+                        <td> {{funcionario.login}} </td>
+                        <td> {{funcionario.perfil}} </td>
+                        <td> {{funcionario.dtNascimento}} </td>
                         <td class="d-grid gap-2 d-md-flex justify-content-md-end" style="width: 300px">
-                          <a href="#" title="Editar" alt="Editar" class="btn btn-xs btn-secondary">
+                          <a href="#" title="Editar" alt="Editar" class="btn btn-xs btn-secondary" (click)="abrirModalEdicao(funcionario)">
                             <i class="fa fa-edit" aria-hidden="true"></i> Editar
                           </a>
                           <a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger" (click)="remover($event, funcionario)">
@@ -37,7 +39,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p *ngIf="funcionarios.length==0">Nenhuma roupa cadastrada.</p>
+                  <p *ngIf="funcionarios.length==0">Nenhum Funcionário Cadastrado.</p>
                 </div>
               </div>
             </div>

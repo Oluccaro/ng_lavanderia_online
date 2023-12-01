@@ -81,7 +81,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'funcionario/manutenção',
+    path: 'funcionario/manutencao',
     component: ManutencaoComponent,
     canActivate: [authGuard],
     data: {

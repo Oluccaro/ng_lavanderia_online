@@ -34,34 +34,45 @@ export class ManutencaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.funcionarios = [];
-    this.carregarFuncionarios();
+    this.listarFuncionarios();
     this.usuario = this.loginService.usuarioLogado;
   }
 
-  carregarFuncionarios(): void {
-    this.funcionarioService.listarFuncionarios().subscribe(
-      (funcionarios) => {
-        this.funcionarios = funcionarios;
-      },
-      (erro) => {
-        console.error('Erro ao carregar funcionários:', erro);
-      }
-    );
+  public listarFuncionarios(): Funcionario[] {
+    this.funcionarioService.listarFuncionarios().subscribe((funcionarios) => {
+      this.funcionarios = funcionarios;
+    });
+    return this.funcionarios;
   }
 
-  abrirModal() {
+  public abrirModal() {
     const modalRef = this.modalService.open(
       ModalFuncionarioManutencaoComponent
     );
   }
 
-  remover(event: Event, funcionario: Funcionario): void {
+  public abrirModalEdicao(funcionario: Funcionario): void {
+    const modalRef = this.modalService.open(
+      ModalFuncionarioManutencaoComponent
+    );
+    modalRef.componentInstance.novoFuncionario = funcionario;
+    modalRef.result
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((reason) => {
+        // O que fazer quando o modal é demitido (dismissed)
+        console.log(reason);
+      });
+  }
+
+  public remover(event: Event, funcionario: Funcionario): void {
     event.preventDefault();
     if (
       confirm(`Deseja realmente remover o funcionário ${funcionario.nome}?`)
     ) {
       this.funcionarioService.excluirFuncionario(funcionario.id!);
-      this.carregarFuncionarios();
+      this.listarFuncionarios();
     }
   }
 }

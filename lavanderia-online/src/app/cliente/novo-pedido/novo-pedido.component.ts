@@ -11,16 +11,16 @@ import { Pedido } from 'src/app/shared/models/pedido.model';
 @Component({
   selector: 'app-novo-pedido',
   templateUrl: './novo-pedido.component.html',
-  styleUrls: ['./novo-pedido.component.css']
+  styleUrls: ['./novo-pedido.component.css'],
 })
-
-export class NovoPedidoComponent implements OnInit{
-  pedido : Pedido = new Pedido();
+export class NovoPedidoComponent implements OnInit {
+  pedido: Pedido = new Pedido();
   private _usuario!: Usuario;
   roupas: Roupa[] = [];
   valorPedido: number = 0;
-  roupasComQuantidade = this.roupas.filter(roupa => roupa.quantidade && roupa.quantidade !== 0);
-    
+  roupasComQuantidade = this.roupas.filter(
+    (roupa) => roupa.quantidade && roupa.quantidade !== 0
+  );
 
   constructor(
     private loginService: LoginService,
@@ -46,19 +46,20 @@ export class NovoPedidoComponent implements OnInit{
       next: (data: Roupa[]) => {
         if (data == null) {
           this.roupas = [];
-        }
-        else {
+        } else {
           this.roupas = data;
         }
-      }
+      },
     });
     return this.roupas;
   }
 
-  abrirModal(): Boolean{
-    const roupasComQuantidade = this.roupas.filter(roupa => roupa.quantidade && roupa.quantidade !== 0);
-    if (roupasComQuantidade.length>0){
-      const maiorPrazo = "12/08/2023";
+  abrirModal(): Boolean {
+    const roupasComQuantidade = this.roupas.filter(
+      (roupa) => roupa.quantidade && roupa.quantidade !== 0
+    );
+    if (roupasComQuantidade.length > 0) {
+      const maiorPrazo = '12/08/2023';
       const valorTotal = roupasComQuantidade.reduce((total, roupa) => {
         return total + (roupa.quantidade || 0) * roupa.preco;
       }, 0);
@@ -68,10 +69,9 @@ export class NovoPedidoComponent implements OnInit{
       this.pedido.setValor = valorTotal;
       modalRef.componentInstance.pedido = this.pedido;
       modalRef.componentInstance.roupas = roupasComQuantidade;
-      return true
-    }
-    else {
-      return false
+      return true;
+    } else {
+      return false;
     }
   }
 }

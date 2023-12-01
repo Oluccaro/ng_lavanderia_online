@@ -36,6 +36,7 @@ export class ListarRoupaComponent implements OnInit {
   ngOnInit(): void {
     this.roupas = [];
     this.listarRoupas();
+    this.observarRoupaAdicionada();
     this.usuario = this.loginService.usuarioLogado;
   }
 
@@ -48,6 +49,12 @@ export class ListarRoupaComponent implements OnInit {
 
   abrirModal() {
     const modalRef = this.modalService.open(ModalManutencaoRoupaComponent);
+  }
+
+  observarRoupaAdicionada(): void {
+    this.roupaService.obterRoupaAdicionada().subscribe((novaRoupa) => {
+      this.roupas.push(novaRoupa);
+    });
   }
 
   remover(event: Event, roupa: Roupa): void {

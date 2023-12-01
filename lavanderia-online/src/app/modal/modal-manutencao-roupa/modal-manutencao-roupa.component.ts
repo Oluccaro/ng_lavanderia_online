@@ -3,7 +3,6 @@ import { Roupa } from '../../shared/models/roupa.model';
 import { RoupaService } from '../../roupa/services/roupa.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-manutencao-roupa',
@@ -12,28 +11,27 @@ import { Router } from '@angular/router';
 })
 export class ModalManutencaoRoupaComponent implements OnInit {
   @ViewChild('formRoupa') formRoupa!: NgForm;
-  @Input() novaRoupa = Roupa;
-  public roupa: Roupa = new Roupa();
+  @Input() novaRoupa: Roupa = new Roupa();
 
   constructor(
     public activeModal: NgbActiveModal,
-    private roupaService: RoupaService,
-    private router: Router
+    private roupaService: RoupaService
   ) {}
 
   ngOnInit(): void {}
 
   public salvarRoupa(): boolean {
     if (this.formRoupa.form.valid) {
-      this.roupaService.gerarRoupa(this.roupa).subscribe((roupa) => {
+      this.roupaService.gerarRoupa(this.novaRoupa).subscribe((roupa) => {
         if (roupa != null) {
-          console.log('Roupa salva com sucesso:', this.novaRoupa);
+          console.log('Roupa salva com sucesso:', roupa);
           this.activeModal.close();
           this.roupaService.listarRoupas();
         }
       });
       return true;
     }
+    console.log('Falha ao salvar!', this.novaRoupa);
     return false;
   }
 }

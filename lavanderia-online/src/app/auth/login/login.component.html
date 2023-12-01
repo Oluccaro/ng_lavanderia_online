@@ -3,14 +3,6 @@
       <div class="col-4 text-center">
         <img src="/assets/logoTransparente.png" alt="Logo" class="img-fluid w-60">
       </div>
-      <div *ngIf="message" class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{message}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <button type="button" class="close" data-dismiss="alert" aria-label="close"
-          (click)="$event.preventDefault()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="col-md-5 col-sm-2 mt-4">
           <h4 class="text-primary text-center mt-4 mb-2">Sistema de Lavanderia On-Line</h4>
           <div class="card mb-2 mt-4">
@@ -44,11 +36,10 @@
                               (click)="logar()"  [disabled]="!formLogin.form.valid">
                               Entrar
                       </button>
-                      <p id="mensagemErro" class="text-danger"></p>
+                      <p id="mensagemErro" class="text-danger mt-3">{{ message }}</p>
                   </form>
                   <div class="row mt-3">
-                      <div class="col d-flex justify-content-between">
-                          <a [routerLink]="['/recuperar-senha']">Esqueceu a senha?</a>
+                      <div class="col d-flex justify-content-center">
                           <a [routerLink]="['/autocadastro']">Cadastrar-se</a>
                       </div>
                   </div>

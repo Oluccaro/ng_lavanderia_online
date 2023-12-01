@@ -10,7 +10,7 @@ const LS_CHAVE: string = "pedidos"
   providedIn: 'root'
 })
 export class PedidoService {
-  BASE_URL = "http://localhost:9090/pedidos";
+  BASE_URL = "http://localhost:9090/pedido";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,7 +28,7 @@ export class PedidoService {
 
   listarPorStatus(status: String): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
-      this.BASE_URL + `?status=${status}`,
+      this.BASE_URL + `/status/${status}`,
       this.httpOptions)
   }
 

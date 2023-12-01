@@ -82,7 +82,7 @@ export class RelatoriosComponent {
       const data = this.clientes.map(cliente => [
         cliente.cpf || '',        
         cliente.nome || '',
-        cliente.email || '',
+        cliente.login || '',
         cliente.telefone || '',
         (
           (cliente.endereco?.logradouro || '') + ', ' +

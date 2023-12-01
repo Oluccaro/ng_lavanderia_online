@@ -26,7 +26,7 @@ export class LoginService {
     delete localStorage[LS_CHAVE];
   }
   
-  public login(login: Login): Observable<Usuario[] | undefined>{
+  public login(login: Login): Observable<Usuario | undefined>{
     let observableUsuario = this.usuarioService.login(login);
     return observableUsuario;
   }

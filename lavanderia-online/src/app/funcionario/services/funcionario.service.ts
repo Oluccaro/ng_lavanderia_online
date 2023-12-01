@@ -14,7 +14,7 @@ const LS_CHAVE: string = 'funcionarios';
   providedIn: 'root',
 })
 export class FuncionarioService {
-  private BASE_URL = 'http://localhost:3000/manutencao-funcionario';
+  private BASE_URL = 'http://localhost:8080/funcionario';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,7 +24,13 @@ export class FuncionarioService {
 
   constructor(private http: HttpClient) {}
 
-  // ... outros métodos do serviço ...
+  public listarFuncionarios(): Observable<Funcionario[]> {
+    return this.http.get<Funcionario[]>(this.BASE_URL, this.httpOptions);
+  }
+
+  public buscarPorId(id: number): Observable<Funcionario> {
+    return this.http.get<Funcionario>(this.BASE_URL + `/${id}`, this.httpOptions);
+  }
 
   public adicionarFuncionario(
     funcionario: Funcionario
@@ -41,13 +47,14 @@ export class FuncionarioService {
   public atualizarFuncionario(
     funcionario: Funcionario
   ): Observable<Funcionario> {
-    return this.http
-      .put<Funcionario>(
-        `${this.BASE_URL}/${funcionario.id}`,
-        JSON.stringify(funcionario),
-        this.httpOptions
-      )
-      .pipe(catchError(this.handleError));
+    funcionario.nome = funcionario.nome;
+    funcionario.login = funcionario.login;
+    funcionario.dtNascimento = funcionario.dtNascimento;
+    return this.http.put<Funcionario>(
+      this.BASE_URL + `/${funcionario.id}`,
+      JSON.stringify(funcionario),
+      this.httpOptions
+    );
   }
 
   // Função para lidar com erros
@@ -71,10 +78,4 @@ export class FuncionarioService {
     return this.http.delete<Funcionario>(url, this.httpOptions);
   }
 
-  public listarFuncionarios(): Observable<Funcionario[]> {
-    return this.http.get<Funcionario[]>(this.BASE_URL, this.httpOptions);
-  }
-  public buscarPorId(id: number): Observable<Funcionario> {
-    return this.http.get<Funcionario>(this.BASE_URL + id, this.httpOptions);
-  }
 }

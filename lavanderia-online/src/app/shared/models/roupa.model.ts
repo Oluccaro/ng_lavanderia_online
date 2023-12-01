@@ -1,72 +1,71 @@
 export class Roupa {
-  private _id?: number;
-  private _preco?: number;
-  private _prazo?: number;
-  private _descricao?: string;
-  private _imagem?: string;
-  private _quantidade?: number;
-
   constructor(
-    id?: number,
-    preco?: number,
-    prazo?: number,
-    descricao?: string,
-    imagem?: string,
-    quantidade: number = 0
+    public id_peca?: number,
+    public preco?: number,
+    public prazo?: number,
+    public descricao?: string,
+    public imagem?: string,
+    public quantidade: number = 0
   ) {
-    this._id = id;
-    this._preco = preco;
-    this._prazo = prazo;
-    this._descricao = descricao;
-    this._imagem = imagem;
-    this._quantidade = quantidade;
+    this.id_peca = this.gerarId()
+    this.imagem = this.gerarImagem()
   }
 
-  public get id(): number | undefined {
-    return this._id!;
+  public get getId_peca(): number {
+    return this.id_peca!;
   }
 
-  public set id(id: number) {
-    this._id! = id;
+  public set setId_peca(id_peca: number) {
+    this.id_peca = id_peca;
   }
 
-  public get preco(): number {
-    return this._preco!;
+  private gerarId(): number{
+    let id_peca = new Date();
+    return id_peca.getTime();
   }
 
-  public set preco(preco: number) {
-    this._preco! = preco;
+  public get getPreco(): number {
+    return this.preco!;
   }
 
-  public get imagem(): string {
-    return this._imagem!;
+  public set setPreco(preco: number) {
+    this.preco! = preco;
   }
 
-  public set imagem(imagem: string) {
-    this._imagem! = imagem;
+  public get getImagem(): string {
+    return this.imagem!;
   }
 
-  public get prazo(): number {
-    return this._prazo!;
+  public set setImagem(imagem: string) {
+    this.imagem! = imagem;
   }
 
-  public set prazo(prazo: number) {
-    this._prazo! = prazo;
+  private gerarImagem(): string{
+    let data = "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII";
+    return data;
   }
 
-  public get descricao(): string {
-    return this._descricao!;
+  public get getPrazo(): number {
+    return this.prazo!;
   }
 
-  public set descricao(descricao: string) {
-    this._descricao! = descricao;
+  public set setPrazo(prazo: number) {
+    this.prazo! = prazo;
   }
 
-  public get quantidade(): number {
-    return this._quantidade!;
+  public get getDescricao(): string {
+    return this.descricao!;
   }
 
-  public set quantidade(quantidade: number) {
-    this._quantidade! = quantidade;
+  public set setDescricao(descricao: string) {
+    this.descricao! = descricao;
+  }
+
+  public get getQuantidade(): number {
+    return this.quantidade!;
+  }
+
+  public set setuantidade(quantidade: number) {
+    this.quantidade! = quantidade;
   }
 }

@@ -17,12 +17,12 @@ import { ModalManutencaoRoupaComponent } from '../../modal/modal-manutencao-roup
 export class ListarRoupaComponent implements OnInit {
   private _usuario!: Usuario;
   roupas: Roupa[] = [];
+  roupa: Roupa = new Roupa;
 
   constructor(
     private loginService: LoginService,
     private roupaService: RoupaService,
     private router: Router,
-    route: ActivatedRoute,
     private modalService: NgbModal
   ) {}
 
@@ -39,22 +39,29 @@ export class ListarRoupaComponent implements OnInit {
     this.usuario = this.loginService.usuarioLogado;
   }
 
-  listarRoupas(): Roupa[] {
-    this.roupaService.listarRoupas().subscribe((roupas) => {
-      this.roupas = roupas;
+  public listarRoupas() {
+    return this.roupaService.listarRoupas().subscribe(roupas => {this.roupas = roupas;
     });
-    return this.roupas;
   }
 
-  abrirModal() {
+  abrirModal(): void {
     const modalRef = this.modalService.open(ModalManutencaoRoupaComponent);
+    modalRef.componentInstance.editarRoupa = this.roupa;
+    modalRef.result.then(
+      () => {
+        this.router.navigate(['/funcionario/roupas']);
+      },
+      () => {
+        this.router.navigate(['/funcionario/roupas']);
+      }
+    );
   }
 
   remover(event: Event, roupa: Roupa): void {
     event.preventDefault();
     if (confirm(`Deseja realmente remover a roupa ${roupa.descricao}?`)) {
-      this.roupaService.excluirRoupa(roupa.id!);
-      this.roupas = this.listarRoupas();
+     // this.roupaService.excluirRoupa(roupa.id_peca!);
+      this.listarRoupas();
     }
   }
 }

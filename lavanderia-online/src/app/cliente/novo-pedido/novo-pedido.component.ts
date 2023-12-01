@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { LoginService } from 'src/app/auth';
 import { Roupa } from 'src/app/shared/models/roupa.model';
@@ -61,7 +61,7 @@ export class NovoPedidoComponent implements OnInit {
     if (roupasComQuantidade.length > 0) {
       const maiorPrazo = '12/08/2023';
       const valorTotal = roupasComQuantidade.reduce((total, roupa) => {
-        return total + (roupa.quantidade || 0) * roupa.preco;
+        return total + (roupa.quantidade || 0) * roupa.preco!;
       }, 0);
       const modalRef = this.modalService.open(ModalOrcamentoComponent);
       this.pedido.setRoupas = roupasComQuantidade;

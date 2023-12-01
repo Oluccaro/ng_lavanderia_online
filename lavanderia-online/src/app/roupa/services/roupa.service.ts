@@ -29,7 +29,9 @@ export class RoupaService {
   }
 
   listarRoupas(): Observable<Roupa[]> {
-    return this.http.get<Roupa[]>(this.BASE_URL, this.httpOptions);
+    return this.http.get<Roupa[]>(
+      this.BASE_URL,
+      this.httpOptions);
   }
 
   gerarRoupa(roupa: Roupa): Observable<Roupa> {
@@ -40,11 +42,11 @@ export class RoupaService {
     );
   }
 
-  /*obterRoupa(id: number): Observable<Roupa> {
-              return this.http.get<Roupa>(
-                `${this.BASE_URL}/${id}`);
-                }
-                */
+
+  obterRoupa(id_peca: number): Observable<Roupa> {
+    return this.http.get<Roupa>(
+      `${this.BASE_URL}/${id_peca}`);
+  }
 
   atualizarRoupa(
     novaDescricao: string,
@@ -59,7 +61,7 @@ export class RoupaService {
     roupa.prazo = novoPrazo;
     roupa.imagem = novaImagem;
     return this.http.put<Roupa>(
-      `${this.BASE_URL}/${id}`,
+     // this.BASE_URL + `/${roupa.id_peca}`,
       JSON.stringify(roupa),
       this.httpOptions
     );

@@ -6,7 +6,7 @@
 
 <div class="modal-body text-center">
   <div class="modal-container row p-2 d-flex justify-content-between align-items-center">
-    <form #formRoupa="ngForm" (ngSubmit)="salvarRoupa()">
+    <form #formRoupa="ngForm">
       <div class="gy-2 gx-2 my-4 align-items-center d-inline">
         <div class="form-group my-4">
           <label class="visually-hidden" for="descricao">Descrição</label>
@@ -46,7 +46,7 @@
         <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">
           <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
         </button>
-        <button type="submit" class="btn btn-primary" (click)="salvarRoupa()">
+        <button class="btn btn-primary" (click)="salvarRoupa()">
           <i class="fa fa-save" aria-hidden="true"></i> Salvar
         </button>
       </div>

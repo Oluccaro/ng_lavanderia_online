@@ -11,27 +11,35 @@ import { NgForm } from '@angular/forms';
 })
 export class ModalManutencaoRoupaComponent implements OnInit {
   @ViewChild('formRoupa') formRoupa!: NgForm;
-  @Input() novaRoupa: Roupa = new Roupa();
+  roupa!: Roupa;
+  novaRoupa: Roupa = new Roupa;
+  @Input() editarRoupa!: Roupa;
 
   constructor(
     public activeModal: NgbActiveModal,
     private roupaService: RoupaService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.roupa = this.editarRoupa || this.novaRoupa;
+  }
+
+  goRoupas() {
+    this.router.navigate(['/funcionario/roupas']);
+  };
 
   public salvarRoupa(): boolean {
     if (this.formRoupa.form.valid) {
-      this.roupaService.gerarRoupa(this.novaRoupa).subscribe((roupa) => {
-        if (roupa != null) {
-          console.log('Roupa salva com sucesso:', roupa);
+      this.roupaService.gerarRoupa(this.roupa).subscribe((roupa) => {
+        if (roupa !== null) {
+          console.log('Roupa salva com sucesso:', this.roupa);
           this.activeModal.close();
-          this.roupaService.listarRoupas();
+          this.goRoupas();
         }
       });
       return true;
     }
-    console.log('Falha ao salvar!', this.novaRoupa);
+    console.log('Falha ao salvar!', this.roupa);
     return false;
   }
 }

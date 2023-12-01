@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   listarAbertos(): Pedido[] {
     this.buscarPedidosAbertos();
     return this.pedidos;
-  }
+  } 
 
   public get pedidosOrdenados(){
     return this.pedidos.sort(function(a,b){

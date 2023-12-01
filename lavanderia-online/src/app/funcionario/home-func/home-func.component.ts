@@ -46,13 +46,7 @@ export class HomeFuncComponent implements OnInit{
   }
 
   public buscarPedidosAbertos(){
-    if (this.usuario?.id) {
-      return this.pedidoService.listarPorStatus()
-               .subscribe(pedidos => { this.pedidos = pedidos});
-    }
-    else {
-      return console.error('ID do usuário é indefinido.');
-    }
+      return this.pedidoService.listarPorStatus('EM ABERTO').subscribe(pedidos => { this.pedidos = pedidos});
   }
 
   abrirModal(pedido: Pedido){

@@ -6,7 +6,7 @@
 
 <div class="modal-body text-center">
   <div class="modal-container row mb-4 d-flex justify-content-between align-items-center">
-    <form #formRoupa="ngForm" (ngSubmit)="salvarRoupa()">
+    <form #formRoupa="ngForm">
       <div class="form-group row mb-3">
         <label for="descricao" class="col-sm-2 col-form-label">Descrição:</label>
         <div class="col-sm-4">
@@ -22,13 +22,12 @@
       <div class="form-group">
         <label for="preco" class="col-sm-2 col-form-label">Preço:</label>
         <div class="col-sm-4">
-          <span class="input-group-text col-2">$</span>
           <input type="number" class="form-control" id="preco" name="preco" [(ngModel)]="roupa.preco" #preco="ngModel" required min="1" placeholder="Preço">
           <div *ngIf="formRoupa.controls['preco']?.hasError('required') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
             O preço é obrigatório.
           </div>
           <div *ngIf="formRoupa.controls['preco']?.hasError('min') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
-            O preço deve ser maior que 0.
+            O preço deve ser numérico e maior que 0.
           </div>
         </div>
       </div>
@@ -46,7 +45,7 @@
         <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">
           <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
         </button>
-        <button type="submit" class="btn btn-primary" (click)="salvarRoupa()">
+        <button class="btn btn-primary" (click)="salvarRoupa()">
           <i class="fa fa-save" aria-hidden="true"></i> Salvar
         </button>
       </div>

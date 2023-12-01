@@ -24,7 +24,7 @@
       </div>
       <div class="form-group">
         <label for="Data de Nascimento">Data de Nascimento:</label>
-        <input type="text" class="form-control" id="data" name="data" [(ngModel)]="funcionario.dataDeNascimento" bsDatepicker [bsConfig]="datepickerConfig" #dataDeNascimento="ngModel" required>
+        <input type="text" class="form-control" id="data" name="data" [(ngModel)]="funcionario.dataDeNascimento" bsDatepicker #dataDeNascimento="ngModel" required>
         <div *ngIf="dataDeNascimento.errors && (dataDeNascimento.dirty || dataDeNascimento.touched)" class="alert alert-danger">
           <div [hidden]="!dataDeNascimento.errors || !dataDeNascimento.errors['required']">Digite a data de nascimento do funcionario.</div>
         </div>

@@ -1,36 +1,39 @@
-<body style="background-color:rgb(218, 235, 236)">
-  <section class="h-100">
-    <div class="container py-5 h-100">
-      <div class="col-12">
-        <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
-          <div class="row g-0">
-            <div class="row">
-              <div class="col-12 mb-0">
-                <div class="card-title p-2 hstack gap-3 d-inline-flex">
-                  <h1 class="fw-bold mb-0 text-black d-inline-grid p-5">Manutenção de peças de roupas</h1>
+<body style="background-color: rgb(218, 235, 236);">
+  <section class="d-flex">
+    <div class="container py-5 h-100 mb-2">
+      <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
+        <div class="row g-0">
+          <div class="row">
+            <div class="col-12 mb-0">
+              <div class="card-title p-2 vstack gap-3 d-inline-block">
+                <div class="border border-dark-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: gray;">
+                  <h3 class="p-2 fw-bold mb-0 text-light">Cadastro de peças de roupa: {{roupas.length}}</h3>
                 </div>
+              </div>
 
-                <hr class="my-4">
-                <div class="row mb-8 d-flex justify-content-center align-items-center">
+              <div class="d-flex align-item-end justify-content-end">
+                <button class="btn btn-outline-primary btn-block btn-lg align-item-end" type="button" (click)="abrirModal()">Cadastrar Roupa</button>
+              </div>
+
+              <div class="overflow-x-auto">
                   <table *ngIf="roupas" class="table table-hover" style="border-radius: 15px;">
                     <thead>
                       <tr>
                         <th scope="col">Peça de Roupa</th>
-                        <th scope="col">Preço (R$)</th>
-                        <th scope="col">Prazo (dias)</th>
-                        <th scope="col"><button class="btn btn-primary btn-block btn-md align-item-end" type="button" (click)="abrirModal()">Cadastrar Roupa</button></th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Prazo</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let roupa of roupas">
-                        <td> {{roupa.descricao}} </td>
-                        <td> {{roupa.preco}} </td>
-                        <td> {{roupa.prazo}} </td>
+                        <td class="align-middle"> {{roupa.descricao}} </td>
+                        <td class="align-middle text-end" style="white-space: nowrap;"> {{roupa.preco | pipeReal}} </td>
+                        <td class="align-middle"> {{roupa.prazo}} dias</td>
                         <td class="d-grid gap-2 d-md-flex justify-content-md-end" style="width: 300px">
-                          <a href="#" title="Editar" alt="Editar" class="btn btn-xs btn-secondary">
+                          <a title="Editar" alt="Editar" class="btn btn-sm btn-outline-secondary">
                             <i class="fa fa-edit" aria-hidden="true"></i> Editar
                           </a>
-                          <a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger" (click)="remover($event, roupa)">
+                          <a title="Remover" alt="Remover" class="btn btn-sm btn-outline-danger" (click)="remover($event, roupa)">
                             <i class="fa fa-times" aria-hidden="true"></i> Remover
                           </a>
                         </td>
@@ -38,7 +41,6 @@
                     </tbody>
                   </table>
                   <p *ngIf="roupas.length==0">Nenhuma roupa cadastrada.</p>
-                </div>
               </div>
             </div>
           </div>

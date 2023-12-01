@@ -10,7 +10,7 @@ const LS_CHAVE: string = "pedidos"
   providedIn: 'root'
 })
 export class PedidoService {
-  BASE_URL = "http://localhost:3000/pedidos";
+  BASE_URL = "http://localhost:9090/pedidos";
 
   httpOptions = {
     headers: new HttpHeaders({

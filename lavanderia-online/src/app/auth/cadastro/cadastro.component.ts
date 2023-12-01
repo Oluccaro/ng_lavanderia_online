@@ -48,8 +48,11 @@ export class CadastroComponent implements OnInit {
   }
 
   public cadastrar(): boolean {
+    
     this.usuario.setEndereco(this.endereco);
     this.usuario.setPerfil('CLIENTE');
+    this.usuarioService.inserir(this.usuario).subscribe(usuario =>{
+      if(usuario != null){
     this.usuarioService.inserir(this.usuario).subscribe((usuario) => {
       if (usuario != null) {
         this.loginService.usuarioLogado = usuario;
@@ -61,17 +64,16 @@ export class CadastroComponent implements OnInit {
 
   public limparEmail() {
     const emailFormControl = this.cadastroForm.controls['email'];
-
+  
+    if (emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)) {
+      this.usuario.login = ''; // Limpa o valor do campo de e-mail
+    }
+  }
     if (
       emailFormControl.invalid &&
       (emailFormControl.dirty || emailFormControl.touched)
     ) {
       this.usuario.email = ''; // Limpa o valor do campo de e-mail
     }
-  }
-
-  private enviarEmail(): boolean {
-    console.log(`enviando email com senha para ${this.usuario.login}`);
-    return true;
   }
 }

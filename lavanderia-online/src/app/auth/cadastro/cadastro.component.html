@@ -30,7 +30,7 @@
             <div class="row g-3">
 
               <div class="col-lg-6 form-floating mb-3">
-                <input #email="ngModel" [(ngModel)]="usuario.email" name="email" type="text" email class="form-control" placeholder="E-mail" required (blur)="limparEmail()">
+                <input #email="ngModel" [(ngModel)]="usuario.login" name="email" type="text" email class="form-control" placeholder="E-mail" required (blur)="limparEmail()">
                 <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
                   <div *ngIf="email.errors?.['invalidEmail']">
                     Informe um e-mail válido.

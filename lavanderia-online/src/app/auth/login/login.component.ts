@@ -30,11 +30,13 @@ export class LoginComponent implements OnInit {
   }
 
   logar(): void{
+    console.log(JSON.stringify(this.login));
+    
     this.loading = true;
     if(this.formLogin.form.valid){
       
-      this.loginService.login(this.login).subscribe((usuarioArray) => {
-        let usuario: Usuario | null = usuarioArray? usuarioArray[0] : null;
+      this.loginService.login(this.login).subscribe(user => {
+        let usuario: Usuario | null = user ? user : null;
         
         if(usuario != null){
           this.loginService.usuarioLogado = usuario;

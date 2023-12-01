@@ -3,13 +3,13 @@ import { Cliente, Endereco, Login, Usuario } from 'src/app/shared';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CadastroService, LoginService, UsuarioService } from '../services';
+import { HtmlParser } from '@angular/compiler';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  styleUrls: ['./cadastro.component.css'],
 })
-
 export class CadastroComponent implements OnInit {
   @ViewChild('cadastroForm') cadastroForm!: NgForm;
   public cliente!: Cliente;
@@ -17,44 +17,50 @@ export class CadastroComponent implements OnInit {
   public usuario: Usuario = new Usuario();
   public message!: string;
   public login: Login = new Login();
-  constructor(private cadastroService: CadastroService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private usuarioService: UsuarioService,
-              private loginService: LoginService
-              ) {
-  }
+  constructor(
+    private cadastroService: CadastroService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(param => this.message = param["error"])
+    this.route.queryParams.subscribe(
+      (param) => (this.message = param['error'])
+    );
   }
-  
+
   public buscaEndereco(cep: string): Endereco {
     this.cadastroService.buscaViaCep(cep).subscribe({
-      next: (data: Endereco) =>{
-        if (data == null){
+      next: (data: Endereco) => {
+        if (data == null) {
           this.endereco = new Endereco();
-        }
-        else {
+        } else {
           console.log(data);
-          
+
           this.endereco = data;
         }
-      }
+      },
     });
 
-    return  this.endereco;
+    return this.endereco;
   }
 
   public cadastrar(): boolean {
     
     this.usuario.setEndereco(this.endereco);
     this.usuario.setPerfil('CLIENTE');
+<<<<<<< HEAD
     console.log(JSON.stringify(this.usuario));   
     this.usuarioService.inserir(this.usuario).subscribe(usuario =>{
       if(usuario != null){
+=======
+    this.usuarioService.inserir(this.usuario).subscribe((usuario) => {
+      if (usuario != null) {
+>>>>>>> 00b97dea64d65c5db80d59e917d9d23ac6f6f45b
         this.loginService.usuarioLogado = usuario;
-        this.router.navigate(["/cliente/home"]);
+        this.router.navigate(['/cliente/home']);
       }
     });
     return true;
@@ -62,10 +68,26 @@ export class CadastroComponent implements OnInit {
 
   public limparEmail() {
     const emailFormControl = this.cadastroForm.controls['email'];
+<<<<<<< HEAD
   
     if (emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)) {
       this.usuario.login = ''; // Limpa o valor do campo de e-mail
     }
   }
 
+=======
+
+    if (
+      emailFormControl.invalid &&
+      (emailFormControl.dirty || emailFormControl.touched)
+    ) {
+      this.usuario.email = ''; // Limpa o valor do campo de e-mail
+    }
+  }
+
+  private enviarEmail(): boolean {
+    console.log(`enviando email com senha para ${this.usuario.login}`);
+    return true;
+  }
+>>>>>>> 00b97dea64d65c5db80d59e917d9d23ac6f6f45b
 }

@@ -36,6 +36,7 @@ export class ListarRoupaComponent implements OnInit {
   ngOnInit(): void {
     this.roupas = [];
     this.listarRoupas();
+    this.observarRoupaAdicionada();
     this.usuario = this.loginService.usuarioLogado;
   }
 
@@ -55,6 +56,12 @@ export class ListarRoupaComponent implements OnInit {
         this.router.navigate(['/funcionario/roupas']);
       }
     );
+  }
+
+  observarRoupaAdicionada(): void {
+    this.roupaService.obterRoupaAdicionada().subscribe((novaRoupa) => {
+      this.roupas.push(novaRoupa);
+    });
   }
 
   remover(event: Event, roupa: Roupa): void {

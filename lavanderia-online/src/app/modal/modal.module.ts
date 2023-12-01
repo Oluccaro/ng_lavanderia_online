@@ -8,6 +8,7 @@ import { ModalManutencaoRoupaComponent } from './modal-manutencao-roupa/modal-ma
 import { ModalFuncionarioManutencaoComponent } from './modal-funcionario-manutencao/modal-funcionario-manutencao.component';
 import { ModalConfirmacaoFuncComponent } from './modal-confirmacao-func/modal-confirmacao-func.component';
 import { SharedModule } from '../shared';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SharedModule } from '../shared';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    BsDatepickerModule.forRoot(),
   ],
   exports: [
     ModalConfirmacaoComponent,

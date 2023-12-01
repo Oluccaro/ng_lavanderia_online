@@ -9,7 +9,7 @@ const LS_CHAVE: string = 'roupas';
   providedIn: 'root',
 })
 export class RoupaService {
-  BASE_URL = 'http://localhost:3000/roupas';
+  BASE_URL = 'http://localhost:9090/roupa';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -50,13 +50,13 @@ export class RoupaService {
     roupa.prazo = novoPrazo;
     roupa.imagem = novaImagem;
     return this.http.put<Roupa>(
-     // this.BASE_URL + `/${roupa.id_peca}`,
+      this.BASE_URL + `/${roupa.id_peca}`,
       JSON.stringify(roupa),
       this.httpOptions
     );
   }
 
   excluirRoupa(id: number): Observable<Roupa> {
-    return this.http.delete<Roupa>(this.BASE_URL + id, this.httpOptions);
+    return this.http.delete<Roupa>(this.BASE_URL+ `/${id}`, this.httpOptions);
   }
 }

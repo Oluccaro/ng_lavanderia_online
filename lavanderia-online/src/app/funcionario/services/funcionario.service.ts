@@ -9,7 +9,7 @@ const LS_CHAVE: string = 'funcionarios';
   providedIn: 'root',
 })
 export class FuncionarioService {
-  private BASE_URL = 'http://localhost:3000/manutencao-funcionario';
+  private BASE_URL = 'http://localhost:8080/funcionario';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,7 +24,7 @@ export class FuncionarioService {
   }
 
   public buscarPorId(id: number): Observable<Funcionario> {
-    return this.http.get<Funcionario>(this.BASE_URL + id, this.httpOptions);
+    return this.http.get<Funcionario>(this.BASE_URL + `/${id}`, this.httpOptions);
   }
 
   public adicionarFuncionario(
@@ -47,13 +47,13 @@ export class FuncionarioService {
     funcionario.login = novoLogin;
     funcionario.dataDeNascimento = novaData;
     return this.http.put<Funcionario>(
-      this.BASE_URL + funcionario.id,
+      this.BASE_URL + `/${funcionario.id}`,
       JSON.stringify(funcionario),
       this.httpOptions
     );
   }
 
   public excluirFuncionario(id: number): Observable<Funcionario> {
-    return this.http.delete<Funcionario>(this.BASE_URL + id, this.httpOptions);
+    return this.http.delete<Funcionario>(this.BASE_URL + `${id}`, this.httpOptions);
   }
 }

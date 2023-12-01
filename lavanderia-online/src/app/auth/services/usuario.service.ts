@@ -7,7 +7,7 @@ import { Login, Usuario } from 'src/app/shared';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private BASE_URL: string = "http://localhost:3000/usuarios/";
+  private BASE_URL: string = "http://localhost:8080/";
   private httpOptions = {
     headers: new HttpHeaders({
       'content-type': 'application/json'
@@ -16,7 +16,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  public listarTodos(): Observable<Usuario[]>{
+  public(): Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.BASE_URL,
                                           this.httpOptions);
   }
@@ -27,7 +27,7 @@ export class UsuarioService {
   }
 
   public inserir(usuario: Usuario){
-    return this.http.post<Usuario>(this.BASE_URL,
+    return this.http.post<Usuario>(this.BASE_URL+"cadastro",
                                    JSON.stringify(usuario),
                                    this.httpOptions)
   }
@@ -44,7 +44,8 @@ export class UsuarioService {
   }
 
   public login(login: Login): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(`${this.BASE_URL}?login=${login.login}&senha=${login.senha}`,
+    return this.http.post<Usuario[]>(`${this.BASE_URL}login`,
+                                  JSON.stringify(login),
                                   this.httpOptions);
   }
 }

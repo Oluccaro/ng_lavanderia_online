@@ -15,7 +15,7 @@ import { ModalConfirmacaoFuncComponent } from 'src/app/modal/modal-confirmacao-f
 export class HomeFuncComponent implements OnInit{
   private _usuario: Usuario;
   private _pedidos: Pedido[] = [];
-  
+
   constructor(
     private loginService: LoginService,
     private pedidoService: PedidoService,
@@ -46,8 +46,13 @@ export class HomeFuncComponent implements OnInit{
   }
 
   public buscarPedidosAbertos(){
-    return this.pedidoService.listarPorStatus('EM ABERTO')
+    if (this.usuario?.id) {
+      return this.pedidoService.listarPorStatus()
                .subscribe(pedidos => { this.pedidos = pedidos});
+    }
+    else {
+      return console.error('ID do usuário é indefinido.');
+    }
   }
 
   abrirModal(pedido: Pedido){
@@ -57,8 +62,8 @@ export class HomeFuncComponent implements OnInit{
 
   public get pedidosOrdenados(){
     return this.pedidos.sort(function(a,b){
-      let dataA = new Date(a.data!);
-      let dataB = new Date(b.data!);
+      let dataA = new Date(a.dataPedido!);
+      let dataB = new Date(b.dataPedido!);
       return dataA.getTime() - dataB.getTime();
     })
   }

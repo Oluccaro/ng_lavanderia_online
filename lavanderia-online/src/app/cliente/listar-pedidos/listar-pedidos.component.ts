@@ -45,7 +45,13 @@ export class ListarPedidosComponent implements OnInit{
   }
 
   public buscarPedidosAbertos(){
-    this.pedidoService.listarPorStatus('ABERTO').subscribe(pedidos => {this.pedidos = pedidos});
+    if (this.usuario?.id) {
+      return this.pedidoService.listarPorStatus()
+               .subscribe(pedidos => { this.pedidos = pedidos});
+    }
+    else {
+      return console.error('ID do usuário é indefinido.');
+    }
   }
 
   public listarTodos(): Pedido[] {
@@ -64,17 +70,17 @@ export class ListarPedidosComponent implements OnInit{
 
   public get pedidosOrdenados(){
     return this.pedidos.sort(function(a,b){
-      let dataA = new Date(a.data!);
-      let dataB = new Date(b.data!);
+      let dataA = new Date(a.dataPedido!);
+      let dataB = new Date(b.dataPedido!);
       return dataB.getTime() - dataA.getTime();
     })
   }
 
-  filtroStatus: string = '';
+  filtroStatus: number = 0;
 
   aplicarFiltro() {
     if (this.filtroStatus) {
-      this.pedidoService.listarPorStatus(this.filtroStatus).subscribe(pedidos => {
+      this.pedidoService.listarPorStatus().subscribe(pedidos => {
         this.pedidos = pedidos;
       });
     } else {

@@ -24,8 +24,8 @@
                   <tbody>
                     <tr *ngFor="let pedido of pedidosOrdenados; index as i;">
                       <th class="align-middle">#{{pedido.id}}</th>
-                      <td class="align-middle">{{pedido.data | date:'dd/MM/yyyy'}}</td>
-                      <td class="align-middle">{{pedido.data_prevista | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle">{{pedido.dataPedido | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle">{{pedido.dtEntregaPrevista | date:'dd/MM/yyyy'}}</td>
                       <td class="align-middle text-end" style="white-space: nowrap;">{{pedido.valor | pipeReal}}</td>
                       <td *ngIf="pedido.status == 'EM ABERTO'" class="align-middle text-center"><a class="btn btn-outline-primary" (click)="abrirModal(pedido)" role="button">Registrar Recolhimento</a></td>
                     </tr>

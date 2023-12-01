@@ -48,8 +48,8 @@
                       <td *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'" class="align-middle text-primary">{{pedido.status}}</td>
                       <td *ngIf="pedido.status == 'PAGO'" class="align-middle" style="color: rgb(255, 119, 29);">{{pedido.status}}</td>
                       <td *ngIf="pedido.status == 'FINALIZADO'" class="align-middle text-success">{{pedido.status}}</td>
-                      <td class="align-middle">{{pedido.data | date:'dd/MM/yyyy'}}</td>
-                      <td class="align-middle">{{pedido.data_prevista | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle">{{pedido.dataPedido | date:'dd/MM/yyyy'}}</td>
+                      <td class="align-middle">{{pedido.dtEntregaPrevista | date:'dd/MM/yyyy'}}</td>
                       <td class="text-end align-middle" style="white-space: nowrap;">{{pedido.valor | pipeReal}}</td>
                       <td class="align-middle text-center" *ngIf="pedido.status == 'EM ABERTO'"><a class="btn btn-outline-danger" (click)="abrirModal(pedido)" role="button">Cancelar Pedido</a></td>
                       <td class="align-middle text-center" *ngIf="pedido.status == 'AGUARDANDO PAGAMENTO'"><a class="btn btn-outline-success" (click)="abrirModal(pedido)" role="button">Pagar Pedido</a></td>

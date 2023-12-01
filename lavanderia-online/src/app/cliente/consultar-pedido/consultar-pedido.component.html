@@ -23,7 +23,7 @@
                     <div class="card border-primary">
                       <div class="card-header bg-primary text-white text-center">
                         <h4>PEDIDO #{{pedido.id}}</h4>
-                        <h5>Data da solicitação: {{pedido.data | date:'dd/MM/yyyy HH:mm'}}</h5>
+                        <h5>Data da solicitação: {{pedido.dataPedido | date:'dd/MM/yyyy HH:mm'}}</h5>
                       </div>
                       <div class="card-body table-responsive">
                           <table class="table">
@@ -50,7 +50,7 @@
                               </tr>
                             </tbody>
                           </table>
-                        <h4 *ngIf="pedido.status == 'EM ABERTO' || pedido.status == 'RECOLHIDO' || pedido.status == 'AGUARDANDO PAGAMENTO' || pedido.status == 'PAGO'"class="text-primary">Entrega prevista: {{pedido.data_prevista | date:'dd/MM/yyyy'}}</h4>
+                        <h4 *ngIf="pedido.status == 'EM ABERTO' || pedido.status == 'RECOLHIDO' || pedido.status == 'AGUARDANDO PAGAMENTO' || pedido.status == 'PAGO'"class="text-primary">Entrega prevista: {{pedido.dtEntregaPrevista | date:'dd/MM/yyyy'}}</h4>
                         <div class="row hstack gap-3">
                           <div class="col">
                             <h4 *ngIf="pedido.status == 'EM ABERTO'" class="align-middle text-warning">Status: {{pedido.status}}</h4>

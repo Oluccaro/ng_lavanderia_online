@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/shared/models/pedido.model';
 import { map } from 'rxjs';
+import { Usuario } from 'src/app/shared';
+import { LoginService } from 'src/app/auth';
 
 const LS_CHAVE: string = "pedidos"
 
@@ -11,6 +13,7 @@ const LS_CHAVE: string = "pedidos"
 })
 export class PedidoService {
   BASE_URL = "http://localhost:9090/pedido";
+  private usuario: Usuario;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,25 +21,35 @@ export class PedidoService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private loginService: LoginService
+  ) {
+      this.usuario = this.loginService.usuarioLogado;
+      this.inicializar();
+    }
+
+  private inicializar(){
+    this.usuario = this.loginService.usuarioLogado;
+  }
 
   listarTodos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
-      this.BASE_URL,
+      this.BASE_URL + `/cliente/${this.usuario.id}`,
       this.httpOptions)
   }
 
-  listarPorStatus(status: String): Observable<Pedido[]> {
+  listarPorStatus(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
-      this.BASE_URL + `/status/${status}`,
+      this.BASE_URL + `/cliente/${this.usuario.id}`,
       this.httpOptions)
   }
 
   listarPorData(dataInicial: Date, dataFinal: Date): Observable<Pedido[]> {
     return this.listarTodos().pipe(
       map(pedidos => pedidos.filter(pedido => {
-        if (pedido.data){
-          const dataPedido = new Date(pedido.data);
+        if (pedido.dataPedido){
+          const dataPedido = new Date(pedido.dataPedido);
           return (
             (dataPedido.getDate() >= dataInicial.getDate()&& dataPedido.getMonth() <= dataFinal.getMonth())
             &&(dataPedido.getMonth() >= dataInicial.getMonth() && dataPedido.getMonth() <= dataFinal.getMonth())

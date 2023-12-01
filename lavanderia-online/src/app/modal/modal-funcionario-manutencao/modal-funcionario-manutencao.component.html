@@ -11,38 +11,38 @@
         <div class="form-group my-4">
           <label class="visually-hidden" for="Nome Completo">Nome</label>
           <input type=" text" class="form-control" id="nome" name="nome" [(ngModel)]="novoFuncionario.nome" #nome="ngModel" minlength="3" required placeholder="Nome Completo">
-          <div *ngIf="formFunc.controls['nome']?.hasError('required') && (formFunc.controls['nome']?.dirty || formFunc.controls['nome']?.touched)">
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="formFunc.controls['nome']?.hasError('required') && (formFunc.controls['nome']?.dirty || formFunc.controls['nome']?.touched)">
             O nome é obrigatório.
           </div>
-          <div *ngIf="formFunc.controls['nome']?.hasError('minlength') && (formFunc.controls['nome']?.dirty || formFunc.controls['nome']?.touched)">
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="formFunc.controls['nome']?.hasError('minlength') && (formFunc.controls['nome']?.dirty || formFunc.controls['nome']?.touched)">
             O nome deve ter no mínimo 3 caracteres.
           </div>
         </div>
         <div class="form-group my-4">
           <label class="visually-hidden" for="login">Login</label>
-          <input type="text" class="form-control" id="login" name="login" [(ngModel)]="novoFuncionario.login" #login="ngModel" required minlength="1" placeholder="Login">
-          <div *ngIf="formFunc.controls['login']?.hasError('required') && (formFunc.controls['login']?.dirty || formFunc.controls['login']?.touched)">
+          <input type="email" class="form-control" id="login" name="login" [(ngModel)]="novoFuncionario.login" #login="ngModel" required minlength="1" placeholder="Login">
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="formFunc.controls['login']?.hasError('required') && (formFunc.controls['login']?.dirty || formFunc.controls['login']?.touched)">
             O login é obrigatório.
           </div>
-          <div *ngIf="formFunc.controls['login']?.hasError('minlength') && (formFunc.controls['login']?.dirty || formFunc.controls['login']?.touched)">
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="formFunc.controls['login']?.hasError('minlength') && (formFunc.controls['login']?.dirty || formFunc.controls['login']?.touched)">
             O login deve ter no mínimo 3 caracteres.
           </div>
         </div>
         <div class="form-group my-4">
           <label for="perfil" class="visually-hidden">Perfil:</label>
           <input type="text" class="form-control" id="perfil" name="perfil" [(ngModel)]="novoFuncionario.perfil" #perfil="ngModel" required minlength="3" placeholder="Perfil">
-          <div *ngIf="formFunc.controls['perfil']?.hasError('required') && (formFunc.controls['perfil']?.dirty || formFunc.controls['perfil']?.touched)">
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="formFunc.controls['perfil']?.hasError('required') && (formFunc.controls['perfil']?.dirty || formFunc.controls['perfil']?.touched)">
             O perfil é obrigatório.
           </div>
-          <div *ngIf="formFunc.controls['perfil']?.hasError('minlength') && (formFunc.controls['perfil']?.dirty || formFunc.controls['perfil']?.touched)">
-            O login deve ter no mínimo 3 caracteres.
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="formFunc.controls['perfil']?.hasError('minlength') && (formFunc.controls['perfil']?.dirty || formFunc.controls['perfil']?.touched)">
+            O perfil deve ter no mínimo 3 caracteres.
           </div>
         </div>
       </div>
       <div class="form-group my-4">
         <label for="dataN" class="visually-hidden">Data de Nascimento:</label>
         <input type="text" class="form-control" id="dataN" name="dataN" [(ngModel)]="novoFuncionario.dtNascimento" bsDatepicker [bsConfig]="datepickerConfig" #dataN="ngModel" required placeholder="Data de Nascimento">
-        <div *ngIf="formFunc.controls['dataN']?.hasError('required') && (formFunc.controls['dataN']?.dirty || formFunc.controls['dataN']?.touched)">
+        <div class="alert alert-danger mt-2" role="alert" *ngIf="formFunc.controls['dataN']?.hasError('required') && (formFunc.controls['dataN']?.dirty || formFunc.controls['dataN']?.touched)">
           A data de nascimento é obrigatória.
         </div>
       </div>
@@ -53,7 +53,7 @@
         <button type="submit" class="btn btn-primary" (click)="salvarFuncionario()">
           <i class="fa fa-save" aria-hidden="true"></i> Salvar
         </button>
-        <div *ngIf="errorMessage" class="alert alert-danger">
+        <div *ngIf="errorMessage" class="alert alert-danger my-2">
           {{ errorMessage }}
         </div>
       </div>

@@ -11,10 +11,10 @@
         <div class="form-group my-4">
           <label class="visually-hidden" for="descricao">Descrição</label>
           <input type=" text" class="form-control" id="descricao" name="descricao" [(ngModel)]="roupa.descricao" #descricao="ngModel" minlength="3" required placeholder="Nome">
-          <div *ngIf="formRoupa.controls['descricao']?.hasError('required') && (formRoupa.controls['descricao']?.dirty || formRoupa.controls['descricao']?.touched)">
+          <div class="alert alert-danger mt-2" *ngIf="formRoupa.controls['descricao']?.hasError('required') && (formRoupa.controls['descricao']?.dirty || formRoupa.controls['descricao']?.touched)">
             A descrição é obrigatória.
           </div>
-          <div *ngIf="formRoupa.controls['descricao']?.hasError('minlength') && (formRoupa.controls['descricao']?.dirty || formRoupa.controls['descricao']?.touched)">
+          <div class="alert alert-danger mt-2" *ngIf="formRoupa.controls['descricao']?.hasError('minlength') && (formRoupa.controls['descricao']?.dirty || formRoupa.controls['descricao']?.touched)">
             A descrição deve ter no mínimo 3 caracteres.
           </div>
         </div>
@@ -23,10 +23,10 @@
           <div class="input-group">
             <div class="input-group-text">R$</div>
             <input type="number" class="form-control" id="preco" name="preco" [(ngModel)]="roupa.preco" #preco="ngModel" required min="1" placeholder="Preço (R$)">
-            <div *ngIf="formRoupa.controls['preco']?.hasError('required') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
+            <div class="alert alert-danger mt-2" *ngIf="formRoupa.controls['preco']?.hasError('required') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
               O preço é obrigatório.
             </div>
-            <div *ngIf="formRoupa.controls['preco']?.hasError('min') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
+            <div class="alert alert-danger mt-2" *ngIf="formRoupa.controls['preco']?.hasError('min') && (formRoupa.controls['preco']?.dirty || formRoupa.controls['preco']?.touched)">
               O preço deve ser maior que 0.
             </div>
           </div>
@@ -34,7 +34,7 @@
         <div class="form-group my-4">
           <label for="prazo" class="visually-hidden">Prazo:</label>
           <input type="number" class="form-control" id="prazo" name="prazo" [(ngModel)]="roupa.prazo" #prazo="ngModel" required min="1" placeholder="Prazo (dias úteis)">
-          <div *ngIf="formRoupa.controls['prazo']?.hasError('required') && (formRoupa.controls['prazo']?.dirty || formRoupa.controls['prazo']?.touched)">
+          <div class="alert alert-danger mt-2" *ngIf="formRoupa.controls['prazo']?.hasError('required') && (formRoupa.controls['prazo']?.dirty || formRoupa.controls['prazo']?.touched)">
             O prazo é obrigatório.
           </div>
           <div *ngIf="formRoupa.controls['prazo']?.hasError('min') && (formRoupa.controls['prazo']?.dirty || formRoupa.controls['prazo']?.touched)">

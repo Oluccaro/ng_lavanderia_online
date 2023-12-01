@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FuncionarioService } from 'src/app/funcionario/services/funcionario.service';
 import { Funcionario } from 'src/app/shared/models/funcionario.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-funcionario-manutencao',
@@ -22,27 +23,51 @@ export class ModalFuncionarioManutencaoComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private funcionarioService: FuncionarioService
+    private funcionarioService: FuncionarioService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
+  goFuncionarios() {
+    this.router.navigate(['/funcionario/manutencao']);
+  }
+
   public salvarFuncionario(): void {
     if (this.formFunc.form.valid) {
-      this.funcionarioService
-        .adicionarFuncionario(this.novoFuncionario)
-        .subscribe(
-          (funcionario) => {
-            console.log('Funcionario salvo com sucesso:', funcionario);
-            this.activeModal.close();
-            this.funcionarioService.listarFuncionarios();
-          },
-          (error) => {
-            console.error('Falha ao salvar!', error);
-            this.errorMessage =
-              'Falha ao salvar o funcionário. Por favor, tente novamente.';
-          }
-        );
+      if (this.novoFuncionario.id) {
+        // Se o funcionário já tem um ID, então é uma operação de edição
+        this.funcionarioService
+          .atualizarFuncionario(this.novoFuncionario)
+          .subscribe(
+            (funcionario) => {
+              console.log('Funcionário atualizado com sucesso:', funcionario);
+              this.activeModal.close();
+              this.goFuncionarios();
+            },
+            (error) => {
+              console.error('Falha ao atualizar o funcionário!', error);
+              this.errorMessage =
+                'Falha ao atualizar o funcionário. Por favor, tente novamente.';
+            }
+          );
+      } else {
+        // Se não tiver um ID, então é uma operação de adição
+        this.funcionarioService
+          .adicionarFuncionario(this.novoFuncionario)
+          .subscribe(
+            (funcionario) => {
+              console.log('Funcionário salvo com sucesso:', funcionario);
+              this.activeModal.close();
+              this.goFuncionarios();
+            },
+            (error) => {
+              console.error('Falha ao salvar o funcionário!', error);
+              this.errorMessage =
+                'Falha ao salvar o funcionário. Por favor, tente novamente.';
+            }
+          );
+      }
     }
   }
 }

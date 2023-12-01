@@ -7,40 +7,39 @@
             <div class="col-12 mb-0">
               <div class="card-title p-2 vstack gap-3 d-inline-block">
                 <div class="border border-dark-subtle border-3 rounded-pill d-inline-block px-4 py-2" style="background-color: gray;">
-                  <h3 class="p-2 fw-bold mb-0 text-light">Cadastro de peças de roupa: {{roupas.length}}</h3>
+                  <h3 class="p-2 fw-bold mb-0 text-light">Cadastro de Roupas: {{roupas.length}}</h3>
                 </div>
               </div>
 
-              <div class="d-flex align-item-end justify-content-end">
-                <button class="btn btn-outline-primary btn-block btn-lg align-item-end" type="button" (click)="abrirModal()">Cadastrar Roupa</button>
-              </div>
-
               <div class="overflow-x-auto">
-                  <table *ngIf="roupas" class="table table-hover" style="border-radius: 15px;">
-                    <thead>
-                      <tr>
-                        <th scope="col">Peça de Roupa</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">Prazo</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let roupa of roupas">
-                        <td class="align-middle"> {{roupa.descricao}} </td>
-                        <td class="align-middle text-end" style="white-space: nowrap;"> {{roupa.preco | pipeReal}} </td>
-                        <td class="align-middle"> {{roupa.prazo}} dias</td>
-                        <td class="d-grid gap-2 d-md-flex justify-content-md-end" style="width: 300px">
-                          <a title="Editar" alt="Editar" class="btn btn-sm btn-outline-secondary">
-                            <i class="fa fa-edit" aria-hidden="true"></i> Editar
-                          </a>
-                          <a title="Remover" alt="Remover" class="btn btn-sm btn-outline-danger" (click)="remover($event, roupa)">
-                            <i class="fa fa-times" aria-hidden="true"></i> Remover
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p *ngIf="roupas.length==0">Nenhuma roupa cadastrada.</p>
+                <table *ngIf="roupas" class="table table-hover" style="border-radius: 15px;">
+                  <thead>
+                    <tr>
+                      <th scope="col">Peça de Roupa</th>
+                      <th scope="col">Preço</th>
+                      <th scope="col">Prazo</th>
+                      <th scope="col">
+                        <button class="btn btn-primary btn-block btn-md justify-content-end align-item-end" type="button" (click)="abrirModal()">Cadastrar Roupa</button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let roupa of roupas">
+                      <td class="align-middle"> {{roupa.descricao}} </td>
+                      <td class="align-middle text-end" style="white-space: nowrap;"> {{roupa.preco | pipeReal}} </td>
+                      <td class="align-middle"> {{roupa.prazo}} dias</td>
+                      <td class="d-grid gap-2 d-md-flex justify-content-md-end" style="width: 300px">
+                        <a title="Editar" alt="Editar" class="btn btn-sm btn-outline-secondary">
+                          <i class="fa fa-edit" aria-hidden="true"></i> Editar
+                        </a>
+                        <a title="Remover" alt="Remover" class="btn btn-sm btn-outline-danger" (click)="remover($event, roupa)">
+                          <i class="fa fa-times" aria-hidden="true"></i> Remover
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p *ngIf="roupas.length==0">Nenhuma roupa cadastrada.</p>
               </div>
             </div>
           </div>

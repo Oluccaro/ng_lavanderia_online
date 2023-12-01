@@ -29,7 +29,10 @@ export class FuncionarioService {
   }
 
   public buscarPorId(id: number): Observable<Funcionario> {
-    return this.http.get<Funcionario>(this.BASE_URL + `/${id}`, this.httpOptions);
+    return this.http.get<Funcionario>(
+      this.BASE_URL + `/${id}`,
+      this.httpOptions
+    );
   }
 
   public adicionarFuncionario(
@@ -47,9 +50,6 @@ export class FuncionarioService {
   public atualizarFuncionario(
     funcionario: Funcionario
   ): Observable<Funcionario> {
-    funcionario.nome = funcionario.nome;
-    funcionario.login = funcionario.login;
-    funcionario.dtNascimento = funcionario.dtNascimento;
     return this.http.put<Funcionario>(
       this.BASE_URL + `/${funcionario.id}`,
       JSON.stringify(funcionario),
@@ -77,5 +77,4 @@ export class FuncionarioService {
     const url = `${this.BASE_URL}/${id}`;
     return this.http.delete<Funcionario>(url, this.httpOptions);
   }
-
 }

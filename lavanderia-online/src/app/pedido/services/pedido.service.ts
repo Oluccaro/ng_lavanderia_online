@@ -28,7 +28,7 @@ export class PedidoService {
 
   listarPorStatus(status: String): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
-      this.BASE_URL + `/${status}`,
+      this.BASE_URL + `/status/${status}`,
       this.httpOptions)
   }
 

@@ -22,7 +22,7 @@
             <a *ngIf="!isCurrentRoute('/cliente/pedidos')"class="nav-link" (click)="goPedidos()">Todos os Pedidos</a>
             <a *ngIf="isCurrentRoute('/cliente/pedidos')"class="nav-link active" aria-current="page" (click)="goPedidos()">Todos os Pedidos</a>
             <a *ngIf="!isCurrentRoute('/cliente/consulta')"class="nav-link" (click)="goConsulta()">Consultar Pedido</a>
-            <a *ngIf="isCurrentRoute('/cliente/consulta')"class="nav-link active" aria-current="page" (click)="goConsulta()">Consultar Pedido</a>
+            <a *ngIf="isCurrentRoute('/cliente/consulta')"class="nav-link" aria-current="page" (click)="goConsulta()">Consultar Pedido</a>
             <a *ngIf="!isCurrentRoute('/cliente/novo')"class="nav-link" (click)="goNovo()">Novo Pedido</a>
             <a *ngIf="isCurrentRoute('/cliente/novo')"class="nav-link active" aria-current="page" (click)="goNovo()">Novo Pedido</a>
             <a class="nav-link" (click)="logout()">Sair</a>
@@ -53,8 +53,8 @@
             <a *ngIf="isCurrentRoute('/funcionario/listagem')"class="nav-link active" aria-current="page" (click)="goListagem()">Listagem de Pedidos</a>
             <a *ngIf="!isCurrentRoute('/funcionario/roupas')"class="nav-link" (click)="goRoupas()">Cadastro de Roupas</a>
             <a *ngIf="isCurrentRoute('/funcionario/roupas')"class="nav-link active" aria-current="page" (click)="goRoupas()">Cadastro de Roupas</a>
-            <a *ngIf="!isCurrentRoute('/funcionario/funcionarios')"class="nav-link" (click)="goFuncionarios()">Cadastro de Funcionários</a>
-            <a *ngIf="isCurrentRoute('/funcionario/funcionarios')"class="nav-link active" aria-current="page" (click)="goFuncionarios()">Cadastro de Funcionários</a>
+            <a *ngIf="!isCurrentRoute('/funcionario/manutencao')"class="nav-link" (click)="goManutencao()">Cadastro de Funcionários</a>
+            <a *ngIf="isCurrentRoute('/funcionario/manutencao')"class="nav-link active" aria-current="page" (click)="goManutencao()">Cadastro de Funcionários</a>
             <a *ngIf="!isCurrentRoute('/funcionario/relatorios')"class="nav-link" (click)="goRelatorios()">Relatórios</a>
             <a *ngIf="isCurrentRoute('/funcionario/relatorios')"class="nav-link active" aria-current="page" (click)="goRelatorios()">Relatórios</a>
             <a class="nav-link" (click)="logout()">Sair</a>

@@ -56,8 +56,8 @@ export class NavBarComponent {
     this.router.navigate(['/funcionario/roupas']);
   };
 
-  goFuncionarios() {
-    this.router.navigate(['/funcionario/funcionarios']);
+  goManutencao() {
+    this.router.navigate(['/funcionario/manutencao']);
   };
 
   goRelatorios() {

@@ -66,7 +66,12 @@ export class Pedido {
 
   private gerarData(): string{
     let data = new Date();
-    return data.toString();
+    let ano = data.getFullYear();
+    let mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    let dia = data.getDate().toString().padStart(2, '0');
+    let stringData = `${ano}-${mes}-${dia}`;
+    console.log(ano, mes, dia);
+    return stringData;
   }
 
 }

@@ -54,18 +54,33 @@ export class NovoPedidoComponent implements OnInit {
     return this.roupas;
   }
 
+  private gerarDataPrevista(diasAdicionais: number): string {
+    let data = new Date();
+    
+    data.setDate(data.getDate() + diasAdicionais);
+  
+    let ano = data.getFullYear();
+    let mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    let dia = data.getDate().toString().padStart(2, '0');
+    let stringData = `${ano}-${mes}-${dia}`;
+    return stringData;
+  }
+
   abrirModal(): Boolean {
     const roupasComQuantidade = this.roupas.filter(
       (roupa) => roupa.quantidade && roupa.quantidade !== 0
     );
     if (roupasComQuantidade.length > 0) {
-      const maiorPrazo = '12/12/2023';
+      const roupaComMaiorPrazo = this.roupasComQuantidade.reduce((roupaMaiorPrazo, roupaAtual) => {
+        return roupaAtual.prazo! > roupaMaiorPrazo.prazo! ? roupaAtual : roupaMaiorPrazo;
+      }, this.roupas[0]);
+      const maiorPrazo = roupaComMaiorPrazo.prazo!;
       const valorTotal = roupasComQuantidade.reduce((total, roupa) => {
         return total + (roupa.quantidade || 0) * roupa.preco!;
       }, 0);
       const modalRef = this.modalService.open(ModalOrcamentoComponent);
       this.pedido.setRoupas = roupasComQuantidade;
-      this.pedido.setDtEntregaPrevista = maiorPrazo;
+      this.pedido.setDtEntregaPrevista = this.gerarDataPrevista(maiorPrazo);
       this.pedido.setValor = valorTotal;
       modalRef.componentInstance.pedido = this.pedido;
       modalRef.componentInstance.roupas = roupasComQuantidade;
